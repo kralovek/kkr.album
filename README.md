@@ -1,0 +1,4 @@
+kkr.album
+=========
+
+Albums manager
