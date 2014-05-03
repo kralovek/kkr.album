@@ -6,7 +6,7 @@ import kkr.album.components.manager_gpx.model.Trace;
 import kkr.album.exception.BaseException;
 import kkr.album.exception.FunctionalException;
 import kkr.album.exception.TechnicalException;
-import kkr.album.utils.FileUtils;
+import kkr.album.utils.UtilsFile;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
@@ -60,8 +60,8 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 			throw new TechnicalException("Bad format of the XML: "
 					+ fileSource.getAbsolutePath(), ex);
 		} finally {
-			FileUtils.closeRessource(printStream);
-			FileUtils.closeRessource(xmlStreamReader);
+			UtilsFile.closeRessource(printStream);
+			UtilsFile.closeRessource(xmlStreamReader);
 		}
 		// fileSource.delete();
 		// if (fileSource.isFile()) {
@@ -90,11 +90,11 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 			throw new TechnicalException("Bad format of the XML: "
 					+ file.getAbsolutePath(), ex);
 		} finally {
-			FileUtils.closeRessource(xmlStreamReader);
+			UtilsFile.closeRessource(xmlStreamReader);
 		}
 	}
 
-	public void printGpx(Gpx gpx, File file) throws BaseException {
+	public void saveGpx(Gpx gpx, File file) throws BaseException {
 		PrintStream printStream = null;
 		try {
 			FileOutputStream fileOutputStream = new FileOutputStream(file);
@@ -108,7 +108,7 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 			throw new TechnicalException("The fileSource does not exist: "
 					+ file.getAbsolutePath(), ex);
 		} finally {
-			FileUtils.closeRessource(printStream);
+			UtilsFile.closeRessource(printStream);
 		}
 	}
 

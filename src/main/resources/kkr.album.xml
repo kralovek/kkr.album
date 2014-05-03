@@ -14,5 +14,32 @@
 
 	<bean id="default" abstract="true" />
 
+	<bean id="batchModifyGpxs" class="kkr.album.components.manager_archiv.BatchModifyGpxs">
+		<property name="managerGpx" ref="managerGpx" />		
+	</bean> 
+
+	<bean id="batchModifyPhotos" class="kkr.album.components.batch_modifyphotos.BatchModifyPhotos">
+		<property name="filenameTags" value="tags.properties" />		
+		<property name="timeEvaluator" ref="timeEvaluator" />		
+		<property name="managerGpx" ref="managerGpx" />		
+		<property name="managerExif" ref="managerExif" />		
+	</bean> 
+
+	<bean id="managerArchiv" class="kkr.album.components.manager_archiv.ManagerArchivGeneric">
+		<property name="dirOriginal" value="h:\photos\traces\my\o" />
+		<property name="dirNormal" value="h:\photos\traces\my\n" />
+		<property name="dirVideo" value="h:\photos\traces\my\v" />
+	</bean>
+
+	<bean id="managerExif" class="kkr.album.components.manager_exif.ManagerExifSanselan">
+	</bean>
+
+	<bean id="managerGpx" class="kkr.album.components.manager_gpx.ManagerGpxGeneric">
+	</bean>
+
+	<bean id="timeEvaluator" class="kkr.album.components.timeevaluator.TimeEvaluatorGeneric">
+		<property name="managerExif" ref="managerExif" />
+	</bean>
+
 </beans>
     

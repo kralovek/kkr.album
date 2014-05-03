@@ -64,7 +64,7 @@ public class XmlReader {
 		}
 	}
 
-	public static class Attribute {
+	public static class Attribute implements Cloneable {
 		private String prefix = null;
 		private String name = null;
 		private String value = null;
@@ -91,6 +91,14 @@ public class XmlReader {
 
 		public void setValue(String value) {
 			this.value = value;
+		}
+
+		public Object clone() {
+			Attribute attribute = new Attribute();
+			attribute.name = name;
+			attribute.prefix = prefix;
+			attribute.value = value;
+			return attribute;
 		}
 	}
 

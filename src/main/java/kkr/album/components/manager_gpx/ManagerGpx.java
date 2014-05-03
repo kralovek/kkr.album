@@ -10,5 +10,5 @@ public interface ManagerGpx {
 
     Gpx loadGpx(File file) throws BaseException;
 
-    void printGpx(Gpx gpx, File file) throws BaseException;
+    void saveGpx(Gpx gpx, File file) throws BaseException;
 }

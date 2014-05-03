@@ -2,7 +2,7 @@ package kkr.album.components.manager_gpx.model;
 
 import java.util.Date;
 
-public class Point {
+public class Point implements Cloneable {
 	private Double latitude;
 	private Double longitude;
 	private Double elevation;
@@ -65,5 +65,17 @@ public class Point {
 
 	public void setTemperature(Double temperature) {
 		this.temperature = temperature;
+	}
+
+	public Object clone() {
+		Point point = new Point();
+		point.cadence = cadence;
+		point.elevation = elevation;
+		point.heartRate = heartRate;
+		point.latitude = latitude;
+		point.longitude = longitude;
+		point.temperature = temperature;
+		point.time = time;
+		return point;
 	}
 }

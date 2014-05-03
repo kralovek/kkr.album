@@ -23,7 +23,8 @@ import kkr.album.components.manager_gpx.model.Trace;
 import kkr.album.exception.BaseException;
 import kkr.album.exception.FunctionalException;
 import kkr.album.exception.TechnicalException;
-import kkr.album.utils.FileUtils;
+import kkr.album.utils.UtilsAlbums;
+import kkr.album.utils.UtilsFile;
 
 public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 	private static final Logger LOGGER = Logger
@@ -65,27 +66,24 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 		}
 	};
 
-	public void run() throws BaseException {
+	public void run(File dirBase) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
+			String name = UtilsAlbums.determineName(dirBase);
+
 			File dirGps = new File(dirBase, "gps");
 			File dirPhotos = new File(dirBase, "photos");
 
-			Map<String, File> dirsPhotos = loadPhotosDirs();
+			Map<String, File> dirsPhotos = loadPhotosDirs(dirGps);
 
 			if (dirsPhotos.size() != 0) {
 
-				Map<String, String> tags = loadTags();
+				Map<String, String> tags = loadTags(dirGps);
 
 				List<Gpx> gpxs = loadGpxs(dirGps);
 
 				Map<String, Long> times;
-				if (timeMove != null) {
-					times = new HashMap<String, Long>();
-					times.put(timeSymbol, timeMove);
-				} else {
-					times = timeEvaluator.loadTimes(dirGps);
-				}
+				times = timeEvaluator.loadTimes(dirGps);
 
 				for (Map.Entry<String, File> entry : dirsPhotos.entrySet()) {
 					if (!times.containsKey(entry.getKey())) {
@@ -135,15 +133,15 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 		}
 	}
 
-	private Map<String, File> loadPhotosDirs() throws BaseException {
+	private Map<String, File> loadPhotosDirs(File dirGps) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
 			Map<String, File> retval = new HashMap<String, File>();
 
-			File[] dirsPhotos = dirBase.listFiles(FILE_FILTER_PHOTOS_DIRS);
+			File[] dirsPhotos = dirGps.listFiles(FILE_FILTER_PHOTOS_DIRS);
 
-			for (File dir : dirsPhotos) {
-				retval.put(dir.getName().substring(6), dir);
+			for (File dirLoc : dirsPhotos) {
+				retval.put(dirLoc.getName().substring(6), dirLoc);
 			}
 
 			LOGGER.trace("OK");
@@ -153,10 +151,12 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 		}
 	}
 
-	private Map<String, String> loadTags() throws BaseException {
+	private Map<String, String> loadTags(File dirGps) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
 			Map<String, String> retval = new LinkedHashMap<String, String>();
+
+			File fileTags = new File(dirGps, filenameTags);
 
 			InputStream inputStream = null;
 			try {
@@ -182,7 +182,7 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 				throw new TechnicalException("Cannot read the tags file: "
 						+ fileTags.getAbsolutePath(), ex);
 			} finally {
-				FileUtils.closeRessource(inputStream);
+				UtilsFile.closeRessource(inputStream);
 			}
 		} finally {
 			LOGGER.trace("END");

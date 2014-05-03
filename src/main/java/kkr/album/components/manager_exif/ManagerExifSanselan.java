@@ -29,7 +29,7 @@ import org.apache.sanselan.formats.tiff.write.TiffOutputSet;
 
 import kkr.album.exception.BaseException;
 import kkr.album.exception.TechnicalException;
-import kkr.album.utils.FileUtils;
+import kkr.album.utils.UtilsFile;
 
 public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 		ManagerExif {
@@ -190,8 +190,8 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 				throw new TechnicalException("Cannot write data to the file: "
 						+ fileTarget.getAbsolutePath(), ex);
 			} finally {
-				FileUtils.closeRessource(bos);
-				FileUtils.closeRessource(os);
+				UtilsFile.closeRessource(bos);
+				UtilsFile.closeRessource(os);
 			}
 
 			LOGGER.trace("OK");

@@ -5,7 +5,7 @@ import java.io.Closeable;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-public class FileUtils {
+public class UtilsFile {
     public static final void closeRessource(XMLStreamReader ressource) {
         if (ressource != null) {
             try {
