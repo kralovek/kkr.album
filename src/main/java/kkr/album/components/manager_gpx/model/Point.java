@@ -2,7 +2,7 @@ package kkr.album.components.manager_gpx.model;
 
 import java.util.Date;
 
-public class Point implements Cloneable {
+public class Point implements Cloneable, Comparable<Point> {
 	private Double latitude;
 	private Double longitude;
 	private Double elevation;
@@ -77,5 +77,12 @@ public class Point implements Cloneable {
 		point.temperature = temperature;
 		point.time = time;
 		return point;
+	}
+
+	public int compareTo(Point point) {
+		if (time != null && point.time != null) {
+			return time.compareTo(point.time);
+		}
+		return 0;
 	}
 }

@@ -40,12 +40,12 @@ public class Gpx implements Cloneable {
 		gpx.time = time;
 		if (attributes != null) {
 			for (XmlReader.Attribute attribute : attributes) {
-				attributes.add((XmlReader.Attribute) attribute.clone()); 
+				gpx.attributes.add((XmlReader.Attribute) attribute.clone()); 
 			}
 		}
 		if (traces != null) {
 			for (Trace trace : traces) {
-				traces.add((Trace) trace.clone());
+				gpx.traces.add((Trace) trace.clone());
 			}
 		}
 		return gpx;

@@ -24,7 +24,9 @@ public class MainModifyGpx {
 			
 			BatchModifyGpxs batchModifyGpxs = beanFactory.getBean(BEAN_ID, BatchModifyGpxs.class);
 			
-			batchModifyGpxs.run(new File("."));
+			File dirCurrent = new File(System.getProperty("user.dir"));
+			
+			batchModifyGpxs.run(dirCurrent);
 			
 			LOGGER.trace("OK");
 		} catch (Throwable th) {

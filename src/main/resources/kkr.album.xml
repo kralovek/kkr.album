@@ -14,7 +14,7 @@
 
 	<bean id="default" abstract="true" />
 
-	<bean id="batchModifyGpxs" class="kkr.album.components.manager_archiv.BatchModifyGpxs">
+	<bean id="batchModifyGpxs" class="kkr.album.components.batch_modifygpxs.BatchModifyGpxs">
 		<property name="managerGpx" ref="managerGpx" />		
 	</bean> 
 

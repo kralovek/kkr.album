@@ -49,7 +49,7 @@ public class Trace implements Cloneable {
 		trace.time = time;
 		if (points != null) {
 			for (Point point : points) {
-				points.add((Point) point.clone());
+				trace.points.add((Point) point.clone());
 			}
 		}
 		return trace;

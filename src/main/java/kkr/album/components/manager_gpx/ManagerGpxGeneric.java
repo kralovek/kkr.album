@@ -112,6 +112,7 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 		}
 	}
 
+	
 	//
 	// PRIVATE
 	//
@@ -135,6 +136,7 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 					+ "</time>");
 		}
 		printStream.println("</metadata>");
+		printStream.println();
 
 		for (Trace trace : gpx.getTraces()) {
 			printStream.println("<trk>");
@@ -147,6 +149,7 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 				printStream.println("</extensions>");
 			}
 			printStream.println("<trkseg>");
+			printStream.println();
 			for (Point point : trace.getPoints()) {
 				printStream.print("<trkpt lat=\""
 						+ String.format("%.10f", point.getLatitude()).replace(
@@ -163,9 +166,13 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 					printStream.print("<time>"
 							+ dateFormat.format(point.getTime()) + "</time>");
 				}
-				if (point.getHeartRate() != null || point.getCadence() != null) {
+				if (point.getHeartRate() != null || point.getCadence() != null || point.getTemperature() != null) {
 					printStream
 							.print("<extensions><gpxtpx:TrackPointExtension>");
+					if (point.getTemperature() != null) {
+						printStream.print("<gpxtpx:atemp>" + point.getTemperature()
+								+ "</gpxtpx:atemp>");
+					}
 					if (point.getHeartRate() != null) {
 						printStream.print("<gpxtpx:hr>" + point.getHeartRate()
 								+ "</gpxtpx:hr>");
@@ -179,8 +186,10 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 				}
 				printStream.println("</trkpt>");
 			}
+			printStream.println();
 			printStream.println("</trkseg>");
 			printStream.println("</trk>");
+			printStream.println();
 		}
 
 		printStream.println("</gpx>");
@@ -214,6 +223,11 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 								String value = xmlReader.getTextValue();
 								Double elevation = valueDouble(value);
 								point.setElevation(elevation);
+							} else if (startTag.getPrefix() == null
+									&& "time".equals(startTag.getName())) {
+								String value = xmlReader.getTextValue();
+								Date time = valueDate(value);
+								point.setTime(time);
 							} else if ("gpxtpx".equals(startTag.getPrefix())
 									&& "hr".equals(startTag.getName())) {
 								String value = xmlReader.getTextValue();
@@ -223,7 +237,12 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 									&& "cad".equals(startTag.getName())) {
 								String value = xmlReader.getTextValue();
 								Integer cadence = valueInteger(value);
-								point.setHeartRate(cadence);
+								point.setCadence(cadence);
+							} else if ("gpxtpx".equals(startTag.getPrefix())
+									&& "atemp".equals(startTag.getName())) {
+								String value = xmlReader.getTextValue();
+								Double temperature = valueDouble(value);
+								point.setTemperature(temperature);
 							}
 						} else {
 							if (startTag.getPrefix() == null

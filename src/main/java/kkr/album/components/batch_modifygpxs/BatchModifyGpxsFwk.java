@@ -24,4 +24,12 @@ public abstract class BatchModifyGpxsFwk {
 		}
 	}
 
+	public ManagerGpx getManagerGpx() {
+		return managerGpx;
+	}
+
+	public void setManagerGpx(ManagerGpx managerGpx) {
+		this.managerGpx = managerGpx;
+	}
+
 }
