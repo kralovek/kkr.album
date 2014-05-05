@@ -81,7 +81,7 @@
 									implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
 									<resource>META-INF/spring.schemas</resource>
 								</transformer>
-							</transformers>
+    							</transformers>
 						</configuration>
 					</execution>
 				</executions>
