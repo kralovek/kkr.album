@@ -19,7 +19,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGpx {
+public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
+		ManagerGpx {
 
 	private static DateFormat dateFormat;
 	static {
@@ -112,7 +113,6 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 		}
 	}
 
-	
 	//
 	// PRIVATE
 	//
@@ -128,20 +128,22 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 					+ "=\"" + attribute.getValue() + "\"");
 		}
 		printStream.println(">");
-		printStream.println("<metadata>");
-		printStream
-				.println("<link href=\"http://www.garmin.com\"><text>Garmin International</text></link>");
-		if (gpx.getTime() != null) {
-			printStream.println("<time>" + dateFormat.format(gpx.getTime())
-					+ "</time>");
+		if (false) {
+			printStream.println("<metadata>");
+			printStream
+					.println("<link href=\"http://www.garmin.com\"><text>Garmin International</text></link>");
+			if (gpx.getTime() != null) {
+				printStream.println("<time>" + dateFormat.format(gpx.getTime())
+						+ "</time>");
+			}
+			printStream.println("</metadata>");
+			printStream.println();
 		}
-		printStream.println("</metadata>");
-		printStream.println();
 
 		for (Trace trace : gpx.getTraces()) {
 			printStream.println("<trk>");
 			printStream.println("<name>" + trace.getName() + "</name>");
-			if (trace.getColor() != null) {
+			if (false && trace.getColor() != null) {
 				printStream.println("<extensions>");
 				printStream.println("<gpxx:TrackExtension><gpxx:DisplayColor>"
 						+ trace.getColor()
@@ -166,12 +168,13 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 					printStream.print("<time>"
 							+ dateFormat.format(point.getTime()) + "</time>");
 				}
-				if (point.getHeartRate() != null || point.getCadence() != null || point.getTemperature() != null) {
+				if (point.getHeartRate() != null || point.getCadence() != null
+						|| point.getTemperature() != null) {
 					printStream
 							.print("<extensions><gpxtpx:TrackPointExtension>");
 					if (point.getTemperature() != null) {
-						printStream.print("<gpxtpx:atemp>" + point.getTemperature()
-								+ "</gpxtpx:atemp>");
+						printStream.print("<gpxtpx:atemp>"
+								+ point.getTemperature() + "</gpxtpx:atemp>");
 					}
 					if (point.getHeartRate() != null) {
 						printStream.print("<gpxtpx:hr>" + point.getHeartRate()

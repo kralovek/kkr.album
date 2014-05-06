@@ -26,7 +26,13 @@ public class MainModifyGpx {
 			
 			File dirCurrent = new File(System.getProperty("user.dir"));
 			
-			batchModifyGpxs.run(dirCurrent);
+			Config_MainModifyGpx config = new Config_MainModifyGpx(args);
+			
+			if (config.getFile() != null) {
+				batchModifyGpxs.runFile(config.getFile(), config.getName());
+			} else {
+				batchModifyGpxs.runAuto(dirCurrent, config.getName());
+			}
 			
 			LOGGER.trace("OK");
 		} catch (Throwable th) {
