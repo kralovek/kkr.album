@@ -31,7 +31,7 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 			.getLogger(BatchModifyPhotos.class);
 
 	private static final Pattern PATTERN_FILES_FROM_GPS = Pattern
-			.compile("[0-9]{2}.*" + UtilsPattern.MASK_EXT_PHOTO);
+			.compile("[0-9]{2}" + "\\." + UtilsPattern.MASK_EXT_PHOTO);
 
 	private static final Pattern PATTERN_GPX = Pattern
 			.compile("[0-9]{8}.*\\.[gG][pP][xX]");
@@ -40,7 +40,7 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 			.compile("photos[A-Z0-9]+");
 
 	private static final Pattern PATTERN_FILES_FROM_PHOTOS = Pattern
-			.compile(".*" + UtilsPattern.MASK_EXT_FILE);
+			.compile(".*" + "\\." + UtilsPattern.MASK_EXT_FILE);
 
 	private static final FileFilter FILE_FILTER_PHOTOS_DIRS = new UtilsPattern.FileFilterDir(
 			PATTERN_PHOTOS_DIR);
@@ -63,8 +63,8 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 			File dirGps = new File(dirBase, "gps");
 			File dirPhotos = new File(dirBase, "photos");
 
-			if (!dirGps.isFile()) {
-				throw new FunctionalException("GPS directory does not exist"
+			if (!dirGps.isDirectory()) {
+				throw new FunctionalException("GPS directory does not exist: "
 						+ dirGps.getAbsolutePath());
 			}
 
@@ -295,8 +295,8 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 
 				LOGGER.info("Modifying file: " + fileTarget.getName()
 						+ " Date: " + stringTime + " Lon/Lat: "
-						+ toString(point.getLongitude()) + "/"
-						+ toString(point.getLatitude()));
+						+ (point != null ? toString(point.getLongitude()) : "-") + "/"
+						+ (point != null ? toString(point.getLatitude()) : "-"));
 
 				managerExif.modifyFile(fileTarget, timeMove,
 						(point != null ? point.getLongitude() : null),

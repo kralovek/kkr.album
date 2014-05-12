@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Map;
 
 import kkr.album.batch.indexfiles.BatchIndexFiles;
+import kkr.album.exception.BaseException;
 import kkr.album.exception.TreatErrors;
 import kkr.album.utils.UtilsBean;
 import kkr.album.utils.UtilsCommandLine;
@@ -19,6 +20,18 @@ public class MainRenameON {
 	public static final void main(String[] args) {
 		LOGGER.trace("BEGIN");
 		try {
+			work(args);
+			LOGGER.trace("OK");
+		} catch (Throwable th) {
+			TreatErrors.treatException(th);
+		} finally {
+			LOGGER.trace("END");
+		}
+	}
+
+	public static final void work(String[] args) throws BaseException {
+		LOGGER.trace("BEGIN");
+		try {
 			Map<String, String> parameters = UtilsCommandLine.commandLineToMap(args);
 			BeanFactory beanFactory = UtilsBean.createBeanFactory(parameters);
 			
@@ -31,8 +44,6 @@ public class MainRenameON {
 			batchIndexFiles.runON(dirCurrent);
 			
 			LOGGER.trace("OK");
-		} catch (Throwable th) {
-			TreatErrors.treatException(th);
 		} finally {
 			LOGGER.trace("END");
 		}

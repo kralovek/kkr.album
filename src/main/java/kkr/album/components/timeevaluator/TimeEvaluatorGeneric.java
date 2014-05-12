@@ -23,7 +23,7 @@ public class TimeEvaluatorGeneric extends TimeEvaluatorGenericFwk implements
 	private static final Pattern PATTERN_FILE_TIME_TO = Pattern
 			.compile("time.*\\.[jJ][pP][eE]?[gG]");
 	private static final Pattern PATTERN_FILE_TIME_TO_FROM = Pattern
-			.compile("time[A-Z]+_[0-9]{8}-[0-9]{6}(_[0-9]{8}-[0-9]{6})?\\.[jJ][pP][eE]?[gG]");
+			.compile("time[A-Z0-9]+_[0-9]{8}-[0-9]{6}(_[0-9]{8}-[0-9]{6})?\\.[jJ][pP][eE]?[gG]");
 
 	private static class FileTimeImpl implements FileTime {
 		private Long move;
@@ -114,7 +114,7 @@ public class TimeEvaluatorGeneric extends TimeEvaluatorGenericFwk implements
 							.getDateOrigin().getTime()) / 1000L;
 					;
 					FileTimeImpl fileTimeImpl = new FileTimeImpl();
-					fileTimeImpl.setFile(file);
+					fileTimeImpl.setFile(fileInfo.getFile());
 					fileTimeImpl.setMove(seconds);
 					
 					if (retval.put(fileInfo.getSymbol(), fileTimeImpl) != null) {
@@ -170,27 +170,26 @@ public class TimeEvaluatorGeneric extends TimeEvaluatorGenericFwk implements
 					+ file.getAbsolutePath());
 		}
 
-		String[] parts = name.split("_");
+		String[] parts = name.split("[_.]");
 		retval.setSymbol(parts[0].substring(4));
-
-		String stringDateTo = parts[1];
-		String stringDateFrom = parts[2];
 
 		Date date;
 		String format;
 		try {
-			date = UtilsPattern.DATE_FORMAT_DATETIME.parse(stringDateTo);
+			String stringDateMove = parts[1];
+			date = UtilsPattern.DATE_FORMAT_DATETIME.parse(stringDateMove);
 			format = UtilsPattern.DATE_FORMAT_DATETIME.format(date);
-			if (!format.equals(stringDateTo)) {
+			if (!format.equals(stringDateMove)) {
 				throw new FunctionalException(
 						"The time file has bad (time to) format: "
 								+ file.getAbsolutePath());
 			}
 			retval.setDateMove(date);
-			if (parts.length == 3) {
-				date = UtilsPattern.DATE_FORMAT_DATETIME.parse(stringDateFrom);
+			if (parts.length == 4) {
+				String stringDateOrigin = parts[2];
+				date = UtilsPattern.DATE_FORMAT_DATETIME.parse(stringDateOrigin);
 				format = UtilsPattern.DATE_FORMAT_DATETIME.format(date);
-				if (!format.equals(stringDateFrom)) {
+				if (!format.equals(stringDateOrigin)) {
 					throw new FunctionalException(
 							"The time file has bad (time from) format: "
 									+ file.getAbsolutePath());

@@ -18,7 +18,7 @@ public class ManagerArchiveGeneric extends ManagerArchiveGenericFwk implements
 			.getLogger(ManagerArchiveGeneric.class);
 
 	private static final Pattern PATTERN_FILE = Pattern
-			.compile("[0-9]{8}([oOnN].*" + UtilsPattern.MASK_EXT_PHOTO + "|v.*" + UtilsPattern.MASK_EXT_VIDEO + ")");
+			.compile("[0-9]{8}([oOnN].*" + "\\." + UtilsPattern.MASK_EXT_PHOTO + "|v.*" + "\\." + UtilsPattern.MASK_EXT_VIDEO + ")");
 
 	private static final Pattern PATTERN_DIR = Pattern
 			.compile("[oOnNvV][0-9]{8}");

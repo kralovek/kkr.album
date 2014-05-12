@@ -6,12 +6,12 @@ import kkr.album.exception.ConfigurationException;
 public abstract class BatchArchiveFilesFwk {
 	private boolean configured;
 
-	protected ManagerArchive managerArchiv;
+	protected ManagerArchive managerArchive;
 
 	public void config() throws ConfigurationException {
 		configured = false;
-		if (managerArchiv == null) {
-			throw new ConfigurationException("Parameter 'managerArchiv' is not configured");
+		if (managerArchive == null) {
+			throw new ConfigurationException("Parameter 'managerArchive' is not configured");
 		}
 		configured = true;
 	}
@@ -23,11 +23,11 @@ public abstract class BatchArchiveFilesFwk {
 		}
 	}
 
-	public ManagerArchive getManagerArchiv() {
-		return managerArchiv;
+	public ManagerArchive getManagerArchive() {
+		return managerArchive;
 	}
 
-	public void setManagerArchiv(ManagerArchive managerArchiv) {
-		this.managerArchiv = managerArchiv;
+	public void setManagerArchive(ManagerArchive managerArchive) {
+		this.managerArchive = managerArchive;
 	}
 }

@@ -1,6 +1,8 @@
 package kkr.album.main.group;
 
-import kkr.album.main.MainArchiveFiles;
+import kkr.album.exception.BaseException;
+import kkr.album.exception.TreatErrors;
+import kkr.album.main.MainArchiveFilesOV;
 import kkr.album.main.MainCopyPicasa;
 
 import org.apache.log4j.Logger;
@@ -11,15 +13,27 @@ public class MainGroup3 {
 	public static final void main(String[] args) {
 		LOGGER.trace("BEGIN");
 		try {
+			work(args);
+			LOGGER.trace("OK");
+		} catch (Throwable th) {
+			TreatErrors.treatException(th);
+		} finally {
+			LOGGER.trace("END");
+		}
+	}
+
+	public static void work(String[] args) throws BaseException {
+		LOGGER.trace("BEGIN");
+		try {
 			LOGGER.info("####################################################");
 			LOGGER.info("BATCH_ARCHIVE_FILES N");
 			LOGGER.info("####################################################");
-			MainArchiveFiles.main(new String[] {"-move", "n"});
+			MainArchiveFilesOV.work(new String[] {"-move", "n"});
 
 			LOGGER.info("####################################################");
 			LOGGER.info("BATCH_COPY_PICASA");
 			LOGGER.info("####################################################");
-			MainCopyPicasa.main(new String[] {});
+			MainCopyPicasa.work(new String[] {});
 			
 			LOGGER.trace("OK");
 		} finally {

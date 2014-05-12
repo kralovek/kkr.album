@@ -20,14 +20,14 @@ public class BatchIndexFiles extends BatchIndexFilesFwk {
 
 	private static final Pattern PATTERN_FILES_FROM_PHOTOS = Pattern
 			.compile(UtilsPattern.MASK_TIME + "_[A-Z0-9]+"
-					+ UtilsPattern.MASK_EXT_FILE);
+					+ "\\." + UtilsPattern.MASK_EXT_FILE);
 
 	private static final Pattern PATTERN_PHOTOS_FROM_GPS = Pattern
 			.compile(UtilsPattern.MASK_TIME + "_[0-9]+"
-					+ UtilsPattern.MASK_EXT_PHOTO);
+					+ "\\." + UtilsPattern.MASK_EXT_PHOTO);
 
 	private static final Pattern PATTERN_O = Pattern.compile("[0-9]{8}o_"
-			+ UtilsPattern.MASK_TIME + UtilsPattern.MASK_EXT_FILE);
+			+ UtilsPattern.MASK_TIME + "\\." + UtilsPattern.MASK_EXT_FILE);
 
 	private static final FileFilter FILE_FILTER_PHOTOS_FROM_GPS = new UtilsPattern.FileFilterFile(
 			PATTERN_PHOTOS_FROM_GPS);
@@ -76,7 +76,7 @@ public class BatchIndexFiles extends BatchIndexFilesFwk {
 			File dirGps = new File(dirBase, "gps");
 			File dirPhotos = new File(dirBase, "photos");
 
-			int newIndex = managerArchiv.nextIndex();
+			int newIndex = managerArchive.nextIndex();
 
 			if (dirGps.isDirectory()) {
 				LOGGER.info("WORKING DIR: " + dirGps.getAbsolutePath());

@@ -27,9 +27,9 @@ public class UtilsPattern {
 		DATE_FORMAT_DATETIME0.setTimeZone(TimeZone.getTimeZone("GPS"));
 	}
 
-	public static final String MASK_EXT_PHOTO = "\\.([jJ][pP][eE]?[gG])";
-	public static final String MASK_EXT_VIDEO = "\\.([mM][oO][vV]|[aA][vV][iI]|[mM][pP]4|[mM][tT][sS]|[mM][pP][gG]))";
-	public static final String MASK_EXT_FILE = "\\.(" + MASK_EXT_PHOTO + "|"
+	public static final String MASK_EXT_PHOTO = "([jJ][pP][eE]?[gG])";
+	public static final String MASK_EXT_VIDEO = "([mM][oO][vV]|[aA][vV][iI]|[mM][pP]4|[mM][tT][sS]|[mM][pP][gG])";
+	public static final String MASK_EXT_FILE = "(" + MASK_EXT_PHOTO + "|"
 			+ MASK_EXT_VIDEO + ")";
 	public static final String MASK_TIME = "[0-9]{8}-[0-9]{6}";
 

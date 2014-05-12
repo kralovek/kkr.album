@@ -42,7 +42,7 @@ public class UtilsBean {
 				LOGGER.trace("OK");
 				return configurableApplicationContext;
 			} catch (final BeansException ex) {
-				throw new ConfigurationException(ex.getMessage());
+				throw new ConfigurationException(ex.getMessage(), ex);
 			}
 		} finally {
 			LOGGER.trace("END");

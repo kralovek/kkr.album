@@ -20,7 +20,7 @@ public class BatchCopyPicasa extends BatchCopyPicasaFwk {
 			.getLogger(BatchCopyPicasa.class);
 
 	private static final Pattern PATTERN_N = Pattern.compile("[0-9]{8}n_"
-			+ UtilsPattern.MASK_TIME + UtilsPattern.MASK_EXT_FILE);
+			+ UtilsPattern.MASK_TIME + "\\." + UtilsPattern.MASK_EXT_FILE);
 
 	private static final FileFilter FILE_FILTER_N = new UtilsPattern.FileFilterFile(
 			PATTERN_N);
