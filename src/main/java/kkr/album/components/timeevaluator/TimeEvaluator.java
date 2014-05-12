@@ -7,6 +7,10 @@ import kkr.album.exception.BaseException;
 
 public interface TimeEvaluator {
 
-	Map<String, Long> loadTimes(File dir) throws BaseException;
-
+	static interface FileTime {
+		Long getMove();
+		File getFile();
+	}
+	
+	Map<String, FileTime> loadTimes(File dir) throws BaseException;
 }

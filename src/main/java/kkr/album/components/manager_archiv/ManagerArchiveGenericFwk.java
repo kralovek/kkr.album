@@ -4,13 +4,13 @@ import java.io.File;
 
 import kkr.album.exception.ConfigurationException;
 
-public abstract class ManagerArchivGenericFwk implements ManagerArchiv {
+public abstract class ManagerArchiveGenericFwk implements ManagerArchive {
 
 	private boolean configured;
 
-	private File dirOriginal;
-	private File dirNormal;
-	private File dirVideo;
+	protected File dirOriginal;
+	protected File dirNormal;
+	protected File dirVideo;
 
 	public void config() throws ConfigurationException {
 		configured = false;

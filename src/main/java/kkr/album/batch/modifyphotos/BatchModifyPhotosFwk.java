@@ -1,4 +1,4 @@
-package kkr.album.components.batch_modifyphotos;
+package kkr.album.batch.modifyphotos;
 
 import kkr.album.components.manager_exif.ManagerExif;
 import kkr.album.components.manager_gpx.ManagerGpx;

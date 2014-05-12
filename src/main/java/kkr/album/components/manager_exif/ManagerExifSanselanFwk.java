@@ -2,11 +2,10 @@ package kkr.album.components.manager_exif;
 
 import kkr.album.exception.ConfigurationException;
 
-
 public abstract class ManagerExifSanselanFwk {
 
 	protected boolean configured;
-	
+
 	public void config() throws ConfigurationException {
 		configured = false;
 		configured = true;
@@ -18,5 +17,4 @@ public abstract class ManagerExifSanselanFwk {
 					+ ": The component is not configured");
 		}
 	}
-
 }

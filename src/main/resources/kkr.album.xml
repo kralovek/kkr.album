@@ -14,31 +14,56 @@
 
 	<bean id="default" abstract="true" />
 
-	<bean id="batchModifyGpxs" class="kkr.album.components.batch_modifygpxs.BatchModifyGpxs">
+	<bean id="batchCopyPicasa" class="kkr.album.batch.copypicasa.BatchCopyPicasa">
+		<property name="dirPicasa" value="h:\dev\java\kkr.album\picasa" />		
+	</bean> 
+
+	<bean id="batchArchiveFiles" class="kkr.album.batch.archivefiles.BatchArchiveFiles">
+		<property name="managerArchive" ref="managerArchive" />		
+	</bean> 
+
+	<bean id="batchIndexFiles" class="kkr.album.batch.indexfiles.BatchIndexFiles">
+		<property name="managerArchive" ref="managerArchive" />		
+	</bean> 
+
+	<bean id="batchModifyGpx" class="kkr.album.batch.modifygpxs.BatchModifyGpx">
 		<property name="managerGpx" ref="managerGpx" />		
 	</bean> 
 
-	<bean id="batchModifyPhotos" class="kkr.album.components.batch_modifyphotos.BatchModifyPhotos">
+	<bean id="batchModifyPhotos" class="kkr.album.batch.modifyphotos.BatchModifyPhotos">
 		<property name="filenameTags" value="tags.properties" />		
 		<property name="timeEvaluator" ref="timeEvaluator" />		
 		<property name="managerGpx" ref="managerGpx" />		
-		<property name="managerExif" ref="managerExif" />		
+		<property name="managerExif" ref="managerExifAllTypes" />		
 	</bean> 
 
-	<bean id="managerArchiv" class="kkr.album.components.manager_archiv.ManagerArchivGeneric">
-		<property name="dirOriginal" value="h:\photos\traces\my\o" />
-		<property name="dirNormal" value="h:\photos\traces\my\n" />
-		<property name="dirVideo" value="h:\photos\traces\my\v" />
+	<bean id="managerArchive" class="kkr.album.components.manager_archiv.ManagerArchiveGeneric">
+		<property name="dirOriginal" value="h:\dev\java\kkr.album\my\o" />
+		<property name="dirNormal" value="h:\dev\java\kkr.album\my\n" />
+		<property name="dirVideo" value="h:\dev\java\kkr.album\my\v" />
 	</bean>
 
-	<bean id="managerExif" class="kkr.album.components.manager_exif.ManagerExifSanselan">
+	<bean id="managerExifAllTypes" class="kkr.album.components.manager_exif.ManagerExifAllTypes">
+		<property name="managersExif">
+			<map>
+				<entry key="jpg" value-ref="managerExifSanselan" />
+				<entry key="jpeg" value-ref="managerExifSanselan" />
+				<entry key="mp4" value-ref="managerExifGoogleMp4Parser" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="managerExifSanselan" class="kkr.album.components.manager_exif.ManagerExifSanselan">
+	</bean>
+
+	<bean id="managerExifGoogleMp4Parser" class="kkr.album.components.manager_exif.ManagerExifGoogleMp4Parser">
 	</bean>
 
 	<bean id="managerGpx" class="kkr.album.components.manager_gpx.ManagerGpxGeneric">
 	</bean>
 
 	<bean id="timeEvaluator" class="kkr.album.components.timeevaluator.TimeEvaluatorGeneric">
-		<property name="managerExif" ref="managerExif" />
+		<property name="managerExif" ref="managerExifAllTypes" />
 	</bean>
 
 </beans>

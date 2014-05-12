@@ -2,13 +2,10 @@ package kkr.album.components.timeevaluator;
 
 import java.io.File;
 import java.io.FileFilter;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TimeZone;
 import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
@@ -16,24 +13,37 @@ import org.apache.log4j.Logger;
 import kkr.album.exception.BaseException;
 import kkr.album.exception.FunctionalException;
 import kkr.album.exception.TechnicalException;
+import kkr.album.utils.UtilsPattern;
 
 public class TimeEvaluatorGeneric extends TimeEvaluatorGenericFwk implements
 		TimeEvaluator {
 	private static final Logger LOGGER = Logger
 			.getLogger(TimeEvaluatorGeneric.class);
 
-	private static final Pattern PATTERN_TIME = Pattern
+	private static final Pattern PATTERN_FILE_TIME_TO = Pattern
 			.compile("time.*\\.[jJ][pP][eE]?[gG]");
-	private static final Pattern PATTERN_TIME_DATES = Pattern
-			.compile("time[A-Z]*_[0-9]{8}-[0-9]{6}_[0-9]{8}-[0-9]{6}(_[0-9]{8}-[0-9]{6})?\\.[jJ][pP][eE]?[gG]");
+	private static final Pattern PATTERN_FILE_TIME_TO_FROM = Pattern
+			.compile("time[A-Z]+_[0-9]{8}-[0-9]{6}(_[0-9]{8}-[0-9]{6})?\\.[jJ][pP][eE]?[gG]");
 
-	private static final DateFormat DATE_FORMAT;
+	private static class FileTimeImpl implements FileTime {
+		private Long move;
+		private File file;
 
-	static {
-		DATE_FORMAT = new SimpleDateFormat("yyyyMMdd-HHmmss");
-		DATE_FORMAT.setTimeZone(TimeZone.getTimeZone("GMT"));
+		public Long getMove() {
+			return move;
+		}
+		public void setMove(Long move) {
+			this.move = move;
+		}
+		public File getFile() {
+			return file;
+		}
+		public void setFile(File file) {
+			this.file = file;
+		}
 	}
 
+	
 	private static class FileInfo {
 		private String symbol;
 		private Date dateMove;
@@ -77,29 +87,20 @@ public class TimeEvaluatorGeneric extends TimeEvaluatorGenericFwk implements
 			return "["
 					+ symbol
 					+ "] "
-					+ (dateMove != null ? DATE_FORMAT.format(dateMove) : "")
+					+ (dateMove != null ? UtilsPattern.DATE_FORMAT_DATETIME.format(dateMove) : "")
 					+ (dateOrigin != null ? " <- "
-							+ DATE_FORMAT.format(dateOrigin) : "");
+							+ UtilsPattern.DATE_FORMAT_DATETIME.format(dateOrigin) : "");
 		}
 	}
 
-	private static FileFilter fileFilterTime = new FileFilter() {
-		public boolean accept(File file) {
-			if (!file.isFile()) {
-				return false;
-			}
-			if (PATTERN_TIME.matcher(file.getName()).matches()) {
-				return true;
-			}
-			return false;
-		}
-	};
+	private static final FileFilter fileFilterTime = new UtilsPattern.FileFilterFile(
+			PATTERN_FILE_TIME_TO);
 
-	public Map<String, Long> loadTimes(File dir) throws BaseException {
+	public Map<String, FileTime> loadTimes(File dir) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
 			testConfigured();
-			Map<String, Long> retval = new HashMap<String, Long>();
+			Map<String, FileTime> retval = new HashMap<String, FileTime>();
 
 			File[] filesAny = dir.listFiles(fileFilterTime);
 
@@ -112,7 +113,11 @@ public class TimeEvaluatorGeneric extends TimeEvaluatorGenericFwk implements
 					long seconds = (fileInfo.getDateMove().getTime() - fileInfo
 							.getDateOrigin().getTime()) / 1000L;
 					;
-					if (retval.put(fileInfo.getSymbol(), seconds) != null) {
+					FileTimeImpl fileTimeImpl = new FileTimeImpl();
+					fileTimeImpl.setFile(file);
+					fileTimeImpl.setMove(seconds);
+					
+					if (retval.put(fileInfo.getSymbol(), fileTimeImpl) != null) {
 						throw new FunctionalException(
 								"More than on time file for the symbol: "
 										+ fileInfo.getSymbol());
@@ -135,7 +140,7 @@ public class TimeEvaluatorGeneric extends TimeEvaluatorGenericFwk implements
 							+ fileInfo.getFile().getAbsolutePath());
 		}
 
-		String dateString = DATE_FORMAT.format(date);
+		String dateString = UtilsPattern.DATE_FORMAT_DATETIME.format(date);
 		int pos = fileInfo.getFile().getName().indexOf(".");
 		String newFilename = fileInfo.getFile().getName().substring(0, pos)
 				+ "_" + dateString
@@ -151,6 +156,8 @@ public class TimeEvaluatorGeneric extends TimeEvaluatorGenericFwk implements
 
 		fileInfo.setFile(newFile);
 		fileInfo.setDateOrigin(date);
+
+		managerExif.modifyFile(newFile, date);
 	}
 
 	private FileInfo evaluateFileTime(File file) throws BaseException {
@@ -158,19 +165,36 @@ public class TimeEvaluatorGeneric extends TimeEvaluatorGenericFwk implements
 		retval.setFile(file);
 
 		String name = file.getName();
-		if (!PATTERN_TIME_DATES.matcher(file.getName()).matches()) {
-			return null;
+		if (!PATTERN_FILE_TIME_TO_FROM.matcher(file.getName()).matches()) {
+			throw new FunctionalException("Time filename has bad format: "
+					+ file.getAbsolutePath());
 		}
 
 		String[] parts = name.split("_");
 		retval.setSymbol(parts[0].substring(4));
 
-		Date date = null;
+		String stringDateTo = parts[1];
+		String stringDateFrom = parts[2];
+
+		Date date;
+		String format;
 		try {
-			date = DATE_FORMAT.parse(parts[1]);
+			date = UtilsPattern.DATE_FORMAT_DATETIME.parse(stringDateTo);
+			format = UtilsPattern.DATE_FORMAT_DATETIME.format(date);
+			if (!format.equals(stringDateTo)) {
+				throw new FunctionalException(
+						"The time file has bad (time to) format: "
+								+ file.getAbsolutePath());
+			}
 			retval.setDateMove(date);
 			if (parts.length == 3) {
-				date = DATE_FORMAT.parse(parts[2]);
+				date = UtilsPattern.DATE_FORMAT_DATETIME.parse(stringDateFrom);
+				format = UtilsPattern.DATE_FORMAT_DATETIME.format(date);
+				if (!format.equals(stringDateFrom)) {
+					throw new FunctionalException(
+							"The time file has bad (time from) format: "
+									+ file.getAbsolutePath());
+				}
 				retval.setDateOrigin(date);
 			}
 		} catch (ParseException ex) {

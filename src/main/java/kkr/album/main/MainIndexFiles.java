@@ -3,8 +3,7 @@ package kkr.album.main;
 import java.io.File;
 import java.util.Map;
 
-import kkr.album.batch.modifygpxs.BatchModifyGpx;
-import kkr.album.batch.modifyphotos.BatchModifyPhotos;
+import kkr.album.batch.indexfiles.BatchIndexFiles;
 import kkr.album.exception.TreatErrors;
 import kkr.album.utils.UtilsBean;
 import kkr.album.utils.UtilsCommandLine;
@@ -12,25 +11,24 @@ import kkr.album.utils.UtilsCommandLine;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.BeanFactory;
 
-public class MainModifyPhotos {
-	private static final Logger LOGGER = Logger
-			.getLogger(MainModifyPhotos.class);
-
-	private static final String BEAN_ID = "batchModifyPhotos";
-
+public class MainIndexFiles {
+	private static final Logger LOGGER = Logger.getLogger(MainIndexFiles.class);
+	
+	private static final String BEAN_ID = "batchIndexFiles";
+	
 	public static final void main(String[] args) {
 		LOGGER.trace("BEGIN");
 		try {
 			Map<String, String> parameters = UtilsCommandLine.commandLineToMap(args);
 			BeanFactory beanFactory = UtilsBean.createBeanFactory(parameters);
 			
-			BatchModifyPhotos batchModifyPhotos = beanFactory.getBean(BEAN_ID, BatchModifyPhotos.class);
+			BatchIndexFiles batchIndexFiles = beanFactory.getBean(BEAN_ID, BatchIndexFiles.class);
 			
 			File dirCurrent = new File(System.getProperty("user.dir"));
 			
-			Config_MainModifyPhotos config = new Config_MainModifyPhotos(args);
+			Config_MainRenameON config = new Config_MainRenameON(args);
 			
-			batchModifyPhotos.run(dirCurrent);
+			batchIndexFiles.runIndex(dirCurrent);
 			
 			LOGGER.trace("OK");
 		} catch (Throwable th) {
@@ -39,5 +37,4 @@ public class MainModifyPhotos {
 			LOGGER.trace("END");
 		}
 	}
-
 }

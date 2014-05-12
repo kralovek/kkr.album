@@ -3,8 +3,7 @@ package kkr.album.main;
 import java.io.File;
 import java.util.Map;
 
-import kkr.album.batch.modifygpxs.BatchModifyGpx;
-import kkr.album.batch.modifyphotos.BatchModifyPhotos;
+import kkr.album.batch.copypicasa.BatchCopyPicasa;
 import kkr.album.exception.TreatErrors;
 import kkr.album.utils.UtilsBean;
 import kkr.album.utils.UtilsCommandLine;
@@ -12,11 +11,10 @@ import kkr.album.utils.UtilsCommandLine;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.BeanFactory;
 
-public class MainModifyPhotos {
-	private static final Logger LOGGER = Logger
-			.getLogger(MainModifyPhotos.class);
+public class MainCopyPicasa {
+	private static final Logger LOGGER = Logger.getLogger(MainCopyPicasa.class);
 
-	private static final String BEAN_ID = "batchModifyPhotos";
+	private static final String BEAN_ID = "batchCopyPicasa";
 
 	public static final void main(String[] args) {
 		LOGGER.trace("BEGIN");
@@ -24,13 +22,13 @@ public class MainModifyPhotos {
 			Map<String, String> parameters = UtilsCommandLine.commandLineToMap(args);
 			BeanFactory beanFactory = UtilsBean.createBeanFactory(parameters);
 			
-			BatchModifyPhotos batchModifyPhotos = beanFactory.getBean(BEAN_ID, BatchModifyPhotos.class);
+			BatchCopyPicasa batchCopyPicasa = beanFactory.getBean(BEAN_ID, BatchCopyPicasa.class);
 			
 			File dirCurrent = new File(System.getProperty("user.dir"));
 			
-			Config_MainModifyPhotos config = new Config_MainModifyPhotos(args);
+			Config_MainCopyPicasa config = new Config_MainCopyPicasa(args);
 			
-			batchModifyPhotos.run(dirCurrent);
+			batchCopyPicasa.run(dirCurrent);
 			
 			LOGGER.trace("OK");
 		} catch (Throwable th) {
@@ -39,5 +37,4 @@ public class MainModifyPhotos {
 			LOGGER.trace("END");
 		}
 	}
-
 }

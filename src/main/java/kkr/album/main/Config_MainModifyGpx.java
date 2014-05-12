@@ -36,10 +36,9 @@ public class Config_MainModifyGpx {
 				name = pArgs[i + 1];
 			} else if ("-file".equals(pArgs[i])) {
 				file = new File(pArgs[i + 1]);
-			} else {
-				throw new ConfigurationException("Unknown parameter '"
-						+ pArgs[i + 1] + "'.");
 			}
+			throw new ConfigurationException("Unknown parameter '"
+					+ pArgs[i + 1] + "'.");
 		}
 
 		if (file != null) {

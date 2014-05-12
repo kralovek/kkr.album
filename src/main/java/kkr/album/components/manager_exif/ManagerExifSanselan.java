@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
 
@@ -21,8 +22,11 @@ import org.apache.sanselan.formats.jpeg.JpegImageMetadata;
 import org.apache.sanselan.formats.jpeg.exifRewrite.ExifRewriter;
 import org.apache.sanselan.formats.tiff.TiffField;
 import org.apache.sanselan.formats.tiff.TiffImageMetadata;
+import org.apache.sanselan.formats.tiff.constants.ExifTagConstants;
 import org.apache.sanselan.formats.tiff.constants.TagInfo;
 import org.apache.sanselan.formats.tiff.constants.TiffConstants;
+import org.apache.sanselan.formats.tiff.constants.TiffDirectoryConstants;
+import org.apache.sanselan.formats.tiff.fieldtypes.FieldType;
 import org.apache.sanselan.formats.tiff.write.TiffOutputDirectory;
 import org.apache.sanselan.formats.tiff.write.TiffOutputField;
 import org.apache.sanselan.formats.tiff.write.TiffOutputSet;
@@ -105,12 +109,35 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 		}
 	}
 
+	public void modifyFile(File file, Date date) throws BaseException {
+		LOGGER.trace("BEGIN");
+		try {
+			modifyFile(file, date, null, null);
+			LOGGER.trace("OK");
+		} finally {
+			LOGGER.trace("END");
+		}
+	}
+
 	public void modifyFile(File file, Date date, Double longitude,
-			Double latitude, Map<String, String> parameters)
-			throws BaseException {
+			Double latitude) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
 			testConfigured();
+
+			Map<String, String> parameters = new HashMap<String, String>();
+
+			LOGGER.info("Modifying file: " + file.getAbsolutePath());
+			LOGGER.info("Date: "
+					+ DATE_FORMAT.format(date)
+					+ " Lon: "
+					+ longitude
+					+ " Lat: "
+					+ latitude
+					+ (parameters != null && !parameters.isEmpty() ? " Parameters: "
+							+ toStringParameters(parameters)
+							: ""));
+
 			IImageMetadata imageMetadata = null;
 			try {
 				imageMetadata = Sanselan.getMetadata(file);
@@ -140,18 +167,25 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 				modifyGPS(tiffOutputSet, longitude, latitude);
 			}
 
-			File fileTmp = new File(file.getParentFile(), file.getName() + ".tmp");
+			if (parameters != null && !parameters.isEmpty()) {
+				modifyParameters(tiffOutputSet, parameters);
+			}
+			File fileTmp = new File(file.getParentFile(), file.getName()
+					+ ".tmp");
 			writeFile(file, fileTmp, tiffOutputSet);
-			
-			if (file.delete()) {
+
+			if (!file.delete()) {
 				throw new TechnicalException("Cannot remove the file: "
 						+ file.getAbsolutePath());
 			}
-			
-			if (fileTmp.renameTo(file)) {
-				throw new TechnicalException("Cannot rename the file: " + fileTmp.getAbsolutePath() + " to: "
+
+			if (!fileTmp.renameTo(file)) {
+				throw new TechnicalException("Cannot rename the file: "
+						+ fileTmp.getAbsolutePath() + " to: "
 						+ file.getAbsolutePath());
 			}
+
+			file.setLastModified(date.getTime());
 			
 			LOGGER.trace("OK");
 		} catch (ImageWriteException ex) {
@@ -212,6 +246,31 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 		}
 	}
 
+	private void modifyParameters(TiffOutputSet outputSet,
+			Map<String, String> parameters) throws ImageWriteException {
+		LOGGER.trace("BEGIN");
+		try {
+			TiffOutputDirectory exifDir = outputSet
+					.findDirectory(TiffDirectoryConstants.DIRECTORY_TYPE_EXIF);
+
+			exifDir.removeField(ExifTagConstants.EXIF_TAG_ARTIST);
+
+			TiffOutputField fieldCreated = new TiffOutputField(
+					ExifTagConstants.EXIF_TAG_ARTIST,
+					FieldType.FIELD_TYPE_ASCII, "Karel Kralovec".length(),
+					"Karel Kralovec".getBytes());
+
+			// TiffOutputField field = TiffOutputField.create(
+			// ExifTagConstants.EXIF_TAG_ARTIST, 1, "Karel Kralovec");
+
+			exifDir.add(fieldCreated);
+
+			LOGGER.trace("OK");
+		} finally {
+			LOGGER.trace("END");
+		}
+	}
+
 	private void modifyDate(TiffOutputSet tiffOutputSet, Date date)
 			throws ImageWriteException {
 		LOGGER.trace("BEGIN");
@@ -242,6 +301,20 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 		}
 	}
 
+	private String toStringParameters(Map<String, String> parameters) {
+		StringBuffer buffer = new StringBuffer();
+		if (parameters != null) {
+			for (Map.Entry<String, String> entry : parameters.entrySet()) {
+				if (buffer.length() != 0) {
+					buffer.append(",");
+				}
+				buffer.append(entry.getKey()).append("=")
+						.append(entry.getValue());
+			}
+		}
+		return buffer.toString();
+	}
+
 	public static void main(String[] argv) throws Exception {
 		LOGGER.trace("BEGIN");
 		try {
@@ -249,17 +322,17 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 			main.config();
 
 			// File file = new File("00035413n.JPG");
-			File file = new File("image.jpeg");
+			File file = new File("00033719v.mp4");
 
 			Date date = main.determineDate(file);
 
-			LOGGER.debug("date: " + date);
+			LOGGER.debug("dateOrg: " + date);
 
 			Date newDate = new Date(date.getTime() + 1000L);
 
-			main.modifyFile(file, newDate, 5.56, 42.18, null);
+			main.modifyFile(file, newDate, 5.56, 42.18);
 
-			File file2 = new File("image2.jpeg");
+			File file2 = new File("00033719v_mod.mp4");
 
 			Date dateMod = main.determineDate(file2);
 			LOGGER.debug("dateMod: " + dateMod);
@@ -271,4 +344,5 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 			LOGGER.trace("END");
 		}
 	}
+
 }

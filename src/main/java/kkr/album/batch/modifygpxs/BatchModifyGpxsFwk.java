@@ -1,4 +1,4 @@
-package kkr.album.components.batch_modifygpxs;
+package kkr.album.batch.modifygpxs;
 
 import kkr.album.components.manager_gpx.ManagerGpx;
 import kkr.album.exception.ConfigurationException;

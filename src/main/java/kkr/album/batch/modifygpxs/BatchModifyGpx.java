@@ -1,4 +1,4 @@
-package kkr.album.components.batch_modifygpxs;
+package kkr.album.batch.modifygpxs;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -15,9 +15,9 @@ import kkr.album.exception.TechnicalException;
 import kkr.album.utils.UtilsAlbums;
 import kkr.album.utils.UtilsGpx;
 
-public class BatchModifyGpxs extends BatchModifyGpxsFwk {
+public class BatchModifyGpx extends BatchModifyGpxsFwk {
 	private static final Logger LOGGER = Logger
-			.getLogger(BatchModifyGpxs.class);
+			.getLogger(BatchModifyGpx.class);
 
 	private static final long MB = 1048576L;
 
