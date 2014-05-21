@@ -2,6 +2,7 @@ package kkr.album.main.group;
 
 import kkr.album.exception.BaseException;
 import kkr.album.exception.TreatErrors;
+import kkr.album.main.MainArchiveFilesN;
 import kkr.album.main.MainArchiveFilesOV;
 import kkr.album.main.MainCopyPicasa;
 
@@ -28,7 +29,7 @@ public class MainGroup3 {
 			LOGGER.info("####################################################");
 			LOGGER.info("BATCH_ARCHIVE_FILES N");
 			LOGGER.info("####################################################");
-			MainArchiveFilesOV.work(new String[] {"-move", "n"});
+			MainArchiveFilesN.work(new String[] {});
 
 			LOGGER.info("####################################################");
 			LOGGER.info("BATCH_COPY_PICASA");

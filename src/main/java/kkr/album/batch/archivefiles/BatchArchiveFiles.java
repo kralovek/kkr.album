@@ -37,13 +37,19 @@ public class BatchArchiveFiles extends BatchArchiveFilesFwk {
 			File dirPhotos = new File(dirBase, "photos");
 
 			if (dirGps.isDirectory()) {
-				File[] files = dirPhotos.listFiles(FILE_FILTER_O);
+				LOGGER.info("WORKING DIR: " + dirGps.getAbsolutePath());
+				LOGGER.info("Archiving O&V GPS files");
+
+				File[] files = dirGps.listFiles(FILE_FILTER_O);
 				for (File file : files) {
+					LOGGER.info("\tArchiving file: " + file.getAbsolutePath());
 					managerArchive.copyToArchiv(file);
 				}
 			}
 
 			if (dirPhotos.isDirectory()) {
+				LOGGER.info("WORKING DIR: " + dirPhotos.getAbsolutePath());
+				LOGGER.info("Archiving O&V PHOTOS files");
 				File[] files = dirPhotos.listFiles(FILE_FILTER_O);
 				for (File file : files) {
 					managerArchive.copyToArchiv(file);
@@ -51,6 +57,7 @@ public class BatchArchiveFiles extends BatchArchiveFilesFwk {
 
 				files = dirPhotos.listFiles(FILE_FILTER_V);
 				for (File file : files) {
+					LOGGER.info("\tArchiving file: " + file.getAbsolutePath());
 					managerArchive.moveToArchiv(file);
 				}
 			}
@@ -69,15 +76,21 @@ public class BatchArchiveFiles extends BatchArchiveFilesFwk {
 			File dirPhotos = new File(dirBase, "photos");
 
 			if (dirGps.isDirectory()) {
-				File[] files = dirPhotos.listFiles(FILE_FILTER_N);
+				LOGGER.info("WORKING DIR: " + dirGps.getAbsolutePath());
+				LOGGER.info("Archiving N GPS files");
+				File[] files = dirGps.listFiles(FILE_FILTER_N);
 				for (File file : files) {
+					LOGGER.info("\tArchiving file: " + file.getName());
 					managerArchive.copyToArchiv(file);
 				}
 			}
 
 			if (dirPhotos.isDirectory()) {
+				LOGGER.info("WORKING DIR: " + dirPhotos.getAbsolutePath());
+				LOGGER.info("Archiving N PHOTOS files");
 				File[] files = dirPhotos.listFiles(FILE_FILTER_N);
 				for (File file : files) {
+					LOGGER.info("\tArchiving file: " + file.getName());
 					managerArchive.copyToArchiv(file);
 				}
 			}

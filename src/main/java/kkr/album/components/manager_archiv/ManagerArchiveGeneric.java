@@ -2,6 +2,10 @@ package kkr.album.components.manager_archiv;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
@@ -17,8 +21,19 @@ public class ManagerArchiveGeneric extends ManagerArchiveGenericFwk implements
 	private static final Logger LOGGER = Logger
 			.getLogger(ManagerArchiveGeneric.class);
 
-	private static final Pattern PATTERN_FILE = Pattern
-			.compile("[0-9]{8}([oOnN].*" + "\\." + UtilsPattern.MASK_EXT_PHOTO + "|v.*" + "\\." + UtilsPattern.MASK_EXT_VIDEO + ")");
+	private static final DateFormat DATE_FORMAT = new SimpleDateFormat(
+			"yyyyMMdd-HHmmss");
+
+	private static final Pattern PATTERN_ARCHIVED_FILE = Pattern
+			.compile("[0-9]{8}([oOnN]\\."
+					+ UtilsPattern.MASK_EXT_PHOTO + "|v\\."
+					+ UtilsPattern.MASK_EXT_VIDEO + ")");
+
+	private static final Pattern PATTERN_ARCHIVED_FILE_TIME = Pattern
+			.compile("[0-9]{8}([oOnN]_" + UtilsPattern.MASK_TIME + "\\."
+					+ UtilsPattern.MASK_EXT_PHOTO + "|v_"
+					+ UtilsPattern.MASK_TIME + "\\."
+					+ UtilsPattern.MASK_EXT_VIDEO + ")");
 
 	private static final Pattern PATTERN_DIR = Pattern
 			.compile("[oOnNvV][0-9]{8}");
@@ -27,12 +42,12 @@ public class ManagerArchiveGeneric extends ManagerArchiveGenericFwk implements
 	private static final char SYMBOL_N = 'n';
 	private static final char SYMBOL_V = 'v';
 
-	private static final FileFilter FILE_FILTER_FILE = new FileFilter() {
+	private static final FileFilter FILE_FILTER_ARCHIVED_FILE = new FileFilter() {
 		public boolean accept(File file) {
 			if (!file.isFile()) {
 				return false;
 			}
-			return PATTERN_FILE.matcher(file.getName()).matches();
+			return PATTERN_ARCHIVED_FILE.matcher(file.getName()).matches() || PATTERN_ARCHIVED_FILE_TIME.matcher(file.getName()).matches();
 		}
 	};
 
@@ -104,7 +119,9 @@ public class ManagerArchiveGeneric extends ManagerArchiveGenericFwk implements
 		LOGGER.trace("BEGIN");
 		try {
 			checkDirectories();
-			if (!PATTERN_FILE.matcher(file.getName()).matches()) {
+			boolean matchSimple = PATTERN_ARCHIVED_FILE.matcher(file.getName()).matches();
+			boolean matchTime = PATTERN_ARCHIVED_FILE_TIME.matcher(file.getName()).matches();
+			if (!matchSimple && !matchTime) {
 				throw new FunctionalException(
 						"The file is not in allowed format: "
 								+ file.getAbsolutePath());
@@ -112,11 +129,15 @@ public class ManagerArchiveGeneric extends ManagerArchiveGenericFwk implements
 			int indexFile = indexFromFile(file);
 			char symbolFile = symbolFromFile(file);
 			int indexDir = indexSubdir(indexFile);
+			String dateFile = "";
+			if (matchTime) {
+				dateFile = "_" + dateFromFile(file);
+			}
 			String ext = UtilsFile.extension(file);
 
 			String dirnameTarget = symbolFile + String.format("%08d", indexDir);
 			String filenameTarget = String.format("%08d", indexFile)
-					+ symbolFile + "." + ext;
+					+ symbolFile + dateFile + "." + ext;
 
 			File dirTarget = null;
 			switch (symbolFile) {
@@ -145,9 +166,9 @@ public class ManagerArchiveGeneric extends ManagerArchiveGenericFwk implements
 		int mod = index % 1000;
 		int subindex = (index - mod) / 1000;
 		if (mod != 0) {
-			return subindex;
+			return (subindex + 1) * 1000;
 		} else if (subindex != 0) {
-			return subindex - 1;
+			return subindex * 1000;
 		} else {
 			return 1;
 		}
@@ -159,7 +180,7 @@ public class ManagerArchiveGeneric extends ManagerArchiveGenericFwk implements
 			return 0;
 		}
 
-		int max = 0;
+		int maxDir = 0;
 		File dirMax = null;
 		for (File dirX : dirs) {
 			char symbolDir = symbolFromDirectory(dirX);
@@ -172,14 +193,14 @@ public class ManagerArchiveGeneric extends ManagerArchiveGenericFwk implements
 			if (dirMax == null) {
 				dirMax = dirX;
 			}
-			if (number > max) {
+			if (number > maxDir) {
 				dirMax = dirX;
-				max = number;
+				maxDir = number;
 			}
 		}
 
-		max = 0;
-		File[] files = dirMax.listFiles(FILE_FILTER_FILE);
+		int maxFile = 0;
+		File[] files = dirMax.listFiles(FILE_FILTER_ARCHIVED_FILE);
 		if (files.length == 0) {
 			return 0;
 		}
@@ -191,15 +212,37 @@ public class ManagerArchiveGeneric extends ManagerArchiveGenericFwk implements
 						+ file.getAbsolutePath());
 			}
 			int number = indexFromFile(file);
-			if (max < number) {
-				max = number;
+			if (maxFile < number) {
+				maxFile = number;
+			}
+			if (indexSubdir(number) != maxDir) {
+				throw new FunctionalException(
+						"Unexpected file in the subdirectory: " + dirMax
+								+ ". File: " + file.getAbsolutePath());
 			}
 		}
-		return max;
+		return maxFile;
 	}
 
 	private char symbolFromFile(File file) {
 		return file.getName().charAt(8);
+	}
+
+	private String dateFromFile(File file) throws BaseException {
+		try {
+			String dateString = file.getName().substring(10, 25);
+			Date date = DATE_FORMAT.parse(dateString);
+			String newDateString = DATE_FORMAT.format(date);
+			if (!dateString.equals(newDateString)) {
+				throw new FunctionalException(
+						"The file is not in allowed format: "
+								+ file.getAbsolutePath());
+			}
+			return newDateString;
+		} catch (ParseException ex) {
+			throw new FunctionalException("The file is not in allowed format: "
+					+ file.getAbsolutePath());
+		}
 	}
 
 	private char symbolFromDirectory(File dir) {

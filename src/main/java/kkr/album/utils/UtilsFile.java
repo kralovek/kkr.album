@@ -50,7 +50,7 @@ public class UtilsFile {
 		}
 
 		if (!toFile.getParentFile().isDirectory()
-				&& toFile.getParentFile().mkdirs()) {
+				&& !toFile.getParentFile().mkdirs()) {
 			throw new TechnicalException("Cannot create the directory: "
 					+ toFile.getParentFile().getAbsolutePath());
 		}
@@ -71,7 +71,7 @@ public class UtilsFile {
 		}
 
 		if (!toFile.getParentFile().isDirectory()
-				&& toFile.getParentFile().mkdirs()) {
+				&& !toFile.getParentFile().mkdirs()) {
 			throw new TechnicalException("Cannot create the directory: "
 					+ toFile.getParentFile().getAbsolutePath());
 		}
@@ -79,8 +79,7 @@ public class UtilsFile {
 		FileInputStream from = null;
 		FileOutputStream to = null;
 		try {
-			System.out.println("Copying file: " + fromFile.getAbsolutePath()
-					+ " to: " + toFile.getAbsolutePath());
+
 			from = new FileInputStream(fromFile);
 			to = new FileOutputStream(toFile);
 			byte[] buffer = new byte[4096];

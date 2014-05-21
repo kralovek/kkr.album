@@ -38,7 +38,7 @@ public class BatchCopyPicasa extends BatchCopyPicasaFwk {
 			Calendar calendar = new GregorianCalendar();
 			calendar.setTime(date);
 
-			File dirPicasaYear = new File(dirPicasa, String.format("%04",
+			File dirPicasaYear = new File(dirPicasa, String.format("%04d",
 					calendar.get(Calendar.YEAR)));
 			File dirPicasaAlbum = new File(dirPicasaYear, name);
 
@@ -53,7 +53,7 @@ public class BatchCopyPicasa extends BatchCopyPicasaFwk {
 				File[] files = dirGps.listFiles(FILE_FILTER_N);
 				for (File file : files) {
 					File fileTarget = new File(dirPicasaAlbum, file.getName());
-					LOGGER.info("Copying to PICASA: " + file.getName() + " -> " + fileTarget.getAbsolutePath());
+					LOGGER.info("\tCopying to PICASA: " + file.getName() + " -> " + fileTarget.getAbsolutePath());
 					UtilsFile.copyFile(file, fileTarget);
 				}
 			}
@@ -65,7 +65,7 @@ public class BatchCopyPicasa extends BatchCopyPicasaFwk {
 				File[] files = dirPhotos.listFiles(FILE_FILTER_N);
 				for (File file : files) {
 					File fileTarget = new File(dirPicasaAlbum, file.getName());
-					LOGGER.info("Copying to PICASA: " + file.getName() + " -> " + fileTarget.getAbsolutePath());
+					LOGGER.info("\tCopying to PICASA: " + file.getName() + " -> " + fileTarget.getAbsolutePath());
 					UtilsFile.copyFile(file, fileTarget);
 				}
 			}

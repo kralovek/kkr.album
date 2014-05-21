@@ -152,7 +152,7 @@ public class BatchModifyGpx extends BatchModifyGpxsFwk {
 			long length = fileGpxOutput.length();
 
 			if (length > MB) {
-				LOGGER.warn("BATCH_MODIFY_GPX: The size of created GPX file has more than 1MB");
+				LOGGER.warn("### BATCH_MODIFY_GPX: The size of created GPX file has more than 1MB");
 				File fileGpxSimplyOutput = new File(dirGps, "x" + name + ".gpx");
 				LOGGER.info("BATCH_MODIFY_GPX: writting: " + fileGpxSimplyOutput.getName());
 				Gpx gpxSimply = UtilsGpx.simlifyGpx(gpx);
@@ -160,7 +160,7 @@ public class BatchModifyGpx extends BatchModifyGpxsFwk {
 				length = fileGpxSimplyOutput.length();
 
 				if (length > MB) {
-					LOGGER.warn("BATCH_MODIFY_GPX: The size of created GPX file HAS STILL more than 1MB !!!");
+					LOGGER.warn("### BATCH_MODIFY_GPX: The size of created GPX file HAS STILL more than 1MB !!!");
 				}
 			}
 

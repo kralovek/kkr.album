@@ -187,7 +187,7 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 				LOGGER.trace("OK");
 				return retval;
 			} catch (FileNotFoundException ex) {
-				LOGGER.warn("The specified tags file does not exist");
+				LOGGER.warn("### The specified tags file does not exist");
 				return retval;
 			} catch (IOException ex) {
 				throw new TechnicalException("Cannot read the tags file: "
@@ -209,7 +209,7 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 
 			Point point = interpolateGpx(timeMove, gpx);
 			if (point == null) {
-				LOGGER.warn("No GPS position found for the file: "
+				LOGGER.warn("### No GPS position found for the file: "
 						+ fileTime.getFile().getAbsolutePath());
 			}
 			managerExif.modifyFile(fileTime.getFile(), timeMove,
@@ -242,12 +242,12 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 							.format(date);
 					String ext = UtilsFile.extension(file);
 					File fileTarget = new File(dirGps, stringTime + "_"
-							+ file.getName() + "." + ext);
-					LOGGER.info("Renaming file: " + file.getName() + " to: "
+							+ file.getName());
+					LOGGER.info("\tRenaming file: " + file.getName() + " to: "
 							+ fileTarget.getName());
 					UtilsFile.moveFile(file, fileTarget);
 
-					LOGGER.info("Modifying file: " + fileTarget.getName()
+					LOGGER.info("\tModifying file: " + fileTarget.getName()
 							+ " Date: " + stringTime + " Lon/Lat: "
 							+ toString(point.getLongitude()) + "/"
 							+ toString(point.getLatitude()));
@@ -267,7 +267,7 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 		LOGGER.trace("BEGIN");
 		try {
 			LOGGER.info("WORKING DIR: " + dir.getAbsolutePath());
-			LOGGER.info("Modifying PHOTOS files");
+			LOGGER.info("Modifying PHOTOS files: " + move + " sec.");
 
 			File[] files = dir.listFiles(FILE_FILTER_FILES_FROM_PHOTOS);
 			if (files == null) {
@@ -281,7 +281,7 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 				Date timeMove = moveTime(time, move);
 				Point point = interpolateGpx(timeMove, gpx);
 				if (point == null) {
-					LOGGER.warn("No GPS position found for the file: "
+					LOGGER.warn("### No GPS position found for the file: "
 							+ file.getAbsolutePath());
 				}
 				String stringTime = UtilsPattern.DATE_FORMAT_DATETIME
@@ -289,11 +289,11 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 				String ext = UtilsFile.extension(file);
 				File fileTarget = new File(dirTarget, stringTime + "_"
 						+ symbolName + "." + ext);
-				LOGGER.info("Renaming file: " + file.getName() + " to: "
+				LOGGER.info("\tRenaming file: " + file.getName() + " to: "
 						+ fileTarget.getName());
 				UtilsFile.moveFile(file, fileTarget);
 
-				LOGGER.info("Modifying file: " + fileTarget.getName()
+				LOGGER.info("\tModifying file: " + fileTarget.getName()
 						+ " Date: " + stringTime + " Lon/Lat: "
 						+ (point != null ? toString(point.getLongitude()) : "-") + "/"
 						+ (point != null ? toString(point.getLatitude()) : "-"));

@@ -15,7 +15,7 @@
 	<bean id="default" abstract="true" />
 
 	<bean id="batchCopyPicasa" class="kkr.album.batch.copypicasa.BatchCopyPicasa">
-		<property name="dirPicasa" value="h:\dev\java\kkr.album\picasa" />		
+		<property name="dirPicasa" value="h:\media\photos\picasa" />		
 	</bean> 
 
 	<bean id="batchArchiveFiles" class="kkr.album.batch.archivefiles.BatchArchiveFiles">
@@ -38,9 +38,9 @@
 	</bean> 
 
 	<bean id="managerArchive" class="kkr.album.components.manager_archiv.ManagerArchiveGeneric">
-		<property name="dirOriginal" value="h:\dev\java\kkr.album\my\o" />
-		<property name="dirNormal" value="h:\dev\java\kkr.album\my\n" />
-		<property name="dirVideo" value="h:\dev\java\kkr.album\my\v" />
+		<property name="dirOriginal" value="h:\media\photos\my\o" />
+		<property name="dirNormal" value="h:\media\photos\my\n" />
+		<property name="dirVideo" value="h:\media\photos\my\v" />
 	</bean>
 
 	<bean id="managerExifAllTypes" class="kkr.album.components.manager_exif.ManagerExifAllTypes">

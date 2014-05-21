@@ -23,7 +23,7 @@ public class BatchIndexFiles extends BatchIndexFilesFwk {
 					+ "\\." + UtilsPattern.MASK_EXT_FILE);
 
 	private static final Pattern PATTERN_PHOTOS_FROM_GPS = Pattern
-			.compile(UtilsPattern.MASK_TIME + "_[0-9]+"
+			.compile(UtilsPattern.MASK_TIME + "_[0-9]{2}"
 					+ "\\." + UtilsPattern.MASK_EXT_PHOTO);
 
 	private static final Pattern PATTERN_O = Pattern.compile("[0-9]{8}o_"
@@ -46,20 +46,26 @@ public class BatchIndexFiles extends BatchIndexFilesFwk {
 			File dirPhotos = new File(dirBase, "photos");
 
 			if (dirGps.isDirectory()) {
-				File[] files = dirBase.listFiles(FILE_FILTER_O);
+				LOGGER.info("WORKING DIR: " + dirGps.getAbsolutePath());
+				LOGGER.info("Renaming files: ");
+				File[] files = dirGps.listFiles(FILE_FILTER_O);
 				for (File file : files) {
 					String filenameN = file.getName().substring(0, 8) + "n" + file.getName().substring(9);
 					File fileTarget = new File(file.getParentFile(), filenameN);
-					UtilsFile.copyFile(file, fileTarget);
+					LOGGER.info("\tRenaming file: " + file.getName() + " to: " + fileTarget.getName());
+					UtilsFile.moveFile(file, fileTarget);
 				}
 			}
 
 			if (dirPhotos.isDirectory()) {
-				File[] files = dirBase.listFiles(FILE_FILTER_O); 
+				LOGGER.info("WORKING DIR: " + dirGps.getAbsolutePath());
+				LOGGER.info("Renaming files: ");
+				File[] files = dirPhotos.listFiles(FILE_FILTER_O); 
 				for (File file : files) {
 					String filenameN = file.getName().substring(0, 8) + "n" + file.getName().substring(9);
 					File fileTarget = new File(file.getParentFile(), filenameN);
-					UtilsFile.copyFile(file, fileTarget);
+					LOGGER.info("\tRenaming file: " + file.getName() + " to: " + fileTarget.getName());
+					UtilsFile.moveFile(file, fileTarget);
 				}
 			}
 
@@ -95,10 +101,10 @@ public class BatchIndexFiles extends BatchIndexFilesFwk {
 					String time = timeStringFromFile(file);
 					String ext = UtilsFile.extension(file);
 
-					File fileTarget = new File(dirPhotos, name + "_" + time
+					File fileTarget = new File(dirGps, name + "_" + time
 							+ "." + ext);
 
-					LOGGER.info("Indexing file: " + file.getName() + " to: "
+					LOGGER.info("\tIndexing file: " + file.getName() + " to: "
 							+ fileTarget.getName());
 					UtilsFile.moveFile(file, fileTarget);
 					newIndex++;
@@ -132,7 +138,7 @@ public class BatchIndexFiles extends BatchIndexFilesFwk {
 					File fileTarget = new File(dirPhotos, name + "_" + time
 							+ "." + ext);
 
-					LOGGER.info("Indexing file: " + file.getName() + " to: "
+					LOGGER.info("\tIndexing file: " + file.getName() + " to: "
 							+ fileTarget.getName());
 					UtilsFile.moveFile(file, fileTarget);
 					newIndex++;
