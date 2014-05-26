@@ -42,7 +42,7 @@ public class MainArchiveFilesOV {
 
 			File dirCurrent = new File(System.getProperty("user.dir"));
 
-			batchArchiveFiles.runOV(dirCurrent);
+			batchArchiveFiles.runCopyOV(dirCurrent);
 
 			LOGGER.trace("OK");
 		} finally {

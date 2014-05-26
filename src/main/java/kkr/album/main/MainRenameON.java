@@ -39,8 +39,6 @@ public class MainRenameON {
 			
 			File dirCurrent = new File(System.getProperty("user.dir"));
 			
-			Config_MainRenameON config = new Config_MainRenameON(args);
-			
 			batchIndexFiles.runON(dirCurrent);
 			
 			LOGGER.trace("OK");

@@ -60,7 +60,7 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 
 			if (!(imageMetadata instanceof JpegImageMetadata)) {
 				LOGGER.warn("The file is not a JPEG file: "
-						+ file.getAbsolutePath());
+						+ file.getAbsolutePath() + ". Metadata: " + imageMetadata.getClass().getName());
 				LOGGER.trace("OK");
 				return null;
 			}
@@ -127,8 +127,8 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 
 			Map<String, String> parameters = new HashMap<String, String>();
 
-			LOGGER.info("Modifying file: " + file.getAbsolutePath());
-			LOGGER.info("Date: "
+			LOGGER.debug("Modifying file: " + file.getAbsolutePath());
+			LOGGER.debug("Date: "
 					+ DATE_FORMAT.format(date)
 					+ " Lon: "
 					+ longitude
@@ -148,7 +148,7 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 
 			if (!(imageMetadata instanceof JpegImageMetadata)) {
 				LOGGER.warn("The file is not a JPEG file: "
-						+ file.getAbsolutePath());
+						+ file.getAbsolutePath() + ". Metadata: " + imageMetadata.getClass().getName());
 				LOGGER.trace("OK");
 				return;
 			}

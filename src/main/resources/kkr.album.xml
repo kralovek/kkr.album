@@ -14,6 +14,14 @@
 
 	<bean id="default" abstract="true" />
 
+	<bean id="batchResizePhotos" class="kkr.album.batch.resizephotos.BatchResizePhotos">
+		<property name="managerImage" ref="managerImageImgscalr" />
+		<property name="toWidth" value="1200" />
+	</bean> 
+
+	<bean id="managerImageImgscalr" class="kkr.album.components.manager_image.ManagerImageImgscalr">
+	</bean> 
+
 	<bean id="batchCopyPicasa" class="kkr.album.batch.copypicasa.BatchCopyPicasa">
 		<property name="dirPicasa" value="h:\media\photos\picasa" />		
 	</bean> 
@@ -26,7 +34,7 @@
 		<property name="managerArchive" ref="managerArchive" />		
 	</bean> 
 
-	<bean id="batchModifyGpx" class="kkr.album.batch.modifygpxs.BatchModifyGpx">
+	<bean id="batchModifyGpx" class="kkr.album.batch.modifygpx.BatchModifyGpx">
 		<property name="managerGpx" ref="managerGpx" />		
 	</bean> 
 

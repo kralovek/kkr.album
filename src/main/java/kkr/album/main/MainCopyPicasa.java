@@ -39,8 +39,6 @@ public class MainCopyPicasa {
 			
 			File dirCurrent = new File(System.getProperty("user.dir"));
 			
-			Config_MainCopyPicasa config = new Config_MainCopyPicasa(args);
-			
 			batchCopyPicasa.run(dirCurrent);
 			
 			LOGGER.trace("OK");

@@ -3,7 +3,6 @@ package kkr.album.main;
 import java.io.File;
 import java.util.Map;
 
-import kkr.album.batch.modifygpxs.BatchModifyGpx;
 import kkr.album.batch.modifyphotos.BatchModifyPhotos;
 import kkr.album.exception.BaseException;
 import kkr.album.exception.TreatErrors;
@@ -40,8 +39,6 @@ public class MainModifyPhotos {
 			BatchModifyPhotos batchModifyPhotos = beanFactory.getBean(BEAN_ID, BatchModifyPhotos.class);
 			
 			File dirCurrent = new File(System.getProperty("user.dir"));
-			
-			Config_MainModifyPhotos config = new Config_MainModifyPhotos(args);
 			
 			batchModifyPhotos.run(dirCurrent);
 			

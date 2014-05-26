@@ -29,7 +29,7 @@ public class BatchArchiveFiles extends BatchArchiveFilesFwk {
 	private static final FileFilter FILE_FILTER_V = new UtilsPattern.FileFilterFile(
 			PATTERN_V);
 
-	public void runOV(File dirBase) throws BaseException {
+	public void runCopyOV(File dirBase) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
 			testConfigured();
@@ -38,7 +38,7 @@ public class BatchArchiveFiles extends BatchArchiveFilesFwk {
 
 			if (dirGps.isDirectory()) {
 				LOGGER.info("WORKING DIR: " + dirGps.getAbsolutePath());
-				LOGGER.info("Archiving O&V GPS files");
+				LOGGER.info("Archiving COPY O&V GPS files");
 
 				File[] files = dirGps.listFiles(FILE_FILTER_O);
 				for (File file : files) {
@@ -49,7 +49,7 @@ public class BatchArchiveFiles extends BatchArchiveFilesFwk {
 
 			if (dirPhotos.isDirectory()) {
 				LOGGER.info("WORKING DIR: " + dirPhotos.getAbsolutePath());
-				LOGGER.info("Archiving O&V PHOTOS files");
+				LOGGER.info("Archiving COPY O&V PHOTOS files");
 				File[] files = dirPhotos.listFiles(FILE_FILTER_O);
 				for (File file : files) {
 					managerArchive.copyToArchiv(file);
@@ -68,7 +68,7 @@ public class BatchArchiveFiles extends BatchArchiveFilesFwk {
 		}
 	}
 
-	public void runN(File dirBase) throws BaseException {
+	public void runMoveOV(File dirBase) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
 			testConfigured();
@@ -77,7 +77,45 @@ public class BatchArchiveFiles extends BatchArchiveFilesFwk {
 
 			if (dirGps.isDirectory()) {
 				LOGGER.info("WORKING DIR: " + dirGps.getAbsolutePath());
-				LOGGER.info("Archiving N GPS files");
+				LOGGER.info("Archiving MOVE O&V GPS files");
+
+				File[] files = dirGps.listFiles(FILE_FILTER_O);
+				for (File file : files) {
+					LOGGER.info("\tArchiving file: " + file.getAbsolutePath());
+					managerArchive.moveToArchiv(file);
+				}
+			}
+
+			if (dirPhotos.isDirectory()) {
+				LOGGER.info("WORKING DIR: " + dirPhotos.getAbsolutePath());
+				LOGGER.info("Archiving MOVE O&V PHOTOS files");
+				File[] files = dirPhotos.listFiles(FILE_FILTER_O);
+				for (File file : files) {
+					managerArchive.moveToArchiv(file);
+				}
+
+				files = dirPhotos.listFiles(FILE_FILTER_V);
+				for (File file : files) {
+					LOGGER.info("\tArchiving file: " + file.getAbsolutePath());
+					managerArchive.moveToArchiv(file);
+				}
+			}
+
+			LOGGER.trace("OK");
+		} finally {
+			LOGGER.trace("END");
+		}
+	}
+	public void runCopyN(File dirBase) throws BaseException {
+		LOGGER.trace("BEGIN");
+		try {
+			testConfigured();
+			File dirGps = new File(dirBase, "gps");
+			File dirPhotos = new File(dirBase, "photos");
+
+			if (dirGps.isDirectory()) {
+				LOGGER.info("WORKING DIR: " + dirGps.getAbsolutePath());
+				LOGGER.info("Archiving COPY N GPS files");
 				File[] files = dirGps.listFiles(FILE_FILTER_N);
 				for (File file : files) {
 					LOGGER.info("\tArchiving file: " + file.getName());
@@ -87,7 +125,7 @@ public class BatchArchiveFiles extends BatchArchiveFilesFwk {
 
 			if (dirPhotos.isDirectory()) {
 				LOGGER.info("WORKING DIR: " + dirPhotos.getAbsolutePath());
-				LOGGER.info("Archiving N PHOTOS files");
+				LOGGER.info("Archiving COPY N PHOTOS files");
 				File[] files = dirPhotos.listFiles(FILE_FILTER_N);
 				for (File file : files) {
 					LOGGER.info("\tArchiving file: " + file.getName());

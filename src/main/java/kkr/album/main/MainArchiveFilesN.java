@@ -42,7 +42,7 @@ public class MainArchiveFilesN {
 
 			File dirCurrent = new File(System.getProperty("user.dir"));
 
-			batchArchiveFiles.runN(dirCurrent);
+			batchArchiveFiles.runCopyN(dirCurrent);
 
 			LOGGER.trace("OK");
 		} finally {

@@ -3,7 +3,6 @@ package kkr.album.main.group;
 import kkr.album.exception.BaseException;
 import kkr.album.exception.TreatErrors;
 import kkr.album.main.MainArchiveFilesN;
-import kkr.album.main.MainArchiveFilesOV;
 import kkr.album.main.MainCopyPicasa;
 
 import org.apache.log4j.Logger;

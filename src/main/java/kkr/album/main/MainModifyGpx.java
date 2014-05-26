@@ -3,7 +3,7 @@ package kkr.album.main;
 import java.io.File;
 import java.util.Map;
 
-import kkr.album.batch.modifygpxs.BatchModifyGpx;
+import kkr.album.batch.modifygpx.BatchModifyGpx;
 import kkr.album.exception.BaseException;
 import kkr.album.exception.TreatErrors;
 import kkr.album.utils.UtilsBean;
