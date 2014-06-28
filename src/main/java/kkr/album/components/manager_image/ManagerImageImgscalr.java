@@ -58,6 +58,8 @@ public class ManagerImageImgscalr extends ManagerImageImgscalrFwk implements
 			} finally {
 				UtilsFile.closeRessource(fileInputStream);
 			}
+			
+			managerExif.copyExif(fileIn,  fileOut);
 			LOGGER.trace("OK");
 		} finally {
 			LOGGER.trace("END");

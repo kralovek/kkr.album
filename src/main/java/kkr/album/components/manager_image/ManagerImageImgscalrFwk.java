@@ -1,12 +1,18 @@
 package kkr.album.components.manager_image;
 
+import kkr.album.components.manager_exif.ManagerExif;
 import kkr.album.exception.ConfigurationException;
 
 public abstract class ManagerImageImgscalrFwk {
 	private boolean configured;
 
+	protected ManagerExif managerExif;
+	
 	public void config() throws ConfigurationException {
 		configured = false;
+		if (managerExif == null) {
+			throw new ConfigurationException("Parameter 'managerExif' is not configured");
+		}
 		configured = true;
 	}
 
@@ -15,5 +21,13 @@ public abstract class ManagerImageImgscalrFwk {
 			throw new IllegalStateException(this.getClass().getName()
 					+ ": The component is not configured");
 		}
+	}
+
+	public ManagerExif getManagerExif() {
+		return managerExif;
+	}
+
+	public void setManagerExif(ManagerExif managerExif) {
+		this.managerExif = managerExif;
 	}
 }

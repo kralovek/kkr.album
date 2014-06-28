@@ -64,4 +64,16 @@ public class ManagerExifAllTypes extends ManagerExifAllTypesFwk implements
 		}
 		return managerExif;
 	}
+	
+	public void copyExif(File fileSource, File fileTarget) throws BaseException {
+		LOGGER.trace("BEGIN");
+		try {
+			testConfigured();
+			ManagerExif managerExif = determineManagerExif(fileSource);
+			managerExif.copyExif(fileSource, fileTarget);
+			LOGGER.trace("OK");
+		} finally {
+			LOGGER.trace("END");
+		}
+	}
 }

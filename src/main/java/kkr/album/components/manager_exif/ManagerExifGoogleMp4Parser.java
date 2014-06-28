@@ -79,4 +79,14 @@ public class ManagerExifGoogleMp4Parser extends ManagerExifGoogleMp4ParserFwk
 		Date date = main.determineDate(new File("00033719v.mp4"));
 		LOGGER.debug("Date: " + date);
 	}
+	
+	public void copyExif(File fileSource, File fileTarget) throws BaseException {
+		LOGGER.trace("BEGIN");
+		try {
+
+			LOGGER.trace("OK");
+		} finally {
+			LOGGER.trace("END");
+		}
+	}
 }

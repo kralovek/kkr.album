@@ -12,4 +12,6 @@ public interface ManagerExif {
 	void modifyFile(File file, Date date, Double longitude, Double latitude) throws BaseException;
 
 	void modifyFile(File file, Date date) throws BaseException;
+	
+	void copyExif(File fileSource, File fileTarget) throws BaseException;
 }

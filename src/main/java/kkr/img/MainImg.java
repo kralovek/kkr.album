@@ -1,23 +1,44 @@
 package kkr.img;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
+import java.net.URL;
 
-import javax.imageio.ImageIO;
-
-import org.imgscalr.Scalr;
+import com.google.gdata.client.*;
+import com.google.gdata.client.http.AuthSubUtil;
+import com.google.gdata.client.photos.*;
+import com.google.gdata.data.*;
+import com.google.gdata.data.media.*;
+import com.google.gdata.data.photos.*;
 
 public class MainImg {
 
 	public static final void main(String[] args) throws Exception {
-		File fileIn = new File("h:/tmp/10/00035591o_20140517-074242.jpg");
-		File fileOut = new File("h:/tmp/10/00035591n_20140517-074242.jpg");
-		FileInputStream fileInputStream = new FileInputStream(fileIn);
-		BufferedImage readImage = ImageIO.read(fileInputStream);
-		BufferedImage thumbnail = Scalr.resize(readImage, Scalr.Method.SPEED,
-				Scalr.Mode.FIT_TO_WIDTH, 1600, 1200, Scalr.OP_ANTIALIAS);
+		PicasawebService myService = new PicasawebService("exampleCo-exampleApp-1");
+		myService.setUserCredentials("karel.kralovec.2014@gmail.com", "tjmjhs12");
 		
-		ImageIO.write(thumbnail, "jpg", fileOut);
+		String requestUrl =
+			    AuthSubUtil.getRequestUrl("http://www.example.com/RetrieveToken",
+			                        "https://picasaweb.google.com/data/",
+			                        false,
+			                        true);
+		
+		//String sessionToken = AuthSubUtil.exchangeForSessionToken(requestUrl, null);
+		
+		//myService.setAuthSubToken(sessionToken, null);
+		
+		URL feedUrl = new URL("https://picasaweb.google.com/data/feed/api/user/karel.kralovec.2014?kind=album");
+
+		UserFeed myUserFeed = myService.getFeed(feedUrl, UserFeed.class);
+
+		for (AlbumEntry myAlbum : myUserFeed.getAlbumEntries()) {
+		    System.out.println(myAlbum.getTitle().getPlainText());
+		}
+		
+		AlbumEntry myAlbum = new AlbumEntry();
+
+		myAlbum.setTitle(new PlainTextConstruct("Trip to France"));
+		myAlbum.setDescription(new PlainTextConstruct("My recent trip to France was delightful!"));
+
+		// AlbumEntry insertedEntry = myService.insert(postUrl, myAlbum);
 	}
 }

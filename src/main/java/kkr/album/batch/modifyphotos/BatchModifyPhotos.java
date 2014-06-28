@@ -278,6 +278,9 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 			boolean eqDir = dir.equals(dirTarget);
 			for (File file : files) {
 				Date time = managerExif.determineDate(file);
+				if (time == null) {
+					throw new TechnicalException("Cannot determine the time from the file: " + file.getAbsolutePath());
+				}
 				Date timeMove = moveTime(time, move);
 				Point point = interpolateGpx(timeMove, gpx);
 				if (point == null) {

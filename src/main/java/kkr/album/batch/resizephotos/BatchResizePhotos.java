@@ -29,24 +29,24 @@ public class BatchResizePhotos extends BatchResizePhotosFwk {
 
 			if (dirGps.isDirectory()) {
 				LOGGER.info("WORKING DIR: " + dirGps.getAbsolutePath());
-				LOGGER.info("Renaming files: ");
+				LOGGER.info("Copying files: ");
 				File[] files = dirGps.listFiles(FILE_FILTER_O);
 				for (File file : files) {
 					String filenameN = file.getName().substring(0, 8) + "n" + file.getName().substring(9);
 					File fileTarget = new File(file.getParentFile(), filenameN);
-					LOGGER.info("\tRenaming file: " + file.getName() + " to: " + fileTarget.getName());
+					LOGGER.info("\tCopying file: " + file.getName() + " to: " + fileTarget.getName());
 					UtilsFile.copyFile(file, fileTarget);
 				}
 			}
 
 			if (dirPhotos.isDirectory()) {
 				LOGGER.info("WORKING DIR: " + dirGps.getAbsolutePath());
-				LOGGER.info("Renaming files: ");
+				LOGGER.info("Resizing files: ");
 				File[] files = dirPhotos.listFiles(FILE_FILTER_O); 
 				for (File file : files) {
 					String filenameN = file.getName().substring(0, 8) + "n" + file.getName().substring(9);
 					File fileTarget = new File(file.getParentFile(), filenameN);
-					LOGGER.info("\tRenaming file: " + file.getName() + " to: " + fileTarget.getName());
+					LOGGER.info("\tResizing file: " + file.getName() + " to: " + fileTarget.getName());
 					managerImage.resize(file, fileTarget, toWidth);
 				}
 			}
