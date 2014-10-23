@@ -1,8 +1,10 @@
 package kkr.album.utils;
 
 import javax.xml.stream.XMLStreamReader;
+
 import java.io.Closeable;
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -12,6 +14,13 @@ import kkr.album.exception.BaseException;
 import kkr.album.exception.TechnicalException;
 
 public class UtilsFile {
+	
+	public static FileFilter fileFilterDir = new FileFilter() {
+		public boolean accept(File file) {
+			return file.isDirectory();
+		}
+	}; 
+	
 	public static final void closeRessource(XMLStreamReader ressource) {
 		if (ressource != null) {
 			try {

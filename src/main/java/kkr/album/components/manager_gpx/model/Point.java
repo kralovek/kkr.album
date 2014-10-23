@@ -7,8 +7,8 @@ public class Point implements Cloneable, Comparable<Point> {
 	private Double longitude;
 	private Double elevation;
 	private Double temperature;
-	private Integer heartRate;
-	private Integer cadence;
+	private Double heartRate;
+	private Double cadence;
 	private Date time;
 
 	public Double getLatitude() {
@@ -35,19 +35,19 @@ public class Point implements Cloneable, Comparable<Point> {
 		this.elevation = elevation;
 	}
 
-	public Integer getHeartRate() {
+	public Double getHeartRate() {
 		return heartRate;
 	}
 
-	public void setHeartRate(Integer heartRate) {
+	public void setHeartRate(Double heartRate) {
 		this.heartRate = heartRate;
 	}
 
-	public Integer getCadence() {
+	public Double getCadence() {
 		return cadence;
 	}
 
-	public void setCadence(Integer cadence) {
+	public void setCadence(Double cadence) {
 		this.cadence = cadence;
 	}
 

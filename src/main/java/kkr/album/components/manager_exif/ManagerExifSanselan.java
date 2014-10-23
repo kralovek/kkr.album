@@ -59,6 +59,12 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 						+ file.getAbsolutePath(), ex);
 			}
 
+			if (imageMetadata == null) {
+				LOGGER.warn("### The file does not contain any EXIF data: "
+						+ file.getAbsolutePath());
+				return null;
+			}
+			
 			if (!(imageMetadata instanceof JpegImageMetadata)) {
 				LOGGER.warn("### The file does not contain JPEG METADATA: "
 						+ file.getAbsolutePath() + ". Metadata: "

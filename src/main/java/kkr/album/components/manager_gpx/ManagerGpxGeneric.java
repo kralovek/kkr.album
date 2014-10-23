@@ -13,6 +13,8 @@ import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
+import org.apache.log4j.Logger;
+
 import java.io.*;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -21,6 +23,7 @@ import java.util.*;
 
 public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
 		ManagerGpx {
+	private static transient final Logger LOGGER = Logger.getLogger(ManagerGpxGeneric.class);
 
 	private static DateFormat dateFormat;
 	static {
@@ -234,12 +237,12 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
 							} else if ("gpxtpx".equals(startTag.getPrefix())
 									&& "hr".equals(startTag.getName())) {
 								String value = xmlReader.getTextValue();
-								Integer heartRate = valueInteger(value);
+								Double heartRate = valueDouble(value);
 								point.setHeartRate(heartRate);
 							} else if ("gpxtpx".equals(startTag.getPrefix())
 									&& "cad".equals(startTag.getName())) {
 								String value = xmlReader.getTextValue();
-								Integer cadence = valueInteger(value);
+								Double cadence = valueDouble(value);
 								point.setCadence(cadence);
 							} else if ("gpxtpx".equals(startTag.getPrefix())
 									&& "atemp".equals(startTag.getName())) {
