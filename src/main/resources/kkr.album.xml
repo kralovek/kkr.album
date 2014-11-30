@@ -39,6 +39,12 @@
 		<property name="managerGpx" ref="managerGpx" />
 	</bean>
 
+	<bean id="batchAnalyzerGpx" class="kkr.album.batch.analyzergpx.BatchAnalyzerGpx">
+		<property name="managerGpx" ref="managerGpx" />
+		<property name="analyzerGpx" ref="analyzerGpx" />
+		<property name="statGpxReporter" ref="statGpxReporter" />
+	</bean>
+
 	<bean id="batchModifyPhotos" class="kkr.album.batch.modifyphotos.BatchModifyPhotos">
 		<property name="filenameTags" value="tags.properties" />
 		<property name="timeEvaluator" ref="timeEvaluator" />
@@ -71,6 +77,12 @@
 	</bean>
 
 	<bean id="managerGpx" class="kkr.album.components.manager_gpx.ManagerGpxGeneric">
+	</bean>
+
+	<bean id="analyzerGpx" class="kkr.album.components.analyzer_gpx.generic.AnalyzerGpxGeneric">
+	</bean>
+
+	<bean id="statGpxReporter" class="kkr.album.components.stat_gpx_reporter.file.StatGpxReporterFile">
 	</bean>
 
 	<bean id="timeEvaluator" class="kkr.album.components.timeevaluator.TimeEvaluatorGeneric">

@@ -3,7 +3,7 @@
 
 set DIR_SPRING=%MAVEN_REPOSITORY%\org\springframework
 
-set DIR_ENV=h:\GIT\kkr.album\env
+set DIR_ENV=h:\REPOSITORY_GIT\kkr.album\env
 set JAVA=%JAVA_HOME%\bin\java.exe
 set JAR_ALBUM=%MAVEN_REPOSITORY%\kkr\album\kkr.album\0.0.1\kkr.album-0.0.1.jar
 set JARS_SPRING=%DIR_SPRING%\spring-core\3.2.0.RELEASE\spring-core-3.2.0.RELEASE.jar;%DIR_SPRING%\spring-beans\3.2.0.RELEASE\spring-beans-3.2.0.RELEASE.jar;%DIR_SPRING%\spring-context\3.2.0.RELEASE\spring-context-3.2.0.RELEASE.jar;%DIR_SPRING%\spring-expression\3.2.0.RELEASE\spring-expression-3.2.0.RELEASE.jar

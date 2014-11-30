@@ -14,6 +14,13 @@ import kkr.album.exception.BaseException;
 import kkr.album.exception.TechnicalException;
 
 public class UtilsFile {
+
+	public static void createFileDir(File file) {
+		File dirParent = file.getParentFile();
+		if (dirParent != null && !dirParent.isDirectory()) {
+			dirParent.mkdirs();
+		}
+	}
 	
 	public static FileFilter fileFilterDir = new FileFilter() {
 		public boolean accept(File file) {
