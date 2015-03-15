@@ -24,7 +24,7 @@
 	</bean>
 
 	<bean id="batchCopyPicasa" class="kkr.album.batch.copypicasa.BatchCopyPicasa">
-		<property name="dirPicasa" value="h:\media\photos\picasa" />
+		<property name="dirPicasa" value="d:\media\photos\picasa" />
 	</bean>
 
 	<bean id="batchArchiveFiles" class="kkr.album.batch.archivefiles.BatchArchiveFiles">
@@ -37,6 +37,7 @@
 
 	<bean id="batchModifyGpx" class="kkr.album.batch.modifygpx.BatchModifyGpx">
 		<property name="managerGpx" ref="managerGpx" />
+		<property name="managerKml" ref="managerKml" />
 	</bean>
 
 	<bean id="batchAnalyzerGpx" class="kkr.album.batch.analyzergpx.BatchAnalyzerGpx">
@@ -54,9 +55,9 @@
 
 	<bean id="managerArchive"
 		class="kkr.album.components.manager_archiv.ManagerArchiveGeneric">
-		<property name="dirOriginal" value="h:\media\photos\my\o" />
-		<property name="dirNormal" value="h:\media\photos\my\n" />
-		<property name="dirVideo" value="h:\media\photos\my\v" />
+		<property name="dirOriginal" value="d:\media\photos\my\o" />
+		<property name="dirNormal" value="d:\media\photos\my\n" />
+		<property name="dirVideo" value="d:\media\photos\my\v" />
 	</bean>
 
 	<bean id="managerExifAllTypes" class="kkr.album.components.manager_exif.ManagerExifAllTypes">
@@ -77,6 +78,23 @@
 	</bean>
 
 	<bean id="managerGpx" class="kkr.album.components.manager_gpx.ManagerGpxGeneric">
+	</bean>
+
+	<bean id="managerKml" class="kkr.album.components.manager_kml.generic.ManagerKmlGeneric">
+		<property name="styleLineSize" value="3" />
+		<property name="styleColors">
+			<map>
+				<entry key="RDN" value="ff0055ff" />
+				<entry key="SDR" value="ffffaa55" />
+				<entry key="SKI" value="ff7f0000" />
+				<entry key="MTB" value="ff000055" />
+				<entry key="CYC" value="ff7f0055" />
+				<entry key="TRV" value="ff00ff55" />
+				<entry key="SDF" value="ffffff55" />
+				<entry key="RAQ" value="ffff5555" />
+				<entry key="ESC" value="ff0000aa" />
+			</map>
+		</property>
 	</bean>
 
 	<bean id="analyzerGpx" class="kkr.album.components.analyzer_gpx.generic.AnalyzerGpxGeneric">

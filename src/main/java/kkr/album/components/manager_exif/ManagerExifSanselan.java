@@ -96,14 +96,7 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 				}
 			}
 
-			TagInfo tagInfoTimeZoneOffset = TiffConstants.EXIF_TAG_TIME_ZONE_OFFSET;
-			TiffField tiffFieldTimeZoneOffset = tiffImageMetadata
-					.findField(tagInfoTimeZoneOffset);
-
 			String stringValueCD = tiffFieldCreationDate.getStringValue();
-
-			String stringValueTZO = tiffFieldTimeZoneOffset != null ? tiffFieldTimeZoneOffset
-					.getStringValue() : null;
 
 			try {
 				Date date = DATE_FORMAT.parse(stringValueCD);
@@ -480,7 +473,7 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 		return result;
 	}
 
-	public static void main(String[] argv) throws Exception {
+	public static void main2(String[] argv) throws Exception {
 		LOGGER.trace("BEGIN");
 		try {
 			ManagerExifSanselan main = new ManagerExifSanselan();
@@ -499,4 +492,13 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 		}
 	}
 
+	
+	public static final void main(String[] argv) throws Exception {
+		ManagerExifSanselan managerExifSanselan = new ManagerExifSanselan();
+		managerExifSanselan.config();
+		
+		File f1 = new File("h:/media/traces/2014/albums/20141221_CYC_FRA_Mont du Chat,Col de l'Epine,Col du Chat/photos/00037894n_20141221-090648.jpg");
+		File f2 = new File("h:/media/traces/2014/albums/20141224-25_EVT_ESP_Matadepera,Noche Buena/photosXP/DSC_0014.JPG");
+		managerExifSanselan.determineDate(f2);
+	}
 }

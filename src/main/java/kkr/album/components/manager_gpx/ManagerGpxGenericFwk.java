@@ -5,7 +5,7 @@ import kkr.album.exception.ConfigurationException;
 public abstract class ManagerGpxGenericFwk {
 
 	private boolean configured;
-	
+
 	public void config() throws ConfigurationException {
 		configured = false;
 		configured = true;

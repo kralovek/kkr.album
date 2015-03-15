@@ -44,6 +44,7 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
 		XMLStreamReader xmlStreamReader = null;
 		PrintStream printStream = null;
 		try {
+			testConfigured();
 			FileInputStream fileInputStream = new FileInputStream(fileSource);
 			xmlStreamReader = XMLInputFactory.newInstance()
 					.createXMLStreamReader(fileInputStream);
@@ -76,6 +77,7 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
 	public Gpx loadGpx(File file) throws BaseException {
 		XMLStreamReader xmlStreamReader = null;
 		try {
+			testConfigured();
 			FileInputStream fileInputStream = new FileInputStream(file);
 			xmlStreamReader = XMLInputFactory.newInstance()
 					.createXMLStreamReader(fileInputStream);
@@ -101,10 +103,11 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
 	public void saveGpx(Gpx gpx, File file) throws BaseException {
 		PrintStream printStream = null;
 		try {
+			testConfigured();
 			FileOutputStream fileOutputStream = new FileOutputStream(file);
 			printStream = new PrintStream(fileOutputStream);
 
-			workPrint(gpx, printStream);
+			workPrintGpx(gpx, printStream);
 
 			printStream.close();
 
@@ -115,11 +118,11 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
 			UtilsFile.closeRessource(printStream);
 		}
 	}
-
+	
 	//
 	// PRIVATE
 	//
-	private void workPrint(Gpx gpx, PrintStream printStream)
+	private void workPrintGpx(Gpx gpx, PrintStream printStream)
 			throws BaseException {
 		printStream
 				.println("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>");
@@ -180,7 +183,7 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
 								+ point.getTemperature() + "</gpxtpx:atemp>");
 					}
 					if (point.getHeartRate() != null) {
-						printStream.print("<gpxtpx:hr>" + point.getHeartRate()
+						printStream.print("<gpxtpx:hr>" + point.getHeartRate().intValue()
 								+ "</gpxtpx:hr>");
 					}
 					if (point.getCadence() != null) {

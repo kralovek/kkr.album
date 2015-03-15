@@ -23,6 +23,7 @@ import kkr.album.exception.BaseException;
 import kkr.album.exception.FunctionalException;
 import kkr.album.exception.TechnicalException;
 import kkr.album.utils.UtilsAlbums;
+import kkr.album.utils.UtilsConsole;
 import kkr.album.utils.UtilsFile;
 import kkr.album.utils.UtilsPattern;
 
@@ -57,7 +58,6 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 	public void run(File dirBase) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
-			String name = UtilsAlbums.determineName(dirBase);
 			Date date = UtilsAlbums.determineDate(dirBase);
 
 			File dirGps = new File(dirBase, "gps");
@@ -112,9 +112,14 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 			File[] files = dirGps.listFiles(FILE_FILTER_GPX);
 
 			if (files == null || files.length == 0) {
-				throw new FunctionalException(
-						"No album GPX file found in the directory: "
-								+ dirGps.getAbsolutePath());
+				String message = "No album GPX file found in the directory: "
+						+ dirGps.getAbsolutePath();
+				if (UtilsConsole.readAnswerYN(message + "\nDo you want to continue?")) {
+					LOGGER.warn("No GPX file found. Photos will not be geolocalized!");
+					return new Gpx();
+				} else {
+					throw new FunctionalException(message);
+				}
 			}
 
 			if (files.length > 1) {
@@ -346,6 +351,9 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 		go_gpx: for (Trace trace : gpx.getTraces()) {
 			Point lastPoint = null;
 			for (Point point : trace.getPoints()) {
+				if (point.getTime() == null) {
+					continue;
+				}
 				if (lastPoint != null
 						&& lastPoint.getTime().compareTo(time) <= 0
 						&& point.getTime().compareTo(time) >= 0) {

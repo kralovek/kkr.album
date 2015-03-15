@@ -7,9 +7,11 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.regex.Pattern;
 
+import kkr.album.components.manager_gpx.model.Gpx;
 import kkr.album.exception.BaseException;
 import kkr.album.exception.FunctionalException;
 import kkr.album.utils.UtilsAlbums;
+import kkr.album.utils.UtilsConsole;
 import kkr.album.utils.UtilsFile;
 import kkr.album.utils.UtilsPattern;
 
@@ -43,7 +45,12 @@ public class BatchCopyPicasa extends BatchCopyPicasaFwk {
 			File dirPicasaAlbum = new File(dirPicasaYear, name);
 
 			if (dirPicasaAlbum.isDirectory()) {
-				throw new FunctionalException("The PICASA directory exists already: " + dirPicasaAlbum.getAbsolutePath());
+				String message = "The PICASA directory exists already: " + dirPicasaAlbum.getAbsolutePath();
+				if (UtilsConsole.readAnswerYN(message + "\nDo you want to continue?")) {
+					LOGGER.warn("Files will be copied to existing directory: " + dirPicasaAlbum.getAbsolutePath());
+				} else {
+					throw new FunctionalException(message);
+				}
 			}
 			
 			if (dirGps.isDirectory()) {
