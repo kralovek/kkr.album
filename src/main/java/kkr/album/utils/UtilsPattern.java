@@ -12,19 +12,19 @@ public class UtilsPattern {
 	public static final DateFormat DATE_FORMAT_DATETIME;
 	static {
 		DATE_FORMAT_DATETIME = new SimpleDateFormat("yyyyMMdd-HHmmss");
-		DATE_FORMAT_DATETIME.setTimeZone(TimeZone.getTimeZone("GPS"));
+		DATE_FORMAT_DATETIME.setTimeZone(TimeZone.getTimeZone("GMT"));
 	}
 
 	public static final DateFormat DATE_FORMAT_DATE;
 	static {
 		DATE_FORMAT_DATE = new SimpleDateFormat("yyyyMMdd");
-		DATE_FORMAT_DATE.setTimeZone(TimeZone.getTimeZone("GPS"));
+		DATE_FORMAT_DATE.setTimeZone(TimeZone.getTimeZone("GMT"));
 	}
 
 	public static final DateFormat DATE_FORMAT_DATETIME0;
 	static {
 		DATE_FORMAT_DATETIME0 = new SimpleDateFormat("yyyyMMdd-000000");
-		DATE_FORMAT_DATETIME0.setTimeZone(TimeZone.getTimeZone("GPS"));
+		DATE_FORMAT_DATETIME0.setTimeZone(TimeZone.getTimeZone("GMT"));
 	}
 
 	public static final String MASK_EXT_PHOTO = "([jJ][pP][eE]?[gG])";

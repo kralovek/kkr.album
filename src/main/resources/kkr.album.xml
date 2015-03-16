@@ -87,7 +87,7 @@
 	<bean id="managerPassword" class="kkr.album.components.manager_password.md5.ManagerPasswordMD5">
 	</bean>
 
-	<bean id="managerPicasa" class="kkr.album.components.manager_picada.gdata.ManagerPicasaGData">
+	<bean id="managerPicasa" class="kkr.album.components.manager_picasa.gdata.ManagerPicasaGData">
 		<property name="user" value="karel.kralovec.help" />
 		<property name="password" value="help.karel.kralovec" />
 		<property name="managerPassword" ref="managerPassword" />
