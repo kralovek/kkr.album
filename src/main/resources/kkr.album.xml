@@ -27,6 +27,10 @@
 		<property name="dirPicasa" value="d:\media\photos\picasa" />
 	</bean>
 
+	<bean id="batchUploadPicasa" class="kkr.album.batch.uploadpicasa.BatchUploadPicasa">
+		<property name="managerPicasa" ref="managerPicasa" />
+	</bean>
+
 	<bean id="batchArchiveFiles" class="kkr.album.batch.archivefiles.BatchArchiveFiles">
 		<property name="managerArchive" ref="managerArchive" />
 	</bean>
@@ -78,6 +82,15 @@
 	</bean>
 
 	<bean id="managerGpx" class="kkr.album.components.manager_gpx.ManagerGpxGeneric">
+	</bean>
+
+	<bean id="managerPassword" class="kkr.album.components.manager_password.md5.ManagerPasswordMD5">
+	</bean>
+
+	<bean id="managerPicasa" class="kkr.album.components.manager_picada.gdata.ManagerPicasaGData">
+		<property name="user" value="karel.kralovec.help" />
+		<property name="password" value="help.karel.kralovec" />
+		<property name="managerPassword" ref="managerPassword" />
 	</bean>
 
 	<bean id="managerKml" class="kkr.album.components.manager_kml.generic.ManagerKmlGeneric">
