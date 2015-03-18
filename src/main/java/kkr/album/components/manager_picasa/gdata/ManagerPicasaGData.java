@@ -103,7 +103,7 @@ public class ManagerPicasaGData extends ManagerPicasaGDataFwk implements
 				if (filePhoto.getName().equals(photoEntryName)) {
 					if (filePhoto.length() != photoEntrySize) {
 						try {
-							logger.info("Updating [" + albumEntry.getName()
+							logger.info("\tUpdating [" + albumEntry.getName()
 									+ "]:" + photoEntryName);
 							photoEntry.delete();
 						} catch (Exception ex) {
@@ -121,7 +121,7 @@ public class ManagerPicasaGData extends ManagerPicasaGDataFwk implements
 			}
 			if (!found) {
 				try {
-					logger.info("Deleting [" + albumEntry.getName() + "]:"
+					logger.info("\tDeleting [" + albumEntry.getName() + "]:"
 							+ photoEntryName);
 					photoEntry.delete();
 				} catch (Exception ex) {
@@ -133,7 +133,7 @@ public class ManagerPicasaGData extends ManagerPicasaGDataFwk implements
 		}
 
 		for (File filePhoto : filePhotosWork) {
-			logger.info("Uploading [" + albumEntry.getName() + "]:"
+			logger.info("\tUploading [" + albumEntry.getName() + "]:"
 					+ filePhoto.getName());
 			addPhoto(picasawebService, url, filePhoto);
 		}

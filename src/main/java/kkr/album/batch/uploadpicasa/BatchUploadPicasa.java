@@ -47,6 +47,8 @@ public class BatchUploadPicasa extends BatchUploadPicasaFwk {
 				}
 			}
 
+			LOGGER.info("Upload photos to PICASA: " + name);
+
 			managerPicasa.createOrUpdateAlbum(name, filePhotos);
 			
 			LOGGER.trace("OK");

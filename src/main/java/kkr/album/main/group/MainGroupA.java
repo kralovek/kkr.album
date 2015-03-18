@@ -52,10 +52,10 @@ public class MainGroupA {
 			LOGGER.info("####################################################");
 			MainArchiveFiles.work(new String[] {});
 
-			LOGGER.info("####################################################");
-			LOGGER.info("BATCH_COPY_PICASA");
-			LOGGER.info("####################################################");
-			MainCopyPicasa.work(new String[] {});
+//			LOGGER.info("####################################################");
+//			LOGGER.info("BATCH_COPY_PICASA");
+//			LOGGER.info("####################################################");
+//			MainCopyPicasa.work(new String[] {});
 
 			LOGGER.info("####################################################");
 			LOGGER.info("BATCH_UPLOAD_PICASA");
