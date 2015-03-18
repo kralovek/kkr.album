@@ -17,6 +17,7 @@ public class UtilsBean {
 	private static final Logger LOGGER = Logger.getLogger(UtilsBean.class);
 
 	private static final String FILE_CONFIG = "kkr.album.xml";
+	private static final String FILE_PROPERTIES = "kkr.album.properties";
 	
 	public static BeanFactory createBeanFactory(Map<String, String> parameters) throws BaseException {
 		LOGGER.trace("BEGIN");
