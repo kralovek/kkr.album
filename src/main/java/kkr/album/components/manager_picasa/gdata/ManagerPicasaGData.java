@@ -19,7 +19,6 @@ import com.google.gdata.data.photos.AlbumEntry;
 import com.google.gdata.data.photos.AlbumFeed;
 import com.google.gdata.data.photos.PhotoEntry;
 import com.google.gdata.data.photos.UserFeed;
-import com.google.gdata.data.photos.impl.AlbumDataImpl;
 import com.google.gdata.util.AuthenticationException;
 
 import java.text.ParseException;
@@ -51,7 +50,6 @@ public class ManagerPicasaGData extends ManagerPicasaGDataFwk implements
 				albumEntry = createAlbum(picasawebService, name);
 			}
 
-			// listPhotos(picasawebService, albumEntry, photos);
 			updatePhotos(picasawebService, albumEntry, photos);
 
 			logger.trace("OK");
@@ -105,7 +103,8 @@ public class ManagerPicasaGData extends ManagerPicasaGDataFwk implements
 				if (filePhoto.getName().equals(photoEntryName)) {
 					if (filePhoto.length() != photoEntrySize) {
 						try {
-							logger.info("Updating [" + albumEntry.getName() + "]:" + photoEntryName);
+							logger.info("Updating [" + albumEntry.getName()
+									+ "]:" + photoEntryName);
 							photoEntry.delete();
 						} catch (Exception ex) {
 							throw new TechnicalException(
@@ -122,19 +121,20 @@ public class ManagerPicasaGData extends ManagerPicasaGDataFwk implements
 			}
 			if (!found) {
 				try {
-					logger.info("Deleting [" + albumEntry.getName() + "]:" + photoEntryName);
+					logger.info("Deleting [" + albumEntry.getName() + "]:"
+							+ photoEntryName);
 					photoEntry.delete();
 				} catch (Exception ex) {
-					throw new TechnicalException(
-							"Cannot delete photo: " + photoEntryName
-									+ " from album: "
-									+ albumEntry.getName(), ex);
+					throw new TechnicalException("Cannot delete photo: "
+							+ photoEntryName + " from album: "
+							+ albumEntry.getName(), ex);
 				}
 			}
 		}
 
 		for (File filePhoto : filePhotosWork) {
-			logger.info("Uploading [" + albumEntry.getName() + "]:" + filePhoto.getName());
+			logger.info("Uploading [" + albumEntry.getName() + "]:"
+					+ filePhoto.getName());
 			addPhoto(picasawebService, url, filePhoto);
 		}
 	}
