@@ -88,8 +88,8 @@
 	</bean>
 
 	<bean id="managerPicasa" class="kkr.album.components.manager_picasa.gdata.ManagerPicasaGData">
-		<property name="user" value="karel.kralovec.help" />
-		<property name="password" value="help.karel.kralovec" />
+		<property name="user" value="karel.kralovec.2015" />
+		<property name="password" value="tjmjhs12" />
 		<property name="managerPassword" ref="managerPassword" />
 	</bean>
 

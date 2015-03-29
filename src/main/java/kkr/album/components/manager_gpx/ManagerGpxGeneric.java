@@ -25,10 +25,13 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
 		ManagerGpx {
 	private static transient final Logger LOGGER = Logger.getLogger(ManagerGpxGeneric.class);
 
-	private static DateFormat dateFormat;
+	private static DateFormat DATE_FORMAT_1;
+	private static DateFormat DATE_FORMAT_2;
 	static {
-		dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-		dateFormat.setTimeZone(new SimpleTimeZone(0, "GMT"));
+		DATE_FORMAT_1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+		DATE_FORMAT_1.setTimeZone(new SimpleTimeZone(0, "GMT"));
+		DATE_FORMAT_2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+		DATE_FORMAT_2.setTimeZone(new SimpleTimeZone(0, "GMT"));
 	}
 
 	private static Comparator<Point> comparatorPointsTime = new Comparator<Point>() {
@@ -139,7 +142,7 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
 			printStream
 					.println("<link href=\"http://www.garmin.com\"><text>Garmin International</text></link>");
 			if (gpx.getTime() != null) {
-				printStream.println("<time>" + dateFormat.format(gpx.getTime())
+				printStream.println("<time>" + DATE_FORMAT_1.format(gpx.getTime())
 						+ "</time>");
 			}
 			printStream.println("</metadata>");
@@ -172,7 +175,7 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
 				}
 				if (point.getTime() != null) {
 					printStream.print("<time>"
-							+ dateFormat.format(point.getTime()) + "</time>");
+							+ DATE_FORMAT_1.format(point.getTime()) + "</time>");
 				}
 				if (point.getHeartRate() != null || point.getCadence() != null
 						|| point.getTemperature() != null) {
@@ -435,8 +438,13 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
 			return null;
 		}
 		try {
-			Date retval = dateFormat.parse(value);
-			return retval;
+			try {
+				Date retval = DATE_FORMAT_1.parse(value);
+				return retval;
+			} catch (ParseException ex) {
+				Date retval = DATE_FORMAT_2.parse(value);
+				return retval;
+			}
 		} catch (ParseException ex) {
 			throw new FunctionalException("Not a dade format: " + value, ex);
 		}
