@@ -6,9 +6,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Pattern;
@@ -114,7 +116,8 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 			if (files == null || files.length == 0) {
 				String message = "No album GPX file found in the directory: "
 						+ dirGps.getAbsolutePath();
-				if (UtilsConsole.readAnswerYN(message + "\nDo you want to continue?")) {
+				if (UtilsConsole.readAnswerYN(message
+						+ "\nDo you want to continue?")) {
 					LOGGER.warn("No GPX file found. Photos will not be geolocalized!");
 					return new Gpx();
 				} else {
@@ -281,10 +284,13 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 								+ dir.getAbsolutePath());
 			}
 			boolean eqDir = dir.equals(dirTarget);
+			List<File> filesNoGps = new ArrayList<File>();
 			for (File file : files) {
 				Date time = managerExif.determineDate(file);
 				if (time == null) {
-					throw new TechnicalException("Cannot determine the time from the file: " + file.getAbsolutePath());
+					throw new TechnicalException(
+							"Cannot determine the time from the file: "
+									+ file.getAbsolutePath());
 				}
 				Date timeMove = moveTime(time, move);
 				Point point = interpolateGpx(timeMove, gpx);
@@ -301,14 +307,35 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 						+ fileTarget.getName());
 				UtilsFile.moveFile(file, fileTarget);
 
-				LOGGER.info("\tModifying file: " + fileTarget.getName()
-						+ " Date: " + stringTime + " Lon/Lat: "
-						+ (point != null ? toString(point.getLongitude()) : "-") + "/"
+				LOGGER.info("\tModifying file: "
+						+ fileTarget.getName()
+						+ " Date: "
+						+ stringTime
+						+ " Lon/Lat: "
+						+ (point != null ? toString(point.getLongitude()) : "-")
+						+ "/"
 						+ (point != null ? toString(point.getLatitude()) : "-"));
 
 				managerExif.modifyFile(fileTarget, timeMove,
 						(point != null ? point.getLongitude() : null),
 						(point != null ? point.getLatitude() : null));
+				if (point == null) {
+					filesNoGps.add(fileTarget);
+				}
+			}
+
+			if (!filesNoGps.isEmpty()) {
+				LOGGER.warn("\tList of NON GPS files: " + filesNoGps.size());
+				for (File file : filesNoGps) {
+					LOGGER.warn("\t\tFile: " + file.getAbsolutePath());
+				}
+				String message = "Now you can geolocalize them yourself.";
+				if (UtilsConsole.readAnswerYN(message
+						+ "\nDo you want to continue?")) {
+					LOGGER.warn("No GPX file found. Photos will not be geolocalized!");
+				} else {
+					throw new FunctionalException(message);
+				}
 			}
 
 			if (!eqDir) {

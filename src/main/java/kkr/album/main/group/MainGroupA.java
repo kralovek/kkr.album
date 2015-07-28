@@ -3,7 +3,6 @@ package kkr.album.main.group;
 import kkr.album.exception.BaseException;
 import kkr.album.exception.TreatErrors;
 import kkr.album.main.MainArchiveFiles;
-import kkr.album.main.MainCopyPicasa;
 import kkr.album.main.MainIndexFiles;
 import kkr.album.main.MainModifyPhotos;
 import kkr.album.main.MainResizePhotos;

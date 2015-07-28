@@ -23,6 +23,8 @@ public class BatchModifyGpx extends BatchModifyGpxFwk {
 
 	private static final Pattern PATTERN_GPX_AUTO = Pattern
 			.compile("[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}\\.[0-9]{2}\\.[0-9]{2} Auto\\.[gG][pP][xX]");
+	private static final Pattern PATTERN_GPX_DAY = Pattern
+			.compile("[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}\\.[0-9]{2}\\.[0-9]{2} Day\\.[gG][pP][xX]");
 
 	private static final Pattern PATTERN_GPX_STOPWATCH = Pattern
 			.compile("[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}\\.[0-9]{2}\\.[0-9]{2} Stopwatch\\.[gG][pP][xX]");
@@ -44,7 +46,9 @@ public class BatchModifyGpx extends BatchModifyGpxFwk {
 			if (!file.isFile()) {
 				return false;
 			}
-			return PATTERN_GPX_AUTO.matcher(file.getName()).matches();
+			String filename = file.getName().toLowerCase();
+			return filename.endsWith(".gpx") && !filename.startsWith("x")
+					&& !"Current.gpx".equals(file.getName()) && !PATTERN_GPX_STOPWATCH.matcher(file.getName()).matches();
 		}
 	};
 
@@ -72,8 +76,7 @@ public class BatchModifyGpx extends BatchModifyGpxFwk {
 		LOGGER.trace("BEGIN");
 		try {
 			testConfigured();
-			LOGGER.info("WORKING FILE: "
-					+ file.getAbsolutePath());
+			LOGGER.info("WORKING FILE: " + file.getAbsolutePath());
 			String nameLoc = name != null ? name : getNameFromFilename(file
 					.getName());
 			work(file, new File[0], nameLoc);
@@ -133,12 +136,10 @@ public class BatchModifyGpx extends BatchModifyGpxFwk {
 				}
 			}
 
-			
-			
 			work(fileGpxCurrent, fileGpxAutos, nameLoc);
 
 			workStopwatch(dirBase, nameLoc);
-			
+
 			LOGGER.trace("OK");
 		} finally {
 			LOGGER.trace("END");
@@ -154,8 +155,7 @@ public class BatchModifyGpx extends BatchModifyGpxFwk {
 						+ fileGpxCurrent.getAbsolutePath());
 			}
 
-			LOGGER.info("\tLoading: "
-					+ fileGpxCurrent.getName());
+			LOGGER.info("\tLoading: " + fileGpxCurrent.getName());
 			Gpx gpxCurrent = managerGpx.loadGpx(fileGpxCurrent);
 
 			if (gpxCurrent.getTraces().size() == 0) {
@@ -168,8 +168,7 @@ public class BatchModifyGpx extends BatchModifyGpxFwk {
 
 			if (fileGpxAutos != null) {
 				for (File fileGpxAuto : fileGpxAutos) {
-					LOGGER.info("\tLoading: "
-							+ fileGpxAuto.getName());
+					LOGGER.info("\tLoading: " + fileGpxAuto.getName());
 					Gpx gpxAuto = managerGpx.loadGpx(fileGpxAuto);
 					gpxAutos.add(gpxAuto);
 				}
@@ -183,17 +182,15 @@ public class BatchModifyGpx extends BatchModifyGpxFwk {
 
 			File fileGpxOutput = new File(dirGps, name + ".gpx");
 			File fileKmlOutput = new File(dirGps, name + ".kml");
-			
+
 			File fileGpxTarget = null;
 			if (fileGpxOutput.getName().equals(fileGpxCurrent.getName())) {
 				fileGpxTarget = fileGpxOutput;
 				fileGpxOutput = new File(dirGps, name + ".gpx.tmp");
 			}
-			LOGGER.info("\tWritting GPX: "
-					+ fileGpxOutput.getName());
+			LOGGER.info("\tWritting GPX: " + fileGpxOutput.getName());
 			managerGpx.saveGpx(gpx, fileGpxOutput);
-			LOGGER.info("\tWritting KML: "
-					+ fileKmlOutput.getName());
+			LOGGER.info("\tWritting KML: " + fileKmlOutput.getName());
 			managerKml.saveKml(gpx, fileKmlOutput);
 
 			if (!fileGpxCurrent.delete()) {
@@ -201,14 +198,16 @@ public class BatchModifyGpx extends BatchModifyGpxFwk {
 						"Cannot remove the CURRENT GPX file: "
 								+ fileGpxCurrent.getAbsolutePath());
 			}
-			
+
 			if (fileGpxTarget != null) {
 				if (!fileGpxOutput.renameTo(fileGpxTarget)) {
-					LOGGER.warn("Cannot rename file: " + fileGpxOutput.getAbsolutePath() + " -> " + fileGpxTarget.getAbsolutePath());
+					LOGGER.warn("Cannot rename file: "
+							+ fileGpxOutput.getAbsolutePath() + " -> "
+							+ fileGpxTarget.getAbsolutePath());
 				}
 				fileGpxOutput = fileGpxTarget;
 			}
-			
+
 			if (fileGpxAutos != null) {
 				for (File fileGpxAuto : fileGpxAutos) {
 					if (!fileGpxAuto.delete()) {
@@ -224,12 +223,23 @@ public class BatchModifyGpx extends BatchModifyGpxFwk {
 			if (length > MB) {
 				LOGGER.warn("### BATCH_MODIFY_GPX: The size of created GPX file has more than 1MB");
 				File fileGpxSimplyOutput = new File(dirGps, "x" + name + ".gpx");
-				LOGGER.info("\tWritting: "
-						+ fileGpxSimplyOutput.getName());
+				LOGGER.info("\tWritting: " + fileGpxSimplyOutput.getName());
 				Gpx gpxSimply = UtilsGpx.simlifyGpx(gpx);
 				managerGpx.saveGpx(gpxSimply, fileGpxSimplyOutput);
 				length = fileGpxSimplyOutput.length();
 
+				if (length > MB) {
+					for (int i = 5; i > 1; i--) {
+						LOGGER.warn("### BATCH_MODIFY_GPX: The size of created GPX file HAS STILL more than 1MB !!! ... So I remove each " + i + " point");
+						Gpx gpxReduced = UtilsGpx.reduce(gpxSimply, i);
+						fileGpxSimplyOutput.delete();
+						managerGpx.saveGpx(gpxReduced, fileGpxSimplyOutput);
+						length = fileGpxSimplyOutput.length();
+						if (length < MB) {
+							break;
+						}
+					}
+				}
 				if (length > MB) {
 					LOGGER.warn("### BATCH_MODIFY_GPX: The size of created GPX file HAS STILL more than 1MB !!!");
 				}
@@ -279,9 +289,10 @@ public class BatchModifyGpx extends BatchModifyGpxFwk {
 			managerGpx.saveGpx(gpx, fileStopwatch);
 
 			if (!filesGpxStopwatch[0].delete()) {
-				throw new TechnicalException("Cannot remove the file: " + filesGpxStopwatch[0].getAbsolutePath());
+				throw new TechnicalException("Cannot remove the file: "
+						+ filesGpxStopwatch[0].getAbsolutePath());
 			}
-			
+
 			LOGGER.trace("OK");
 		} finally {
 			LOGGER.trace("END");

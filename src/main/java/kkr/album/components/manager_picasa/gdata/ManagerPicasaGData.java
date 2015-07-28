@@ -270,4 +270,5 @@ public class ManagerPicasaGData extends ManagerPicasaGDataFwk implements
 			return null;
 		}
 	}
+	
 }

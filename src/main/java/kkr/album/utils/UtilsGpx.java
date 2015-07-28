@@ -1,6 +1,7 @@
 package kkr.album.utils;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import kkr.album.components.manager_gpx.model.Gpx;
@@ -34,7 +35,7 @@ public class UtilsGpx {
 
 		return gpx;
 	}
-	
+
 	public static void sortTrace(Trace trace) {
 		Collections.sort(trace.getPoints());
 	}
@@ -50,7 +51,23 @@ public class UtilsGpx {
 				point.setTime(null);
 			}
 		}
- 		return gpxSimplify;
+		return gpxSimplify;
 	}
 
+	public static Gpx reduce(Gpx gpx, int removeEachNthItem) {
+		Gpx gpxReduced = (Gpx) gpx.clone();
+		if (removeEachNthItem > 1) {
+			for (Trace trace : gpxReduced.getTraces()) {
+				Iterator<Point> iterator = trace.getPoints().iterator();
+
+				for (int i = 1; iterator.hasNext(); i++) {
+					iterator.next();
+					if (i%removeEachNthItem == 0) {
+						iterator.remove();
+					}
+				}
+			}
+		}
+		return gpxReduced;
+	}
 }
