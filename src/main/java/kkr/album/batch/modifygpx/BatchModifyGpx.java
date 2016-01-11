@@ -24,10 +24,13 @@ public class BatchModifyGpx extends BatchModifyGpxFwk {
 	private static final Pattern PATTERN_GPX_AUTO = Pattern
 			.compile("[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}\\.[0-9]{2}\\.[0-9]{2} Auto\\.[gG][pP][xX]");
 	private static final Pattern PATTERN_GPX_DAY = Pattern
-			.compile("[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}\\.[0-9]{2}\\.[0-9]{2} Day\\.[gG][pP][xX]");
-
+			.compile("[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}\\.[0-9]{2}\\.[0-9]{2} (Day|Día)\\.[gG][pP][xX]");
 	private static final Pattern PATTERN_GPX_STOPWATCH = Pattern
-			.compile("[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}\\.[0-9]{2}\\.[0-9]{2} Stopwatch\\.[gG][pP][xX]");
+			.compile("[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}\\.[0-9]{2}\\.[0-9]{2} (Stopwatch|Cronómetro)\\.[gG][pP][xX]");
+	private static final Pattern PATTERN_GPX_X = Pattern
+			.compile("x.*\\.[gG][pP][xX]");
+	private static final Pattern PATTERN_GPX_WAYPOINT = Pattern
+			.compile("Waypoints_.*\\.[gG][pP][xX]");
 
 	private static final Pattern PATTERN_GPX = Pattern
 			.compile(".*\\.[gG][pP][xX]");
@@ -35,6 +38,12 @@ public class BatchModifyGpx extends BatchModifyGpxFwk {
 	private static final FileFilter FILE_FILTER_GPX = new FileFilter() {
 		public boolean accept(File file) {
 			if (!file.isFile()) {
+				return false;
+			}
+			if (PATTERN_GPX_WAYPOINT.matcher(file.getName()).matches()) {
+				return false;
+			}
+			if (PATTERN_GPX_X.matcher(file.getName()).matches()) {
 				return false;
 			}
 			return PATTERN_GPX.matcher(file.getName()).matches();
@@ -58,6 +67,15 @@ public class BatchModifyGpx extends BatchModifyGpxFwk {
 				return false;
 			}
 			return PATTERN_GPX_STOPWATCH.matcher(file.getName()).matches();
+		}
+	};
+
+	private static final FileFilter FILE_FILTER_GPX_X = new FileFilter() {
+		public boolean accept(File file) {
+			if (!file.isFile()) {
+				return false;
+			}
+			return PATTERN_GPX_X.matcher(file.getName()).matches();
 		}
 	};
 
@@ -102,12 +120,17 @@ public class BatchModifyGpx extends BatchModifyGpxFwk {
 		try {
 			testConfigured();
 			File dirGps = new File(dirBase, "gps");
+			if (!dirGps.exists()) {
+				if ("gps".equals(dirBase.getName())) {
+					dirGps = dirBase;
+					dirBase = dirBase.getParentFile();
+				} else {
+					throw new FunctionalException("Incorrect gps directory: "
+							+ dirBase.getAbsolutePath());
+				}
+			}
 
 			LOGGER.info("WORKING DIR: " + dirGps.getAbsolutePath());
-			if (!dirBase.isDirectory()) {
-				throw new FunctionalException("The directory does not exist: "
-						+ dirBase.getAbsolutePath());
-			}
 
 			String nameLoc;
 			if (name != null) {
@@ -116,6 +139,8 @@ public class BatchModifyGpx extends BatchModifyGpxFwk {
 				nameLoc = UtilsAlbums.determineName(dirBase);
 			}
 
+			cleanFiles(dirGps);
+			
 			File fileGpxCurrent = new File(dirGps, "Current.gpx");
 
 			File[] fileGpxAutos = dirGps.listFiles(FILE_FILTER_GPX_AUTO);
@@ -302,5 +327,15 @@ public class BatchModifyGpx extends BatchModifyGpxFwk {
 	private String getNameFromFilename(String filename) {
 		String name = filename.replaceFirst("\\.[gG][pP][xX]$", "");
 		return name;
+	}
+	
+	private void cleanFiles(File dirGps) throws BaseException {
+		File[] files = dirGps.listFiles(FILE_FILTER_GPX_X);
+		for (File file : files) {
+			if (!file.delete()) {
+				throw new TechnicalException("Cannot remove the file: "
+						+ file.getAbsolutePath());
+			}
+		}
 	}
 }
