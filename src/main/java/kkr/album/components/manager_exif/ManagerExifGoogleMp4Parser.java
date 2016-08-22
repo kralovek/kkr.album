@@ -4,19 +4,17 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 
-import kkr.album.exception.BaseException;
-import kkr.album.exception.TechnicalException;
-
 import org.apache.log4j.Logger;
 
 import com.coremedia.iso.IsoFile;
 import com.coremedia.iso.boxes.MovieBox;
 import com.coremedia.iso.boxes.MovieHeaderBox;
 
-public class ManagerExifGoogleMp4Parser extends ManagerExifGoogleMp4ParserFwk
-		implements ManagerExif {
-	private static final Logger LOGGER = Logger
-			.getLogger(ManagerExifGoogleMp4Parser.class);
+import kkr.album.exception.BaseException;
+import kkr.album.exception.TechnicalException;
+
+public class ManagerExifGoogleMp4Parser extends ManagerExifGoogleMp4ParserFwk implements ManagerExif {
+	private static final Logger LOGGER = Logger.getLogger(ManagerExifGoogleMp4Parser.class);
 
 	public Date determineDate(File file) throws BaseException {
 		LOGGER.trace("BEGIN");
@@ -25,6 +23,7 @@ public class ManagerExifGoogleMp4Parser extends ManagerExifGoogleMp4ParserFwk
 			IsoFile isoFile = null;
 			try {
 				isoFile = new IsoFile(file.getAbsolutePath());
+
 				MovieBox moov = isoFile.getBoxes(MovieBox.class).get(0);
 
 				MovieHeaderBox movieHeaderBox = moov.getMovieHeaderBox();
@@ -53,8 +52,7 @@ public class ManagerExifGoogleMp4Parser extends ManagerExifGoogleMp4ParserFwk
 		}
 	}
 
-	public void modifyFile(File file, Date date, Double longitude,
-			Double latitude) throws BaseException {
+	public void modifyFile(File file, Date date, Double longitude, Double latitude) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
 			LOGGER.warn("NOT IMPLEMENTED FOR MP4");
@@ -79,7 +77,7 @@ public class ManagerExifGoogleMp4Parser extends ManagerExifGoogleMp4ParserFwk
 		Date date = main.determineDate(new File("00033719v.mp4"));
 		LOGGER.debug("Date: " + date);
 	}
-	
+
 	public void copyExif(File fileSource, File fileTarget) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {

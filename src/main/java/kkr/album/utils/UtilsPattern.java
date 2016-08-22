@@ -10,18 +10,21 @@ import java.util.regex.Pattern;
 public class UtilsPattern {
 
 	public static final DateFormat DATE_FORMAT_DATETIME;
+
 	static {
 		DATE_FORMAT_DATETIME = new SimpleDateFormat("yyyyMMdd-HHmmss");
 		DATE_FORMAT_DATETIME.setTimeZone(TimeZone.getTimeZone("GMT"));
 	}
 
 	public static final DateFormat DATE_FORMAT_DATE;
+
 	static {
 		DATE_FORMAT_DATE = new SimpleDateFormat("yyyyMMdd");
 		DATE_FORMAT_DATE.setTimeZone(TimeZone.getTimeZone("GMT"));
 	}
 
 	public static final DateFormat DATE_FORMAT_DATETIME0;
+
 	static {
 		DATE_FORMAT_DATETIME0 = new SimpleDateFormat("yyyyMMdd-000000");
 		DATE_FORMAT_DATETIME0.setTimeZone(TimeZone.getTimeZone("GMT"));
@@ -29,15 +32,16 @@ public class UtilsPattern {
 
 	public static final String MASK_EXT_PHOTO = "([jJ][pP][eE]?[gG])";
 	public static final String MASK_EXT_VIDEO = "([mM][oO][vV]|[aA][vV][iI]|[mM][pP]4|[mM][tT][sS]|[mM][pP][gG])";
-	public static final String MASK_EXT_FILE = "(" + MASK_EXT_PHOTO + "|"
-			+ MASK_EXT_VIDEO + ")";
+	public static final String MASK_EXT_FILE = "(" + MASK_EXT_PHOTO + "|" + MASK_EXT_VIDEO + ")";
 	public static final String MASK_TIME = "[0-9]{8}-[0-9]{6}";
 
-	public static final Pattern PATTERN_PHOTO = Pattern.compile(".*"
-			+ UtilsPattern.MASK_EXT_PHOTO);
+	public static final String MASK_GPX_STOPWATCH = "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}\\.[0-9]{2}\\.[0-9]{2} (Stopwatch|Cronómetro|Chronomètre)\\.[gG][pP][xX]";
+	public static final String MASK_GPX_X = "x.*\\.[gG][pP][xX]";
+	public static final String MASK_GPX_WAYPOINT = "Waypoints_.*\\.[gG][pP][xX]";
 
-	public static final Pattern PATTERN_VIDEO = Pattern.compile(".*"
-			+ UtilsPattern.MASK_EXT_VIDEO);
+	public static final Pattern PATTERN_PHOTO = Pattern.compile(".*" + UtilsPattern.MASK_EXT_PHOTO);
+
+	public static final Pattern PATTERN_VIDEO = Pattern.compile(".*" + UtilsPattern.MASK_EXT_VIDEO);
 
 	public static class FileFilterFile implements FileFilter {
 		private Pattern pattern;

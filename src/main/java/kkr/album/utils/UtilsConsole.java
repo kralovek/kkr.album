@@ -10,7 +10,7 @@ import kkr.album.exception.TechnicalException;
 import org.apache.log4j.Logger;
 
 public class UtilsConsole {
-	private static final Logger LOGGER = Logger.getLogger(UtilsConsole.class);
+	private static final Logger LOG = Logger.getLogger(UtilsConsole.class);
 
 	public static boolean readAnswerYN(String question) throws BaseException {
 		String answer = readAnswer(question);

@@ -37,7 +37,7 @@ public class MainAnalyzerGpx {
 					.commandLineToMap(args);
 			BeanFactory beanFactory = UtilsBean.createBeanFactory(parameters);
 
-			Config_MainAnalyzerGpx config = new Config_MainAnalyzerGpx(args);
+			ConfigAnalyzerGpx config = new ConfigAnalyzerGpx(args);
 
 			BatchAnalyzerGpx batchAnalyzerGpx = beanFactory.getBean(BEAN_ID,
 					BatchAnalyzerGpx.class);

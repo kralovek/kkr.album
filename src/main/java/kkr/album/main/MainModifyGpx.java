@@ -39,7 +39,7 @@ public class MainModifyGpx {
 			
 			File dirCurrent = new File(System.getProperty("user.dir"));
 			
-			Config_MainModifyGpx config = new Config_MainModifyGpx(args);
+			ConfigModifyGpx config = new ConfigModifyGpx(args);
 			
 			if (config.getFile() != null) {
 				batchModifyGpx.runFile(config.getFile(), config.getName());

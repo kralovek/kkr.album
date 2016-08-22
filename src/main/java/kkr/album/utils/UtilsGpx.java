@@ -12,8 +12,7 @@ import kkr.album.exception.FunctionalException;
 
 public class UtilsGpx {
 
-	public static Gpx joinGpxs(Gpx gpxMain, List<Gpx> gpxs)
-			throws BaseException {
+	public static Gpx joinGpxs(Gpx gpxMain, List<Gpx> gpxs) throws BaseException {
 		if (gpxMain.getTraces().size() == 0) {
 			throw new FunctionalException("No trace in the GPX");
 		}
@@ -62,7 +61,7 @@ public class UtilsGpx {
 
 				for (int i = 1; iterator.hasNext(); i++) {
 					iterator.next();
-					if (i%removeEachNthItem == 0) {
+					if (i % removeEachNthItem == 0) {
 						iterator.remove();
 					}
 				}
@@ -70,4 +69,19 @@ public class UtilsGpx {
 		}
 		return gpxReduced;
 	}
+
+	public static double distanceKm(Point p1, Point p2) {
+		double a1 = p1.getLatitude() * Math.PI / 180.;
+		double a2 = p1.getLongitude() * Math.PI / 180.;
+		double b1 = p2.getLatitude() * Math.PI / 180.;
+		double b2 = p2.getLongitude() * Math.PI / 180.;
+
+		double t1 = Math.cos(a1) * Math.cos(a2) * Math.cos(b1) * Math.cos(b2);
+		double t2 = Math.cos(a1) * Math.sin(a2) * Math.cos(b1) * Math.sin(b2);
+		double t3 = Math.sin(a1) * Math.sin(b1);
+		double tt = Math.acos(t1 + t2 + t3);
+
+		return 6366 * tt;
+	}
+
 }

@@ -85,4 +85,8 @@ public class Point implements Cloneable, Comparable<Point> {
 		}
 		return 0;
 	}
+
+	public String toString() {
+		return "[" + latitude + "/" + longitude + "] E:" + elevation + " HR:" + heartRate + " T:" + temperature;
+	}
 }

@@ -5,42 +5,42 @@ import java.util.Date;
 import java.util.List;
 
 public class Trace implements Cloneable {
-    private String name;
-    private Date time;
-    private String color;
-    private List<Point> points = new ArrayList<Point>();
+	private String name;
+	private Date time;
+	private String color;
+	private List<Point> points = new ArrayList<Point>();
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public Date getTime() {
-        return time;
-    }
+	public Date getTime() {
+		return time;
+	}
 
-    public void setTime(Date time) {
-        this.time = time;
-    }
+	public void setTime(Date time) {
+		this.time = time;
+	}
 
-    public String getColor() {
-        return color;
-    }
+	public String getColor() {
+		return color;
+	}
 
-    public void setColor(String color) {
-        this.color = color;
-    }
+	public void setColor(String color) {
+		this.color = color;
+	}
 
-    public List<Point> getPoints() {
-        return points;
-    }
+	public List<Point> getPoints() {
+		return points;
+	}
 
-    public void setPoints(List<Point> points) {
-        this.points = points;
-    }
+	public void setPoints(List<Point> points) {
+		this.points = points;
+	}
 
 	protected Object clone() {
 		Trace trace = new Trace();

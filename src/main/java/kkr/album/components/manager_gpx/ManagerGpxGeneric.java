@@ -1,12 +1,20 @@
 package kkr.album.components.manager_gpx;
 
-import kkr.album.components.manager_gpx.model.Gpx;
-import kkr.album.components.manager_gpx.model.Point;
-import kkr.album.components.manager_gpx.model.Trace;
-import kkr.album.exception.BaseException;
-import kkr.album.exception.FunctionalException;
-import kkr.album.exception.TechnicalException;
-import kkr.album.utils.UtilsFile;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+import java.util.SimpleTimeZone;
+import java.util.TreeSet;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
@@ -15,18 +23,20 @@ import javax.xml.stream.XMLStreamReader;
 
 import org.apache.log4j.Logger;
 
-import java.io.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import kkr.album.components.manager_gpx.model.Gpx;
+import kkr.album.components.manager_gpx.model.Point;
+import kkr.album.components.manager_gpx.model.Trace;
+import kkr.album.exception.BaseException;
+import kkr.album.exception.FunctionalException;
+import kkr.album.exception.TechnicalException;
+import kkr.album.utils.UtilsFile;
 
-public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
-		ManagerGpx {
+public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGpx {
 	private static transient final Logger LOGGER = Logger.getLogger(ManagerGpxGeneric.class);
 
 	private static DateFormat DATE_FORMAT_1;
 	private static DateFormat DATE_FORMAT_2;
+
 	static {
 		DATE_FORMAT_1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 		DATE_FORMAT_1.setTimeZone(new SimpleTimeZone(0, "GMT"));
@@ -34,23 +44,20 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
 		DATE_FORMAT_2.setTimeZone(new SimpleTimeZone(0, "GMT"));
 	}
 
-	private static Comparator<Point> comparatorPointsTime = new Comparator<Point>() {
+	private static Comparator<Point> COMPARATOR_POINTS_TIME = new Comparator<Point>() {
 		public int compare(Point point1, Point point2) {
 			return point1.getTime() == null ? -1
-					: point2.getTime() == null ? +1 : point1.getTime()
-							.compareTo(point2.getTime());
+					: point2.getTime() == null ? +1 : point1.getTime().compareTo(point2.getTime());
 		}
 	};
 
-	public void formatGpxFile(File fileSource, File fileTarget, String traceName)
-			throws BaseException {
+	public void formatGpxFile(File fileSource, File fileTarget, String traceName) throws BaseException {
 		XMLStreamReader xmlStreamReader = null;
 		PrintStream printStream = null;
 		try {
 			testConfigured();
 			FileInputStream fileInputStream = new FileInputStream(fileSource);
-			xmlStreamReader = XMLInputFactory.newInstance()
-					.createXMLStreamReader(fileInputStream);
+			xmlStreamReader = XMLInputFactory.newInstance().createXMLStreamReader(fileInputStream);
 
 			FileOutputStream fileOutputStream = new FileOutputStream(fileTarget);
 			printStream = new PrintStream(fileOutputStream);
@@ -62,11 +69,9 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
 			xmlStreamReader = null;
 
 		} catch (FileNotFoundException ex) {
-			throw new TechnicalException("The fileSource does not exist: "
-					+ fileSource.getAbsolutePath(), ex);
+			throw new TechnicalException("The fileSource does not exist: " + fileSource.getAbsolutePath(), ex);
 		} catch (XMLStreamException ex) {
-			throw new TechnicalException("Bad format of the XML: "
-					+ fileSource.getAbsolutePath(), ex);
+			throw new TechnicalException("Bad format of the XML: " + fileSource.getAbsolutePath(), ex);
 		} finally {
 			UtilsFile.closeRessource(printStream);
 			UtilsFile.closeRessource(xmlStreamReader);
@@ -82,8 +87,7 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
 		try {
 			testConfigured();
 			FileInputStream fileInputStream = new FileInputStream(file);
-			xmlStreamReader = XMLInputFactory.newInstance()
-					.createXMLStreamReader(fileInputStream);
+			xmlStreamReader = XMLInputFactory.newInstance().createXMLStreamReader(fileInputStream);
 
 			Gpx retval = workLoad(xmlStreamReader);
 
@@ -93,11 +97,9 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
 			return retval;
 
 		} catch (FileNotFoundException ex) {
-			throw new TechnicalException("The fileSource does not exist: "
-					+ file.getAbsolutePath(), ex);
+			throw new TechnicalException("The fileSource does not exist: " + file.getAbsolutePath(), ex);
 		} catch (XMLStreamException ex) {
-			throw new TechnicalException("Bad format of the XML: "
-					+ file.getAbsolutePath(), ex);
+			throw new TechnicalException("Bad format of the XML: " + file.getAbsolutePath(), ex);
 		} finally {
 			UtilsFile.closeRessource(xmlStreamReader);
 		}
@@ -115,35 +117,29 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
 			printStream.close();
 
 		} catch (FileNotFoundException ex) {
-			throw new TechnicalException("The fileSource does not exist: "
-					+ file.getAbsolutePath(), ex);
+			throw new TechnicalException("The fileSource does not exist: " + file.getAbsolutePath(), ex);
 		} finally {
 			UtilsFile.closeRessource(printStream);
 		}
 	}
-	
+
 	//
 	// PRIVATE
 	//
-	private void workPrintGpx(Gpx gpx, PrintStream printStream)
-			throws BaseException {
-		printStream
-				.println("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>");
+	private void workPrintGpx(Gpx gpx, PrintStream printStream) throws BaseException {
+		printStream.println("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>");
 		printStream.println("<gpx");
 		for (XmlReader.Attribute attribute : gpx.getAttributes()) {
-			printStream.println("    "
-					+ (attribute.getPrefix() != null ? attribute.getPrefix()
-							+ ":" + attribute.getName() : attribute.getName())
-					+ "=\"" + attribute.getValue() + "\"");
+			printStream
+					.println("    " + (attribute.getPrefix() != null ? attribute.getPrefix() + ":" + attribute.getName()
+							: attribute.getName()) + "=\"" + attribute.getValue() + "\"");
 		}
 		printStream.println(">");
 		if (false) {
 			printStream.println("<metadata>");
-			printStream
-					.println("<link href=\"http://www.garmin.com\"><text>Garmin International</text></link>");
+			printStream.println("<link href=\"http://www.garmin.com\"><text>Garmin International</text></link>");
 			if (gpx.getTime() != null) {
-				printStream.println("<time>" + DATE_FORMAT_1.format(gpx.getTime())
-						+ "</time>");
+				printStream.println("<time>" + DATE_FORMAT_1.format(gpx.getTime()) + "</time>");
 			}
 			printStream.println("</metadata>");
 			printStream.println();
@@ -154,47 +150,34 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
 			printStream.println("<name>" + trace.getName() + "</name>");
 			if (false && trace.getColor() != null) {
 				printStream.println("<extensions>");
-				printStream.println("<gpxx:TrackExtension><gpxx:DisplayColor>"
-						+ trace.getColor()
+				printStream.println("<gpxx:TrackExtension><gpxx:DisplayColor>" + trace.getColor()
 						+ "</gpxx:DisplayColor></gpxx:TrackExtension>");
 				printStream.println("</extensions>");
 			}
 			printStream.println("<trkseg>");
 			printStream.println();
 			for (Point point : trace.getPoints()) {
-				printStream.print("<trkpt lat=\""
-						+ String.format("%.10f", point.getLatitude()).replace(
-								",", ".")
-						+ "\" lon=\""
-						+ String.format("%.10f", point.getLongitude()).replace(
-								",", ".") + "\">");
+				printStream.print("<trkpt lat=\"" + String.format("%.10f", point.getLatitude()).replace(",", ".")
+						+ "\" lon=\"" + String.format("%.10f", point.getLongitude()).replace(",", ".") + "\">");
 				if (point.getElevation() != null) {
-					printStream.print("<ele>"
-							+ String.format("%.2f", point.getElevation())
-									.replace(",", ".") + "</ele>");
+					printStream
+							.print("<ele>" + String.format("%.2f", point.getElevation()).replace(",", ".") + "</ele>");
 				}
 				if (point.getTime() != null) {
-					printStream.print("<time>"
-							+ DATE_FORMAT_1.format(point.getTime()) + "</time>");
+					printStream.print("<time>" + DATE_FORMAT_1.format(point.getTime()) + "</time>");
 				}
-				if (point.getHeartRate() != null || point.getCadence() != null
-						|| point.getTemperature() != null) {
-					printStream
-							.print("<extensions><gpxtpx:TrackPointExtension>");
+				if (point.getHeartRate() != null || point.getCadence() != null || point.getTemperature() != null) {
+					printStream.print("<extensions><gpxtpx:TrackPointExtension>");
 					if (point.getTemperature() != null) {
-						printStream.print("<gpxtpx:atemp>"
-								+ point.getTemperature() + "</gpxtpx:atemp>");
+						printStream.print("<gpxtpx:atemp>" + point.getTemperature() + "</gpxtpx:atemp>");
 					}
 					if (point.getHeartRate() != null) {
-						printStream.print("<gpxtpx:hr>" + point.getHeartRate().intValue()
-								+ "</gpxtpx:hr>");
+						printStream.print("<gpxtpx:hr>" + point.getHeartRate().intValue() + "</gpxtpx:hr>");
 					}
 					if (point.getCadence() != null) {
-						printStream.print("<gpxtpx:cad>" + point.getCadence()
-								+ "</gpxtpx:cad>");
+						printStream.print("<gpxtpx:cad>" + point.getCadence() + "</gpxtpx:cad>");
 					}
-					printStream
-							.print("</gpxtpx:TrackPointExtension></extensions>");
+					printStream.print("</gpxtpx:TrackPointExtension></extensions>");
 				}
 				printStream.println("</trkpt>");
 			}
@@ -222,83 +205,65 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
 				} else if (xmlStreamReader.getEventType() == XMLStreamConstants.START_ELEMENT) {
 					XmlReader.StartTag startTag = xmlReader.readCompleteTag();
 					if (openedMetadata) {
-						if (startTag.getPrefix() == null
-								&& "time".equals(startTag.getName())) {
+						if (startTag.getPrefix() == null && "time".equals(startTag.getName())) {
 							String value = xmlReader.getTextValue();
 							Date time = valueDate(value);
 							retval.setTime(time);
 						}
 					} else if (openedTrk) {
 						if (openedTrkpt) {
-							if (startTag.getPrefix() == null
-									&& "ele".equals(startTag.getName())) {
+							if (startTag.getPrefix() == null && "ele".equals(startTag.getName())) {
 								String value = xmlReader.getTextValue();
 								Double elevation = valueDouble(value);
 								point.setElevation(elevation);
-							} else if (startTag.getPrefix() == null
-									&& "time".equals(startTag.getName())) {
+							} else if (startTag.getPrefix() == null && "time".equals(startTag.getName())) {
 								String value = xmlReader.getTextValue();
 								Date time = valueDate(value);
 								point.setTime(time);
-							} else if ("gpxtpx".equals(startTag.getPrefix())
-									&& "hr".equals(startTag.getName())) {
+							} else if ("gpxtpx".equals(startTag.getPrefix()) && "hr".equals(startTag.getName())) {
 								String value = xmlReader.getTextValue();
 								Double heartRate = valueDouble(value);
 								point.setHeartRate(heartRate);
-							} else if ("gpxtpx".equals(startTag.getPrefix())
-									&& "cad".equals(startTag.getName())) {
+							} else if ("gpxtpx".equals(startTag.getPrefix()) && "cad".equals(startTag.getName())) {
 								String value = xmlReader.getTextValue();
 								Double cadence = valueDouble(value);
 								point.setCadence(cadence);
-							} else if ("gpxtpx".equals(startTag.getPrefix())
-									&& "atemp".equals(startTag.getName())) {
+							} else if ("gpxtpx".equals(startTag.getPrefix()) && "atemp".equals(startTag.getName())) {
 								String value = xmlReader.getTextValue();
 								Double temperature = valueDouble(value);
 								point.setTemperature(temperature);
 							}
 						} else {
-							if (startTag.getPrefix() == null
-									&& "name".equals(startTag.getName())) {
+							if (startTag.getPrefix() == null && "name".equals(startTag.getName())) {
 								String value = xmlReader.getTextValue();
 								trace.setName(value);
 							} else if ("gpxx".equals(startTag.getPrefix())
-									&& "DisplayColor"
-											.equals(startTag.getName())) {
+									&& "DisplayColor".equals(startTag.getName())) {
 								String value = xmlReader.getTextValue();
 								trace.setColor(value);
-							} else if (startTag.getPrefix() == null
-									&& "trkpt".equals(startTag.getName())) {
+							} else if (startTag.getPrefix() == null && "trkpt".equals(startTag.getName())) {
 								openedTrkpt = true;
 								point = new Point();
 								trace.getPoints().add(point);
-								for (XmlReader.Attribute attribute : startTag
-										.getAttributes()) {
-									if (attribute.getPrefix() == null
-											&& "lat".equals(attribute.getName())) {
-										Double latitude = valueDouble(attribute
-												.getValue());
+								for (XmlReader.Attribute attribute : startTag.getAttributes()) {
+									if (attribute.getPrefix() == null && "lat".equals(attribute.getName())) {
+										Double latitude = valueDouble(attribute.getValue());
 										point.setLatitude(latitude);
-									} else if (attribute.getPrefix() == null
-											&& "lon".equals(attribute.getName())) {
-										Double longitude = valueDouble(attribute
-												.getValue());
+									} else if (attribute.getPrefix() == null && "lon".equals(attribute.getName())) {
+										Double longitude = valueDouble(attribute.getValue());
 										point.setLongitude(longitude);
 									}
 								}
 							}
 						}
 					} else {
-						if (startTag.getPrefix() == null
-								&& "gpx".equals(startTag.getName())) {
-							for (XmlReader.Attribute attribute : startTag
-									.getAttributes()) {
+						if (startTag.getPrefix() == null && "gpx".equals(startTag.getName())) {
+							for (XmlReader.Attribute attribute : startTag.getAttributes()) {
 								retval.getAttributes().add(attribute);
 							}
-						} else if (startTag.getPrefix() == null
-								&& "metadata".equals(startTag.getName())) {
+						} else if (startTag.getPrefix() == null && "metadata".equals(startTag.getName())) {
 							openedMetadata = true;
-						} else if (startTag.getPrefix() == null
-								&& "trk".equals(startTag.getName())) {
+						} else if (startTag.getPrefix() == null && "trk".equals(startTag.getName())) {
 							openedTrk = true;
 							trace = new Trace();
 							retval.getTraces().add(trace);
@@ -306,15 +271,12 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
 					}
 				} else if (xmlStreamReader.getEventType() == XMLStreamConstants.END_ELEMENT) {
 					XmlReader.Tag tag = xmlReader.readTag();
-					if (tag.getPrefix() == null
-							&& "metadata".equals(tag.getName())) {
+					if (tag.getPrefix() == null && "metadata".equals(tag.getName())) {
 						openedMetadata = false;
-					} else if (tag.getPrefix() == null
-							&& "trk".equals(tag.getName())) {
+					} else if (tag.getPrefix() == null && "trk".equals(tag.getName())) {
 						openedTrk = false;
 						trace = null;
-					} else if (tag.getPrefix() == null
-							&& "trkpt".equals(tag.getName())) {
+					} else if (tag.getPrefix() == null && "trkpt".equals(tag.getName())) {
 						openedTrkpt = false;
 						point = null;
 					}
@@ -328,7 +290,11 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
 			}
 
 			for (Trace traceLoc : retval.getTraces()) {
-				Collections.sort(traceLoc.getPoints(), comparatorPointsTime);
+				Collections.sort(traceLoc.getPoints(), COMPARATOR_POINTS_TIME);
+				Set<Point> sortedPoints = new TreeSet<Point>(COMPARATOR_POINTS_TIME);
+				sortedPoints.addAll(traceLoc.getPoints());
+				traceLoc.getPoints().clear();
+				traceLoc.getPoints().addAll(sortedPoints);
 			}
 
 			return retval;
@@ -337,49 +303,43 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
 		}
 	}
 
-	private void workFormat(XMLStreamReader xmlStreamReader,
-			PrintStream printStream) throws BaseException {
+	private void filterDoubles(List<Point> points) {
+	}
+
+	private void workFormat(XMLStreamReader xmlStreamReader, PrintStream printStream) throws BaseException {
 		try {
 			XmlReader xmlReader = new XmlReader(xmlStreamReader);
 			while (true) {
 				if (xmlStreamReader.getEventType() == XMLStreamConstants.START_DOCUMENT) {
-					printDocumentTag(xmlStreamReader.getVersion(),
-							xmlStreamReader.getEncoding(),
+					printDocumentTag(xmlStreamReader.getVersion(), xmlStreamReader.getEncoding(),
 							xmlStreamReader.isStandalone(), printStream);
 					printStream.println();
 				} else if (xmlStreamReader.getEventType() == XMLStreamConstants.END_DOCUMENT) {
 					xmlStreamReader.close();
 				} else if (xmlStreamReader.getEventType() == XMLStreamConstants.START_ELEMENT) {
 					XmlReader.StartTag startTag = xmlReader.readCompleteTag();
-					if (startTag.getPrefix() == null
-							&& "gpx".equals(startTag.getName())) {
+					if (startTag.getPrefix() == null && "gpx".equals(startTag.getName())) {
 						printStartTag(startTag, printStream, true);
 						printStream.println();
 					} else {
 						printStartTag(startTag, printStream, false);
-						if (startTag.getPrefix() == null
-								&& "trk".equals(startTag.getName())) {
+						if (startTag.getPrefix() == null && "trk".equals(startTag.getName())) {
 							printStream.println();
-						} else if (startTag.getPrefix() == null
-								&& "trkseg".equals(startTag.getName())) {
+						} else if (startTag.getPrefix() == null && "trkseg".equals(startTag.getName())) {
 							printStream.println();
 						}
 					}
 				} else if (xmlStreamReader.getEventType() == XMLStreamConstants.END_ELEMENT) {
 					XmlReader.Tag tag = xmlReader.readTag();
 					printEndTag(tag, printStream);
-					if (tag.getPrefix() == null
-							&& "metadata".equals(tag.getName())) {
+					if (tag.getPrefix() == null && "metadata".equals(tag.getName())) {
 						printStream.println();
-					} else if (tag.getPrefix() == null
-							&& "trk".equals(tag.getName())) {
+					} else if (tag.getPrefix() == null && "trk".equals(tag.getName())) {
 						printStream.println();
-					} else if (tag.getPrefix() == null
-							&& "trkseg".equals(tag.getName())) {
+					} else if (tag.getPrefix() == null && "trkseg".equals(tag.getName())) {
 						printStream.println();
 					}
-					if (tag.getPrefix() == null
-							&& "trkpt".equals(tag.getName())) {
+					if (tag.getPrefix() == null && "trkpt".equals(tag.getName())) {
 						printStream.println();
 					}
 				}
@@ -396,15 +356,12 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
 		}
 	}
 
-	private void printDocumentTag(String version, String encoding,
-			boolean standalone, PrintStream printStream) {
-		printStream.print("<?xml version=\"" + version + "\" encoding=\""
-				+ encoding + "\" standalone=\"" + (standalone ? "yes" : "no")
-				+ "\" ?>");
+	private void printDocumentTag(String version, String encoding, boolean standalone, PrintStream printStream) {
+		printStream.print("<?xml version=\"" + version + "\" encoding=\"" + encoding + "\" standalone=\""
+				+ (standalone ? "yes" : "no") + "\" ?>");
 	}
 
-	private void printStartTag(XmlReader.StartTag startTag,
-			PrintStream printStream, boolean attributePerLine) {
+	private void printStartTag(XmlReader.StartTag startTag, PrintStream printStream, boolean attributePerLine) {
 		printStream.print("<");
 		if (startTag.getPrefix() != null) {
 			printStream.print(startTag.getPrefix() + ":");
@@ -419,8 +376,7 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements
 			if (attribute.getPrefix() != null) {
 				printStream.print(attribute.getPrefix() + ":");
 			}
-			printStream.print(attribute.getName() + "=\""
-					+ attribute.getValue() + "\"");
+			printStream.print(attribute.getName() + "=\"" + attribute.getValue() + "\"");
 		}
 		printStream.print(">");
 	}

@@ -3,7 +3,7 @@ package kkr.album.main.group;
 import java.util.List;
 
 import kkr.album.exception.ConfigurationException;
-import kkr.album.main.Config_MainArchiveFiles.Mode;
+import kkr.album.main.ConfigArchiveFiles.Mode;
 
 public class Config_MainGroupA {
 

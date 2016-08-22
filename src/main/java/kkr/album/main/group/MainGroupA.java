@@ -56,10 +56,10 @@ public class MainGroupA {
 //			LOGGER.info("####################################################");
 //			MainCopyPicasa.work(new String[] {});
 
-			LOGGER.info("####################################################");
-			LOGGER.info("BATCH_UPLOAD_PICASA");
-			LOGGER.info("####################################################");
-			MainUploadPicasa.work(new String[] {});
+			// LOGGER.info("####################################################");
+			// LOGGER.info("BATCH_UPLOAD_PICASA");
+			// LOGGER.info("####################################################");
+			// MainUploadPicasa.work(new String[] {});
 			
 			LOGGER.trace("OK");
 		} finally {
