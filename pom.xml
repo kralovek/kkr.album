@@ -90,6 +90,12 @@
 			<version>v3-rev132-1.20.0</version>
 		</dependency>
 
+        <dependency>
+            <groupId>kkr.common</groupId>
+            <artifactId>kkr.common</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+
 	</dependencies>
 
 

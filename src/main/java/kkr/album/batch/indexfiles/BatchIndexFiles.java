@@ -7,43 +7,39 @@ import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import org.apache.log4j.Logger;
+
 import kkr.album.batch.archivefiles.BatchArchiveFiles;
 import kkr.album.exception.BaseException;
 import kkr.album.utils.UtilsFile;
 import kkr.album.utils.UtilsPattern;
 
-import org.apache.log4j.Logger;
-
 public class BatchIndexFiles extends BatchIndexFilesFwk {
-	private static final Logger LOGGER = Logger
-			.getLogger(BatchArchiveFiles.class);
+	private static final Logger LOGGER = Logger.getLogger(BatchArchiveFiles.class);
 
 	private static final Pattern PATTERN_FILES_FROM_PHOTOS = Pattern
-			.compile(UtilsPattern.MASK_TIME + "_[A-Z0-9]+"
-					+ "\\." + UtilsPattern.MASK_EXT_FILE);
+			.compile(UtilsPattern.MASK_TIME + "_[A-Z0-9]+" + "\\." + UtilsPattern.MASK_EXT_FILE);
 
 	private static final Pattern PATTERN_PHOTOS_FROM_GPS = Pattern
-			.compile(UtilsPattern.MASK_TIME + "_[0-9]{2}"
-					+ "\\." + UtilsPattern.MASK_EXT_PHOTO);
+			.compile(UtilsPattern.MASK_TIME + "_[0-9]{2}" + "\\." + UtilsPattern.MASK_EXT_PHOTO);
 
-	private static final Pattern PATTERN_O = Pattern.compile("[0-9]{8}o_"
-			+ UtilsPattern.MASK_TIME + "\\." + UtilsPattern.MASK_EXT_FILE);
+	private static final Pattern PATTERN_O = Pattern
+			.compile("[0-9]{8}o_" + UtilsPattern.MASK_TIME + "\\." + UtilsPattern.MASK_EXT_FILE);
 
 	private static final FileFilter FILE_FILTER_PHOTOS_FROM_GPS = new UtilsPattern.FileFilterFile(
 			PATTERN_PHOTOS_FROM_GPS);
 
 	private static final FileFilter FILE_FILTER_FILES_FROM_PHOTOS = new UtilsPattern.FileFilterFile(
-			PATTERN_FILES_FROM_PHOTOS);
+			UtilsPattern.PATTERN_PHOTO_CRUIDE, UtilsPattern.PATTERN_VIDEO_CRUIDE);
 
-	private static final FileFilter FILE_FILTER_O = new UtilsPattern.FileFilterFile(
-			PATTERN_O);
+	private static final FileFilter FILE_FILTER_O = new UtilsPattern.FileFilterFile(PATTERN_O);
 
 	public void runON(File dirBase) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
 			testConfigured();
 			File dirGps = new File(dirBase, "gps");
-			File dirPhotos = new File(dirBase, "photos");
+			File dirPhotos = new File(dirBase, "_photos");
 
 			if (dirGps.isDirectory()) {
 				LOGGER.info("WORKING DIR: " + dirGps.getAbsolutePath());
@@ -60,7 +56,7 @@ public class BatchIndexFiles extends BatchIndexFilesFwk {
 			if (dirPhotos.isDirectory()) {
 				LOGGER.info("WORKING DIR: " + dirGps.getAbsolutePath());
 				LOGGER.info("Renaming files: ");
-				File[] files = dirPhotos.listFiles(FILE_FILTER_O); 
+				File[] files = dirPhotos.listFiles(FILE_FILTER_O);
 				for (File file : files) {
 					String filenameN = file.getName().substring(0, 8) + "n" + file.getName().substring(9);
 					File fileTarget = new File(file.getParentFile(), filenameN);
@@ -74,13 +70,13 @@ public class BatchIndexFiles extends BatchIndexFilesFwk {
 			LOGGER.trace("END");
 		}
 	}
-	
+
 	public void runIndex(File dirBase) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
 			testConfigured();
 			File dirGps = new File(dirBase, "gps");
-			File dirPhotos = new File(dirBase, "photos");
+			File dirPhotos = new File(dirBase, "_photos");
 
 			int newIndex = managerArchive.nextIndex();
 
@@ -101,11 +97,9 @@ public class BatchIndexFiles extends BatchIndexFilesFwk {
 					String time = timeStringFromFile(file);
 					String ext = UtilsFile.extension(file);
 
-					File fileTarget = new File(dirGps, name + "_" + time
-							+ "." + ext);
+					File fileTarget = new File(dirGps, name + "_" + time + "." + ext);
 
-					LOGGER.info("\tIndexing file: " + file.getName() + " to: "
-							+ fileTarget.getName());
+					LOGGER.info("\tIndexing file: " + file.getName() + " to: " + fileTarget.getName());
 					UtilsFile.moveFile(file, fileTarget);
 					newIndex++;
 				}
@@ -115,8 +109,7 @@ public class BatchIndexFiles extends BatchIndexFilesFwk {
 				LOGGER.info("WORKING DIR: " + dirPhotos.getAbsolutePath());
 				LOGGER.info("Indexing PHOTOS files");
 
-				File[] files = dirPhotos
-						.listFiles(FILE_FILTER_FILES_FROM_PHOTOS);
+				File[] files = dirPhotos.listFiles(FILE_FILTER_FILES_FROM_PHOTOS);
 				List<File> listFiles = new ArrayList<File>();
 				for (File file : files) {
 					listFiles.add(file);
@@ -135,11 +128,9 @@ public class BatchIndexFiles extends BatchIndexFilesFwk {
 					String time = timeStringFromFile(file);
 					String ext = UtilsFile.extension(file);
 
-					File fileTarget = new File(dirPhotos, name + "_" + time
-							+ "." + ext);
+					File fileTarget = new File(dirPhotos, name + "_" + time + "." + ext);
 
-					LOGGER.info("\tIndexing file: " + file.getName() + " to: "
-							+ fileTarget.getName());
+					LOGGER.info("\tIndexing file: " + file.getName() + " to: " + fileTarget.getName());
 					UtilsFile.moveFile(file, fileTarget);
 					newIndex++;
 				}
@@ -152,14 +143,15 @@ public class BatchIndexFiles extends BatchIndexFilesFwk {
 	}
 
 	private String timeStringFromFile(File file) {
-		return file.getName().replaceFirst("_.*", "");
+		String tmp = file.getName().replaceFirst("CRUIDE_*", "");
+		return tmp.replaceFirst("_.*", "");
 	}
 
 	private boolean isPhoto(File file) {
-		return UtilsPattern.PATTERN_PHOTO.matcher(file.getName()).matches();
+		return UtilsPattern.PATTERN_PHOTO_CRUIDE.matcher(file.getName()).matches();
 	}
 
 	private boolean isVideo(File file) {
-		return UtilsPattern.PATTERN_VIDEO.matcher(file.getName()).matches();
+		return UtilsPattern.PATTERN_VIDEO_CRUIDE.matcher(file.getName()).matches();
 	}
 }

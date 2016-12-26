@@ -1,7 +1,5 @@
 package kkr.album.utils;
 
-import javax.xml.stream.XMLStreamReader;
-
 import java.io.Closeable;
 import java.io.File;
 import java.io.FileFilter;
@@ -9,6 +7,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
+import javax.xml.stream.XMLStreamReader;
 
 import kkr.album.exception.BaseException;
 import kkr.album.exception.TechnicalException;
@@ -21,13 +21,13 @@ public class UtilsFile {
 			dirParent.mkdirs();
 		}
 	}
-	
+
 	public static FileFilter fileFilterDir = new FileFilter() {
 		public boolean accept(File file) {
 			return file.isDirectory();
 		}
-	}; 
-	
+	};
+
 	public static final void closeRessource(XMLStreamReader ressource) {
 		if (ressource != null) {
 			try {
@@ -57,39 +57,28 @@ public class UtilsFile {
 		return file.getName().substring(pos + 1).toLowerCase();
 	}
 
-	public static void moveFile(File fromFile, File toFile)
-			throws BaseException {
+	public static void moveFile(File fromFile, File toFile) throws BaseException {
 		if (toFile.isFile()) {
-			throw new TechnicalException(
-					"The destination file exists already: "
-							+ toFile.getAbsolutePath());
+			throw new TechnicalException("The destination file exists already: " + toFile.getAbsolutePath());
 		}
 
-		if (!toFile.getParentFile().isDirectory()
-				&& !toFile.getParentFile().mkdirs()) {
-			throw new TechnicalException("Cannot create the directory: "
-					+ toFile.getParentFile().getAbsolutePath());
+		if (!toFile.getParentFile().isDirectory() && !toFile.getParentFile().mkdirs()) {
+			throw new TechnicalException("Cannot create the directory: " + toFile.getParentFile().getAbsolutePath());
 		}
 
 		if (!fromFile.renameTo(toFile)) {
-			throw new TechnicalException("Cannot rename the file: "
-					+ fromFile.getAbsolutePath() + " to: "
-					+ toFile.getAbsolutePath());
+			throw new TechnicalException(
+					"Cannot rename the file: " + fromFile.getAbsolutePath() + " to: " + toFile.getAbsolutePath());
 		}
 	}
 
-	public static void copyFile(File fromFile, File toFile)
-			throws BaseException {
+	public static void copyFile(File fromFile, File toFile) throws BaseException {
 		if (toFile.isFile()) {
-			throw new TechnicalException(
-					"The destination file exists already: "
-							+ toFile.getAbsolutePath());
+			throw new TechnicalException("The destination file exists already: " + toFile.getAbsolutePath());
 		}
 
-		if (!toFile.getParentFile().isDirectory()
-				&& !toFile.getParentFile().mkdirs()) {
-			throw new TechnicalException("Cannot create the directory: "
-					+ toFile.getParentFile().getAbsolutePath());
+		if (!toFile.getParentFile().isDirectory() && !toFile.getParentFile().mkdirs()) {
+			throw new TechnicalException("Cannot create the directory: " + toFile.getParentFile().getAbsolutePath());
 		}
 
 		FileInputStream from = null;
@@ -112,15 +101,19 @@ public class UtilsFile {
 			toFile.setLastModified(fromFile.lastModified());
 
 		} catch (FileNotFoundException ex) {
-			throw new TechnicalException("The file does not exist: "
-					+ fromFile.getAbsolutePath(), ex);
+			throw new TechnicalException("The file does not exist: " + fromFile.getAbsolutePath(), ex);
 		} catch (IOException ex) {
-			throw new TechnicalException(
-					"The destination file exists already: "
-							+ toFile.getAbsolutePath());
+			throw new TechnicalException("The destination file exists already: " + toFile.getAbsolutePath());
 		} finally {
 			closeRessource(from);
 			closeRessource(to);
+		}
+	}
+
+	public static void removeEmptyDir(File dir) throws BaseException {
+		File[] files = dir.listFiles();
+		if (files != null && files.length == 0 && !dir.delete()) {
+			throw new TechnicalException("Cannot remove the empty directory: " + dir.getAbsolutePath());
 		}
 	}
 }

@@ -13,26 +13,24 @@ import kkr.album.utils.UtilsAlbums;
 import kkr.album.utils.UtilsPattern;
 
 public class BatchUploadPicasa extends BatchUploadPicasaFwk {
-	private static final Logger LOGGER = Logger
-			.getLogger(BatchUploadPicasa.class);
+	private static final Logger LOGGER = Logger.getLogger(BatchUploadPicasa.class);
 
-	private static final Pattern PATTERN_N = Pattern.compile("[0-9]{8}n_"
-			+ UtilsPattern.MASK_TIME + "\\." + UtilsPattern.MASK_EXT_FILE);
+	private static final Pattern PATTERN_N = Pattern
+			.compile("[0-9]{8}n_" + UtilsPattern.MASK_TIME + "\\." + UtilsPattern.MASK_EXT_FILE);
 
-	private static final FileFilter FILE_FILTER_N = new UtilsPattern.FileFilterFile(
-			PATTERN_N);
+	private static final FileFilter FILE_FILTER_N = new UtilsPattern.FileFilterFile(PATTERN_N);
 
 	public void run(File dirBase) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
 			testConfigured();
 			File dirGps = new File(dirBase, "gps");
-			File dirPhotos = new File(dirBase, "photos");
+			File dirPhotos = new File(dirBase, "_photos");
 
 			String name = UtilsAlbums.determineName(dirBase);
 
-			List<File> filePhotos = new ArrayList<File>(); 
-			
+			List<File> filePhotos = new ArrayList<File>();
+
 			if (dirGps.isDirectory()) {
 				File[] files = dirGps.listFiles(FILE_FILTER_N);
 				for (File file : files) {
@@ -50,7 +48,7 @@ public class BatchUploadPicasa extends BatchUploadPicasaFwk {
 			LOGGER.info("Upload photos to PICASA: " + name);
 
 			managerPicasa.createOrUpdateAlbum(name, filePhotos);
-			
+
 			LOGGER.trace("OK");
 		} finally {
 			LOGGER.trace("END");

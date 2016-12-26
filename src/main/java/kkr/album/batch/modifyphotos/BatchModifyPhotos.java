@@ -65,7 +65,7 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 			Date date = UtilsAlbums.determineDate(dirBase);
 
 			File dirGps = new File(dirBase, "gps");
-			File dirPhotos = new File(dirBase, "photos");
+			File dirPhotos = new File(dirBase, dirnamePhotos);
 
 			if (!dirGps.isDirectory()) {
 				throw new FunctionalException("GPS directory does not exist: " + dirGps.getAbsolutePath());
@@ -235,7 +235,6 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 
 				for (File file : files) {
 					String stringTime = UtilsPattern.DATE_FORMAT_DATETIME0.format(date);
-					String ext = UtilsFile.extension(file);
 					File fileTarget = new File(dirGps, stringTime + "_" + file.getName());
 					LOGGER.info("\tRenaming file: " + file.getName() + " to: " + fileTarget.getName());
 					UtilsFile.moveFile(file, fileTarget);
@@ -279,7 +278,7 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 				}
 				String stringTime = UtilsPattern.DATE_FORMAT_DATETIME.format(timeMove);
 				String ext = UtilsFile.extension(file);
-				File fileTarget = new File(dirTarget, stringTime + "_" + symbolName + "." + ext);
+				File fileTarget = new File(dirTarget, "CRUIDE_" + stringTime + "_" + symbolName + "." + ext);
 				LOGGER.info("\tRenaming file: " + file.getName() + " to: " + fileTarget.getName());
 				UtilsFile.moveFile(file, fileTarget);
 

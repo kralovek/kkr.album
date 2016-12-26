@@ -112,7 +112,10 @@ public class BatchModifyGpx extends BatchModifyGpxFwk {
 		try {
 			testConfigured();
 			File dirGps = new File(dirBase, "gps");
-			if (!dirGps.exists()) {
+			boolean exists = dirGps.exists();
+			if (exists) {
+				int k = 0;
+			} else {
 				if ("gps".equals(dirBase.getName())) {
 					dirGps = dirBase;
 					dirBase = dirBase.getParentFile();
@@ -128,6 +131,9 @@ public class BatchModifyGpx extends BatchModifyGpxFwk {
 				nameLoc = name;
 			} else {
 				nameLoc = UtilsAlbums.determineName(dirBase);
+				if (nameLoc == null) {
+					throw new FunctionalException("The base dir is not album name: " + dirBase.getAbsolutePath());
+				}
 			}
 
 			cleanFiles(dirGps);

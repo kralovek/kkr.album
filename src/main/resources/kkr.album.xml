@@ -14,9 +14,27 @@
 
 	<bean id="default" abstract="true" />
 
+
 	<bean id="batchResizePhotos" class="kkr.album.batch.resizephotos.BatchResizePhotos">
 		<property name="managerImage" ref="managerImageImgscalr" />
 		<property name="toWidth" value="1200" />
+	</bean>
+
+	<bean id="batchCreateGraphs" class="kkr.album.batch.creategraphs.BatchCreateGraphs">
+		<property name="managerGpx" ref="managerGpx" />
+		<property name="managerGraph" ref="managerGraph" />
+		<property name="width" value="1300" />
+		<property name="height" value="800" />
+		<property name="heartRateMin" value="50" />
+		<property name="heartRateMax" value="190" />
+	</bean>
+
+	<bean id="batchCreateDate" class="kkr.album.batch.createdate.BatchCreateDate">
+		<property name="managerExif" ref="managerExifAllTypes" />
+	</bean>
+
+	<bean id="managerGraph"
+		class="kkr.album.components.manager_graph.generic.ManagerGraphGeneric">
 	</bean>
 
 	<bean id="managerImageImgscalr" class="kkr.album.components.manager_image.ManagerImageImgscalr">
@@ -24,7 +42,7 @@
 	</bean>
 
 	<bean id="batchCopyPicasa" class="kkr.album.batch.copypicasa.BatchCopyPicasa">
-		<property name="dirPicasa" value="d:\media\photos\picasa" />
+		<property name="dirPicasa" value="c:\media\photos\picasa" />
 	</bean>
 
 	<bean id="batchUploadPicasa" class="kkr.album.batch.uploadpicasa.BatchUploadPicasa">
@@ -44,7 +62,11 @@
 		<property name="managerKml" ref="managerKml" />
 	</bean>
 
-	<bean id="batchAnalyzerGpx" class="kkr.album.batch.analyzergpx.BatchAnalyzerGpx">
+	<bean id="batchMoveGpx" class="kkr.album.batch.movegpx.BatchMoveGpx">
+		<property name="managerGpx" ref="managerGpx" />
+	</bean>
+
+		<bean id="batchAnalyzerGpx" class="kkr.album.batch.analyzergpx.BatchAnalyzerGpx">
 		<property name="managerGpx" ref="managerGpx" />
 		<property name="analyzerGpx" ref="analyzerGpx" />
 		<property name="statGpxReporter" ref="statGpxReporter" />
@@ -55,13 +77,14 @@
 		<property name="timeEvaluator" ref="timeEvaluator" />
 		<property name="managerGpx" ref="managerGpx" />
 		<property name="managerExif" ref="managerExifAllTypes" />
+		<property name="dirnamePhotos" value="_photos" />
 	</bean>
 
 	<bean id="managerArchive"
 		class="kkr.album.components.manager_archiv.ManagerArchiveGeneric">
-		<property name="dirOriginal" value="d:\media\photos\my\o" />
-		<property name="dirNormal" value="d:\media\photos\my\n" />
-		<property name="dirVideo" value="d:\media\photos\my\v" />
+		<property name="dirOriginal" value="c:\media\photos\my\o" />
+		<property name="dirNormal" value="c:\media\photos\my\n" />
+		<property name="dirVideo" value="c:\media\photos\my\v" />
 	</bean>
 
 	<bean id="managerExifAllTypes" class="kkr.album.components.manager_exif.ManagerExifAllTypes">
@@ -84,16 +107,19 @@
 	<bean id="managerGpx" class="kkr.album.components.manager_gpx.ManagerGpxGeneric">
 	</bean>
 
-	<bean id="managerPassword" class="kkr.album.components.manager_password.md5.ManagerPasswordMD5">
+	<bean id="managerPassword"
+		class="kkr.album.components.manager_password.md5.ManagerPasswordMD5">
 	</bean>
 
-	<bean id="managerPicasa" class="kkr.album.components.manager_picasa.gdata.ManagerPicasaGData">
-		<property name="user" value="karel.kralovec.2015" />
-		<property name="password" value="tjmjhs12" />
+	<bean id="managerPicasa"
+		class="kkr.album.components.manager_picasa.gdata.ManagerPicasaGData">
+		<property name="user" value="" />
+		<property name="password" value="" />
 		<property name="managerPassword" ref="managerPassword" />
 	</bean>
 
-	<bean id="managerKml" class="kkr.album.components.manager_kml.generic.ManagerKmlGeneric">
+	<bean id="managerKml"
+		class="kkr.album.components.manager_kml.generic.ManagerKmlGeneric">
 		<property name="styleLineSize" value="3" />
 		<property name="styleColors">
 			<map>
@@ -110,10 +136,12 @@
 		</property>
 	</bean>
 
-	<bean id="analyzerGpx" class="kkr.album.components.analyzer_gpx.generic.AnalyzerGpxGeneric">
+	<bean id="analyzerGpx"
+		class="kkr.album.components.analyzer_gpx.generic.AnalyzerGpxGeneric">
 	</bean>
 
-	<bean id="statGpxReporter" class="kkr.album.components.stat_gpx_reporter.file.StatGpxReporterFile">
+	<bean id="statGpxReporter"
+		class="kkr.album.components.stat_gpx_reporter.file.StatGpxReporterFile">
 	</bean>
 
 	<bean id="timeEvaluator" class="kkr.album.components.timeevaluator.TimeEvaluatorGeneric">

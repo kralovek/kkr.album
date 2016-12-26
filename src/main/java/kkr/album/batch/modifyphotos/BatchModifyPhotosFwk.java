@@ -15,22 +15,25 @@ public abstract class BatchModifyPhotosFwk {
 	protected ManagerGpx managerGpx;
 	protected ManagerExif managerExif;
 
+	protected String dirnamePhotos;
+
 	public void config() throws ConfigurationException {
 		configured = false;
 		if (managerGpx == null) {
-			throw new ConfigurationException(
-					"Parameter 'managerGpx' is not configured.");
+			throw new ConfigurationException("Parameter 'managerGpx' is not configured.");
 		}
 		if (filenameTags != null) {
 			// OK
+		}
+		if (dirnamePhotos == null) {
+			throw new ConfigurationException("Parameter 'dirnamePhotos' is not configured.");
 		}
 		configured = true;
 	}
 
 	public void testConfigured() {
 		if (!configured) {
-			throw new IllegalStateException(this.getClass().getName()
-					+ ": The component is not configured");
+			throw new IllegalStateException(this.getClass().getName() + ": The component is not configured");
 		}
 	}
 
@@ -64,5 +67,13 @@ public abstract class BatchModifyPhotosFwk {
 
 	public void setManagerExif(ManagerExif managerExif) {
 		this.managerExif = managerExif;
+	}
+
+	public String getDirnamePhotos() {
+		return dirnamePhotos;
+	}
+
+	public void setDirnamePhotos(String dirnamePhotos) {
+		this.dirnamePhotos = dirnamePhotos;
 	}
 }

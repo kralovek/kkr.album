@@ -42,8 +42,13 @@ public class UtilsGraph implements Constants {
 
 	public static String valueToLabel(double value) {
 		String str = String.format("%f", value);
-		String retval = str.replaceAll("[\\.,]0*$", "");
-		return retval;
+		if (str.contains(".") || str.contains(",")) {
+			String retval = str.replaceAll("0*$", "");
+			retval = retval.replaceAll("[\\.,]*$", "");
+			return retval;
+		} else {
+			return str;
+		}
 	}
 
 	public static double adaptStep(double step) {

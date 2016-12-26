@@ -41,20 +41,31 @@ public class UtilsPattern {
 
 	public static final Pattern PATTERN_PHOTO = Pattern.compile(".*" + UtilsPattern.MASK_EXT_PHOTO);
 
+	public static final Pattern PATTERN_PHOTO_CRUIDE = Pattern
+			.compile("CRUIDE_" + MASK_TIME + "_" + "[A-Z0-9]+\\." + UtilsPattern.MASK_EXT_PHOTO);
+
+	public static final Pattern PATTERN_VIDEO_CRUIDE = Pattern
+			.compile("CRUIDE_" + MASK_TIME + "_" + "[A-Z0-9]+\\." + UtilsPattern.MASK_EXT_VIDEO);
+
 	public static final Pattern PATTERN_VIDEO = Pattern.compile(".*" + UtilsPattern.MASK_EXT_VIDEO);
 
 	public static class FileFilterFile implements FileFilter {
-		private Pattern pattern;
+		private Pattern[] patterns;
 
-		public FileFilterFile(Pattern patern) {
-			this.pattern = patern;
+		public FileFilterFile(Pattern... paterns) {
+			this.patterns = paterns;
 		}
 
 		public boolean accept(File pathname) {
 			if (!pathname.isFile()) {
 				return false;
 			}
-			return pattern.matcher(pathname.getName()).matches();
+			for (Pattern pattern : patterns) {
+				if (pattern.matcher(pathname.getName()).matches()) {
+					return true;
+				}
+			}
+			return false;
 		}
 	}
 
