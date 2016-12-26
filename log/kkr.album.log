@@ -8392,3 +8392,1054 @@ kkr.album.exception.TechnicalException: Cannot rename the file: c:\media\traces\
 2016-12-24 19:45:51 TRACE (main    ) MainArchiveFiles                    3.077 -   .  . [2] <-- work: 
 2016-12-24 19:45:51 TRACE (main    ) MainGroupA                        117.812 -   . [1] <-- work: 
 2016-12-24 19:45:51 TRACE (main    ) MainGroupA                        117.851 -  [0] <-- main: 
+2016-12-26 08:55:12 TRACE (main    ) MainGroup1                                -  [0] --> main: 
+2016-12-26 08:55:12 TRACE (main    ) MainGroup1                                -   . [1] --> work: 
+2016-12-26 08:55:12 INFO  (main    ) MainGroup1                                -   . [1]  -  work: ####################################################
+2016-12-26 08:55:12 INFO  (main    ) MainGroup1                                -   . [1]  -  work: BATCH_MODIFY_GPX
+2016-12-26 08:55:12 INFO  (main    ) MainGroup1                                -   . [1]  -  work: ####################################################
+2016-12-26 08:55:12 TRACE (main    ) MainModifyGpx                             -   .  . [2] --> work: 
+2016-12-26 08:55:12 TRACE (main    ) UtilsBean                                 -   .  .  . [3] --> createBeanFactory: 
+2016-12-26 08:55:14 TRACE (main    ) UtilsBean                           2.014 -   .  .  . [3] <-- createBeanFactory: 
+2016-12-26 08:55:14 TRACE (main    ) BatchModifyGpx                            -   .  .  . [3] --> runAuto: 
+2016-12-26 08:55:14 INFO  (main    ) BatchModifyGpx                            -   .  .  . [3]  -  runAuto: WORKING DIR: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps
+2016-12-26 08:55:14 TRACE (main    ) BatchModifyGpx                            -   .  .  .  . [4] --> work: 
+2016-12-26 08:55:14 INFO  (main    ) BatchModifyGpx                            -   .  .  .  . [4]  -  work: 	Loading: Current.gpx
+2016-12-26 08:55:15 INFO  (main    ) BatchModifyGpx                            -   .  .  .  . [4]  -  work: 	Loading: 2016-12-25 11.54.50 Day.gpx
+2016-12-26 08:55:16 INFO  (main    ) BatchModifyGpx                            -   .  .  .  . [4]  -  work: 	Writting GPX: 20161225_MTB_FRA_Grenoble,Chamrousse.gpx
+2016-12-26 08:55:19 INFO  (main    ) BatchModifyGpx                            -   .  .  .  . [4]  -  work: 	Writting KML: 20161225_MTB_FRA_Grenoble,Chamrousse.kml
+2016-12-26 08:55:19 WARN  (main    ) BatchModifyGpx                            -   .  .  .  . [4]  w  work: ### BATCH_MODIFY_GPX: The size of created GPX file has more than 1MB
+2016-12-26 08:55:19 INFO  (main    ) BatchModifyGpx                            -   .  .  .  . [4]  -  work: 	Writting: x20161225_MTB_FRA_Grenoble,Chamrousse.gpx
+2016-12-26 08:55:20 TRACE (main    ) BatchModifyGpx                      5.707 -   .  .  .  . [4] <-- work: 
+2016-12-26 08:55:20 TRACE (main    ) BatchModifyGpx                            -   .  .  .  . [4] --> workStopwatch: 
+2016-12-26 08:55:20 INFO  (main    ) BatchModifyGpx                            -   .  .  .  . [4]  -  workStopwatch: No Stopwatch
+2016-12-26 08:55:20 TRACE (main    ) BatchModifyGpx                       .003 -   .  .  .  . [4] <-- workStopwatch: 
+2016-12-26 08:55:20 TRACE (main    ) BatchModifyGpx                      5.721 -   .  .  . [3] <-- runAuto: 
+2016-12-26 08:55:20 TRACE (main    ) MainModifyGpx                       7.785 -   .  . [2] <-- work: 
+2016-12-26 08:55:20 INFO  (main    ) MainGroup1                                -   . [1]  -  work: ####################################################
+2016-12-26 08:55:20 INFO  (main    ) MainGroup1                                -   . [1]  -  work: BATCH_CREATE_GRAPHS
+2016-12-26 08:55:20 INFO  (main    ) MainGroup1                                -   . [1]  -  work: ####################################################
+2016-12-26 08:55:20 TRACE (main    ) MainCreateGraphs                          -   .  . [2] --> work: 
+2016-12-26 08:55:20 TRACE (main    ) UtilsBean                                 -   .  .  . [3] --> createBeanFactory: 
+2016-12-26 08:55:20 TRACE (main    ) UtilsBean                            .138 -   .  .  . [3] <-- createBeanFactory: 
+2016-12-26 08:55:20 TRACE (main    ) BatchCreateGraphs                         -   .  .  . [3] --> runAuto: 
+2016-12-26 08:55:20 TRACE (main    ) BatchCreateGraphs                         -   .  .  .  . [4] --> work: 
+2016-12-26 08:55:20 INFO  (main    ) BatchCreateGraphs                         -   .  .  .  . [4]  -  work: WORKING FILE: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\20161225_MTB_FRA_Grenoble,Chamrousse.gpx
+2016-12-26 08:55:20 TRACE (main    ) BatchCreateGraphs                         -   .  .  .  .  . [5] --> gpxToSetData: 
+2016-12-26 08:55:20 TRACE (main    ) BatchCreateGraphs                    .086 -   .  .  .  .  . [5] <-- gpxToSetData: 
+2016-12-26 08:55:20 INFO  (main    ) BatchCreateGraphs                         -   .  .  .  . [4]  -  work:     Writing Graph Altutude: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\03.jpg
+2016-12-26 08:55:20 TRACE (main    ) ManagerGraphGeneric                       -   .  .  .  .  . [5] --> createGraph: 
+2016-12-26 08:55:20 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  . [6] --> createImage: 
+2016-12-26 08:55:21 TRACE (main    ) MainGroup1                                -  [0] --> main: 
+2016-12-26 08:55:21 TRACE (main    ) MainGroup1                                -   . [1] --> work: 
+2016-12-26 08:55:21 INFO  (main    ) MainGroup1                                -   . [1]  -  work: ####################################################
+2016-12-26 08:55:21 INFO  (main    ) MainGroup1                                -   . [1]  -  work: BATCH_MODIFY_GPX
+2016-12-26 08:55:21 INFO  (main    ) MainGroup1                                -   . [1]  -  work: ####################################################
+2016-12-26 08:55:21 TRACE (main    ) MainModifyGpx                             -   .  . [2] --> work: 
+2016-12-26 08:55:21 TRACE (main    ) UtilsBean                                 -   .  .  . [3] --> createBeanFactory: 
+2016-12-26 08:55:22 TRACE (main    ) WorkStructure                       1.402 -   .  .  .  .  .  . [6] <-- createImage: 
+2016-12-26 08:55:22 TRACE (main    ) WorkData                                  -   .  .  .  .  .  . [6] --> writeDataFill: 
+2016-12-26 08:55:22 TRACE (main    ) WorkData                                  -   .  .  .  .  .  .  . [7] --> pointsToLines: 
+2016-12-26 08:55:22 TRACE (main    ) WorkData                             .014 -   .  .  .  .  .  .  . [7] <-- pointsToLines: 
+2016-12-26 08:55:22 TRACE (main    ) WorkData                             .088 -   .  .  .  .  .  . [6] <-- writeDataFill: 
+2016-12-26 08:55:22 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  . [6] --> writeStructure: 
+2016-12-26 08:55:22 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  .  . [7] --> createAxis: 
+2016-12-26 08:55:22 TRACE (main    ) WorkStructure                        .008 -   .  .  .  .  .  .  . [7] <-- createAxis: 
+2016-12-26 08:55:22 TRACE (main    ) WorkStructure                        .016 -   .  .  .  .  .  . [6] <-- writeStructure: 
+2016-12-26 08:55:22 TRACE (main    ) WorkData                                  -   .  .  .  .  .  . [6] --> writeDataLine: 
+2016-12-26 08:55:22 TRACE (main    ) WorkData                                  -   .  .  .  .  .  .  . [7] --> pointsToLines: 
+2016-12-26 08:55:22 TRACE (main    ) WorkData                             .002 -   .  .  .  .  .  .  . [7] <-- pointsToLines: 
+2016-12-26 08:55:22 TRACE (main    ) WorkData                             .020 -   .  .  .  .  .  . [6] <-- writeDataLine: 
+2016-12-26 08:55:22 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  . [6] --> saveImage: 
+2016-12-26 08:55:22 TRACE (main    ) WorkStructure                        .458 -   .  .  .  .  .  . [6] <-- saveImage: 
+2016-12-26 08:55:22 TRACE (main    ) ManagerGraphGeneric                 2.013 -   .  .  .  .  . [5] <-- createGraph: 
+2016-12-26 08:55:22 TRACE (main    ) BatchCreateGraphs                         -   .  .  .  .  . [5] --> gpxToSetData: 
+2016-12-26 08:55:22 TRACE (main    ) BatchCreateGraphs                    .013 -   .  .  .  .  . [5] <-- gpxToSetData: 
+2016-12-26 08:55:22 INFO  (main    ) BatchCreateGraphs                         -   .  .  .  . [4]  -  work:     Writing Graph Heart Rate: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\04.jpg
+2016-12-26 08:55:22 TRACE (main    ) ManagerGraphGeneric                       -   .  .  .  .  . [5] --> createGraph: 
+2016-12-26 08:55:22 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  . [6] --> createImage: 
+2016-12-26 08:55:22 TRACE (main    ) WorkStructure                        .011 -   .  .  .  .  .  . [6] <-- createImage: 
+2016-12-26 08:55:22 TRACE (main    ) WorkData                                  -   .  .  .  .  .  . [6] --> writeDataFill: 
+2016-12-26 08:55:22 TRACE (main    ) WorkData                                  -   .  .  .  .  .  .  . [7] --> pointsToLines: 
+2016-12-26 08:55:22 TRACE (main    ) WorkData                             .002 -   .  .  .  .  .  .  . [7] <-- pointsToLines: 
+2016-12-26 08:55:22 TRACE (main    ) WorkData                             .012 -   .  .  .  .  .  . [6] <-- writeDataFill: 
+2016-12-26 08:55:22 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  . [6] --> writeStructure: 
+2016-12-26 08:55:22 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  .  . [7] --> createAxis: 
+2016-12-26 08:55:22 TRACE (main    ) WorkStructure                        .014 -   .  .  .  .  .  .  . [7] <-- createAxis: 
+2016-12-26 08:55:22 TRACE (main    ) WorkStructure                        .017 -   .  .  .  .  .  . [6] <-- writeStructure: 
+2016-12-26 08:55:22 TRACE (main    ) WorkData                                  -   .  .  .  .  .  . [6] --> writeDataLine: 
+2016-12-26 08:55:22 TRACE (main    ) WorkData                                  -   .  .  .  .  .  .  . [7] --> pointsToLines: 
+2016-12-26 08:55:22 TRACE (main    ) WorkData                             .002 -   .  .  .  .  .  .  . [7] <-- pointsToLines: 
+2016-12-26 08:55:22 TRACE (main    ) WorkData                             .014 -   .  .  .  .  .  . [6] <-- writeDataLine: 
+2016-12-26 08:55:22 TRACE (main    ) WorkData                                  -   .  .  .  .  .  . [6] --> writeDataLine: 
+2016-12-26 08:55:22 TRACE (main    ) WorkData                                  -   .  .  .  .  .  .  . [7] --> pointsToLines: 
+2016-12-26 08:55:22 TRACE (main    ) WorkData                             .002 -   .  .  .  .  .  .  . [7] <-- pointsToLines: 
+2016-12-26 08:55:22 TRACE (main    ) WorkData                             .015 -   .  .  .  .  .  . [6] <-- writeDataLine: 
+2016-12-26 08:55:22 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  . [6] --> saveImage: 
+2016-12-26 08:55:22 TRACE (main    ) WorkStructure                        .113 -   .  .  .  .  .  . [6] <-- saveImage: 
+2016-12-26 08:55:22 TRACE (main    ) ManagerGraphGeneric                  .188 -   .  .  .  .  . [5] <-- createGraph: 
+2016-12-26 08:55:22 TRACE (main    ) BatchCreateGraphs                         -   .  .  .  .  . [5] --> gpxToSetData: 
+2016-12-26 08:55:22 TRACE (main    ) BatchCreateGraphs                    .014 -   .  .  .  .  . [5] <-- gpxToSetData: 
+2016-12-26 08:55:22 INFO  (main    ) BatchCreateGraphs                         -   .  .  .  . [4]  -  work:     Writing Graph Temperature: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\05.jpg
+2016-12-26 08:55:22 TRACE (main    ) ManagerGraphGeneric                       -   .  .  .  .  . [5] --> createGraph: 
+2016-12-26 08:55:22 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  . [6] --> createImage: 
+2016-12-26 08:55:23 TRACE (main    ) WorkStructure                        .008 -   .  .  .  .  .  . [6] <-- createImage: 
+2016-12-26 08:55:23 TRACE (main    ) WorkData                                  -   .  .  .  .  .  . [6] --> writeDataFill: 
+2016-12-26 08:55:23 TRACE (main    ) WorkData                                  -   .  .  .  .  .  .  . [7] --> pointsToLines: 
+2016-12-26 08:55:23 TRACE (main    ) WorkData                             .001 -   .  .  .  .  .  .  . [7] <-- pointsToLines: 
+2016-12-26 08:55:23 TRACE (main    ) WorkData                             .010 -   .  .  .  .  .  . [6] <-- writeDataFill: 
+2016-12-26 08:55:23 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  . [6] --> writeStructure: 
+2016-12-26 08:55:23 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  .  . [7] --> createAxis: 
+2016-12-26 08:55:23 TRACE (main    ) WorkStructure                        .011 -   .  .  .  .  .  .  . [7] <-- createAxis: 
+2016-12-26 08:55:23 TRACE (main    ) WorkStructure                        .012 -   .  .  .  .  .  . [6] <-- writeStructure: 
+2016-12-26 08:55:23 TRACE (main    ) WorkData                                  -   .  .  .  .  .  . [6] --> writeDataLine: 
+2016-12-26 08:55:23 TRACE (main    ) WorkData                                  -   .  .  .  .  .  .  . [7] --> pointsToLines: 
+2016-12-26 08:55:23 TRACE (main    ) WorkData                             .002 -   .  .  .  .  .  .  . [7] <-- pointsToLines: 
+2016-12-26 08:55:23 TRACE (main    ) WorkData                             .010 -   .  .  .  .  .  . [6] <-- writeDataLine: 
+2016-12-26 08:55:23 TRACE (main    ) WorkData                                  -   .  .  .  .  .  . [6] --> writeDataLine: 
+2016-12-26 08:55:23 TRACE (main    ) WorkData                                  -   .  .  .  .  .  .  . [7] --> pointsToLines: 
+2016-12-26 08:55:23 TRACE (main    ) WorkData                             .002 -   .  .  .  .  .  .  . [7] <-- pointsToLines: 
+2016-12-26 08:55:23 TRACE (main    ) WorkData                             .010 -   .  .  .  .  .  . [6] <-- writeDataLine: 
+2016-12-26 08:55:23 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  . [6] --> saveImage: 
+2016-12-26 08:55:23 TRACE (main    ) WorkStructure                        .101 -   .  .  .  .  .  . [6] <-- saveImage: 
+2016-12-26 08:55:23 TRACE (main    ) ManagerGraphGeneric                  .162 -   .  .  .  .  . [5] <-- createGraph: 
+2016-12-26 08:55:23 TRACE (main    ) BatchCreateGraphs                   2.900 -   .  .  .  . [4] <-- work: 
+2016-12-26 08:55:23 TRACE (main    ) BatchCreateGraphs                   2.902 -   .  .  . [3] <-- runAuto: 
+2016-12-26 08:55:23 TRACE (main    ) MainCreateGraphs                    3.044 -   .  . [2] <-- work: 
+2016-12-26 08:55:23 TRACE (main    ) MainGroup1                         10.871 -   . [1] <-- work: 
+2016-12-26 08:55:23 TRACE (main    ) MainGroup1                         10.906 -  [0] <-- main: 
+2016-12-26 08:55:23 TRACE (main    ) UtilsBean                           2.232 -   .  .  . [3] <-- createBeanFactory: 
+2016-12-26 08:55:23 TRACE (main    ) BatchModifyGpx                            -   .  .  . [3] --> runAuto: 
+2016-12-26 08:55:23 INFO  (main    ) BatchModifyGpx                            -   .  .  . [3]  -  runAuto: WORKING DIR: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps
+2016-12-26 08:55:23 TRACE (main    ) BatchModifyGpx                            -   .  .  .  . [4] --> work: 
+2016-12-26 08:55:23 INFO  (main    ) BatchModifyGpx                            -   .  .  .  . [4]  -  work: 	Loading: 20161225_MTB_FRA_Grenoble,Chamrousse.gpx
+2016-12-26 08:55:24 INFO  (main    ) BatchModifyGpx                            -   .  .  .  . [4]  -  work: 	Writting GPX: 20161225_MTB_FRA_Grenoble,Chamrousse.gpx.tmp
+2016-12-26 08:55:26 INFO  (main    ) BatchModifyGpx                            -   .  .  .  . [4]  -  work: 	Writting KML: 20161225_MTB_FRA_Grenoble,Chamrousse.kml
+2016-12-26 08:55:26 TRACE (main    ) BatchModifyGpx                      3.070 -   .  .  .  . [4] <-- work: 
+2016-12-26 08:55:26 TRACE (main    ) BatchModifyGpx                            -   .  .  .  . [4] --> workStopwatch: 
+2016-12-26 08:55:26 INFO  (main    ) BatchModifyGpx                            -   .  .  .  . [4]  -  workStopwatch: No Stopwatch
+2016-12-26 08:55:26 TRACE (main    ) BatchModifyGpx                       .006 -   .  .  .  . [4] <-- workStopwatch: 
+2016-12-26 08:55:26 TRACE (main    ) BatchModifyGpx                      3.094 -   .  .  . [3] <-- runAuto: 
+2016-12-26 08:55:26 TRACE (main    ) MainModifyGpx                       5.358 -   .  . [2] <-- work: 
+2016-12-26 08:55:26 INFO  (main    ) MainGroup1                                -   . [1]  -  work: ####################################################
+2016-12-26 08:55:26 INFO  (main    ) MainGroup1                                -   . [1]  -  work: BATCH_CREATE_GRAPHS
+2016-12-26 08:55:26 INFO  (main    ) MainGroup1                                -   . [1]  -  work: ####################################################
+2016-12-26 08:55:26 TRACE (main    ) MainCreateGraphs                          -   .  . [2] --> work: 
+2016-12-26 08:55:26 TRACE (main    ) UtilsBean                                 -   .  .  . [3] --> createBeanFactory: 
+2016-12-26 08:55:26 TRACE (main    ) UtilsBean                            .181 -   .  .  . [3] <-- createBeanFactory: 
+2016-12-26 08:55:26 TRACE (main    ) BatchCreateGraphs                         -   .  .  . [3] --> runAuto: 
+2016-12-26 08:55:26 TRACE (main    ) BatchCreateGraphs                         -   .  .  .  . [4] --> work: 
+2016-12-26 08:55:26 INFO  (main    ) BatchCreateGraphs                         -   .  .  .  . [4]  -  work: WORKING FILE: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\20161225_MTB_FRA_Grenoble,Chamrousse.gpx
+2016-12-26 08:55:27 TRACE (main    ) BatchCreateGraphs                         -   .  .  .  .  . [5] --> gpxToSetData: 
+2016-12-26 08:55:27 TRACE (main    ) BatchCreateGraphs                    .020 -   .  .  .  .  . [5] <-- gpxToSetData: 
+2016-12-26 08:55:27 INFO  (main    ) BatchCreateGraphs                         -   .  .  .  . [4]  -  work:     Writing Graph Altutude: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\03.jpg
+2016-12-26 08:55:27 TRACE (main    ) ManagerGraphGeneric                       -   .  .  .  .  . [5] --> createGraph: 
+2016-12-26 08:55:27 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  . [6] --> createImage: 
+2016-12-26 08:55:27 TRACE (main    ) WorkStructure                        .383 -   .  .  .  .  .  . [6] <-- createImage: 
+2016-12-26 08:55:27 TRACE (main    ) WorkData                                  -   .  .  .  .  .  . [6] --> writeDataFill: 
+2016-12-26 08:55:27 TRACE (main    ) WorkData                                  -   .  .  .  .  .  .  . [7] --> pointsToLines: 
+2016-12-26 08:55:27 TRACE (main    ) WorkData                             .005 -   .  .  .  .  .  .  . [7] <-- pointsToLines: 
+2016-12-26 08:55:27 TRACE (main    ) WorkData                             .039 -   .  .  .  .  .  . [6] <-- writeDataFill: 
+2016-12-26 08:55:27 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  . [6] --> writeStructure: 
+2016-12-26 08:55:27 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  .  . [7] --> createAxis: 
+2016-12-26 08:55:27 TRACE (main    ) WorkStructure                        .008 -   .  .  .  .  .  .  . [7] <-- createAxis: 
+2016-12-26 08:55:27 TRACE (main    ) WorkStructure                        .013 -   .  .  .  .  .  . [6] <-- writeStructure: 
+2016-12-26 08:55:27 TRACE (main    ) WorkData                                  -   .  .  .  .  .  . [6] --> writeDataLine: 
+2016-12-26 08:55:27 TRACE (main    ) WorkData                                  -   .  .  .  .  .  .  . [7] --> pointsToLines: 
+2016-12-26 08:55:27 TRACE (main    ) WorkData                             .002 -   .  .  .  .  .  .  . [7] <-- pointsToLines: 
+2016-12-26 08:55:27 TRACE (main    ) WorkData                             .014 -   .  .  .  .  .  . [6] <-- writeDataLine: 
+2016-12-26 08:55:27 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  . [6] --> saveImage: 
+2016-12-26 08:55:27 TRACE (main    ) WorkStructure                        .188 -   .  .  .  .  .  . [6] <-- saveImage: 
+2016-12-26 08:55:27 TRACE (main    ) ManagerGraphGeneric                  .657 -   .  .  .  .  . [5] <-- createGraph: 
+2016-12-26 08:55:27 TRACE (main    ) BatchCreateGraphs                         -   .  .  .  .  . [5] --> gpxToSetData: 
+2016-12-26 08:55:27 TRACE (main    ) BatchCreateGraphs                    .014 -   .  .  .  .  . [5] <-- gpxToSetData: 
+2016-12-26 08:55:27 INFO  (main    ) BatchCreateGraphs                         -   .  .  .  . [4]  -  work:     Writing Graph Heart Rate: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\04.jpg
+2016-12-26 08:55:27 TRACE (main    ) ManagerGraphGeneric                       -   .  .  .  .  . [5] --> createGraph: 
+2016-12-26 08:55:27 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  . [6] --> createImage: 
+2016-12-26 08:55:27 TRACE (main    ) WorkStructure                        .016 -   .  .  .  .  .  . [6] <-- createImage: 
+2016-12-26 08:55:27 TRACE (main    ) WorkData                                  -   .  .  .  .  .  . [6] --> writeDataFill: 
+2016-12-26 08:55:27 TRACE (main    ) WorkData                                  -   .  .  .  .  .  .  . [7] --> pointsToLines: 
+2016-12-26 08:55:27 TRACE (main    ) WorkData                             .002 -   .  .  .  .  .  .  . [7] <-- pointsToLines: 
+2016-12-26 08:55:27 TRACE (main    ) WorkData                             .015 -   .  .  .  .  .  . [6] <-- writeDataFill: 
+2016-12-26 08:55:27 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  . [6] --> writeStructure: 
+2016-12-26 08:55:27 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  .  . [7] --> createAxis: 
+2016-12-26 08:55:27 TRACE (main    ) WorkStructure                        .024 -   .  .  .  .  .  .  . [7] <-- createAxis: 
+2016-12-26 08:55:27 TRACE (main    ) WorkStructure                        .026 -   .  .  .  .  .  . [6] <-- writeStructure: 
+2016-12-26 08:55:27 TRACE (main    ) WorkData                                  -   .  .  .  .  .  . [6] --> writeDataLine: 
+2016-12-26 08:55:27 TRACE (main    ) WorkData                                  -   .  .  .  .  .  .  . [7] --> pointsToLines: 
+2016-12-26 08:55:27 TRACE (main    ) WorkData                             .003 -   .  .  .  .  .  .  . [7] <-- pointsToLines: 
+2016-12-26 08:55:27 TRACE (main    ) WorkData                             .017 -   .  .  .  .  .  . [6] <-- writeDataLine: 
+2016-12-26 08:55:27 TRACE (main    ) WorkData                                  -   .  .  .  .  .  . [6] --> writeDataLine: 
+2016-12-26 08:55:27 TRACE (main    ) WorkData                                  -   .  .  .  .  .  .  . [7] --> pointsToLines: 
+2016-12-26 08:55:27 TRACE (main    ) WorkData                             .004 -   .  .  .  .  .  .  . [7] <-- pointsToLines: 
+2016-12-26 08:55:27 TRACE (main    ) WorkData                             .015 -   .  .  .  .  .  . [6] <-- writeDataLine: 
+2016-12-26 08:55:27 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  . [6] --> saveImage: 
+2016-12-26 08:55:28 TRACE (main    ) WorkStructure                        .116 -   .  .  .  .  .  . [6] <-- saveImage: 
+2016-12-26 08:55:28 TRACE (main    ) ManagerGraphGeneric                  .216 -   .  .  .  .  . [5] <-- createGraph: 
+2016-12-26 08:55:28 TRACE (main    ) BatchCreateGraphs                         -   .  .  .  .  . [5] --> gpxToSetData: 
+2016-12-26 08:55:28 TRACE (main    ) BatchCreateGraphs                    .014 -   .  .  .  .  . [5] <-- gpxToSetData: 
+2016-12-26 08:55:28 INFO  (main    ) BatchCreateGraphs                         -   .  .  .  . [4]  -  work:     Writing Graph Temperature: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\05.jpg
+2016-12-26 08:55:28 TRACE (main    ) ManagerGraphGeneric                       -   .  .  .  .  . [5] --> createGraph: 
+2016-12-26 08:55:28 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  . [6] --> createImage: 
+2016-12-26 08:55:28 TRACE (main    ) WorkStructure                        .012 -   .  .  .  .  .  . [6] <-- createImage: 
+2016-12-26 08:55:28 TRACE (main    ) WorkData                                  -   .  .  .  .  .  . [6] --> writeDataFill: 
+2016-12-26 08:55:28 TRACE (main    ) WorkData                                  -   .  .  .  .  .  .  . [7] --> pointsToLines: 
+2016-12-26 08:55:28 TRACE (main    ) WorkData                             .005 -   .  .  .  .  .  .  . [7] <-- pointsToLines: 
+2016-12-26 08:55:28 TRACE (main    ) WorkData                             .015 -   .  .  .  .  .  . [6] <-- writeDataFill: 
+2016-12-26 08:55:28 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  . [6] --> writeStructure: 
+2016-12-26 08:55:28 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  .  . [7] --> createAxis: 
+2016-12-26 08:55:28 TRACE (main    ) WorkStructure                        .006 -   .  .  .  .  .  .  . [7] <-- createAxis: 
+2016-12-26 08:55:28 TRACE (main    ) WorkStructure                        .008 -   .  .  .  .  .  . [6] <-- writeStructure: 
+2016-12-26 08:55:28 TRACE (main    ) WorkData                                  -   .  .  .  .  .  . [6] --> writeDataLine: 
+2016-12-26 08:55:28 TRACE (main    ) WorkData                                  -   .  .  .  .  .  .  . [7] --> pointsToLines: 
+2016-12-26 08:55:28 TRACE (main    ) WorkData                             .003 -   .  .  .  .  .  .  . [7] <-- pointsToLines: 
+2016-12-26 08:55:28 TRACE (main    ) WorkData                             .015 -   .  .  .  .  .  . [6] <-- writeDataLine: 
+2016-12-26 08:55:28 TRACE (main    ) WorkData                                  -   .  .  .  .  .  . [6] --> writeDataLine: 
+2016-12-26 08:55:28 TRACE (main    ) WorkData                                  -   .  .  .  .  .  .  . [7] --> pointsToLines: 
+2016-12-26 08:55:28 TRACE (main    ) WorkData                             .003 -   .  .  .  .  .  .  . [7] <-- pointsToLines: 
+2016-12-26 08:55:28 TRACE (main    ) WorkData                             .013 -   .  .  .  .  .  . [6] <-- writeDataLine: 
+2016-12-26 08:55:28 TRACE (main    ) WorkStructure                             -   .  .  .  .  .  . [6] --> saveImage: 
+2016-12-26 08:55:28 TRACE (main    ) WorkStructure                        .092 -   .  .  .  .  .  . [6] <-- saveImage: 
+2016-12-26 08:55:28 TRACE (main    ) ManagerGraphGeneric                  .161 -   .  .  .  .  . [5] <-- createGraph: 
+2016-12-26 08:55:28 TRACE (main    ) BatchCreateGraphs                   1.397 -   .  .  .  . [4] <-- work: 
+2016-12-26 08:55:28 TRACE (main    ) BatchCreateGraphs                   1.406 -   .  .  . [3] <-- runAuto: 
+2016-12-26 08:55:28 TRACE (main    ) MainCreateGraphs                    1.590 -   .  . [2] <-- work: 
+2016-12-26 08:55:28 TRACE (main    ) MainGroup1                          6.957 -   . [1] <-- work: 
+2016-12-26 08:55:28 TRACE (main    ) MainGroup1                          6.993 -  [0] <-- main: 
+2016-12-26 11:05:54 TRACE (main    ) MainGroupA                                -  [0] --> main: 
+2016-12-26 11:05:54 TRACE (main    ) MainGroupA                                -   . [1] --> work: 
+2016-12-26 11:05:54 INFO  (main    ) MainGroupA                                -   . [1]  -  work: ####################################################
+2016-12-26 11:05:54 INFO  (main    ) MainGroupA                                -   . [1]  -  work: BATCH_MODIFY_PHOTOS
+2016-12-26 11:05:54 INFO  (main    ) MainGroupA                                -   . [1]  -  work: ####################################################
+2016-12-26 11:05:54 TRACE (main    ) MainModifyPhotos                          -   .  . [2] --> work: 
+2016-12-26 11:05:54 TRACE (main    ) UtilsBean                                 -   .  .  . [3] --> createBeanFactory: 
+2016-12-26 11:05:55 TRACE (main    ) UtilsBean                           1.724 -   .  .  . [3] <-- createBeanFactory: 
+2016-12-26 11:05:55 TRACE (main    ) BatchModifyPhotos                         -   .  .  . [3] --> run: 
+2016-12-26 11:05:55 TRACE (main    ) BatchModifyPhotos                         -   .  .  .  . [4] --> loadFilesPhotos: 
+2016-12-26 11:05:55 TRACE (main    ) BatchModifyPhotos                    .001 -   .  .  .  . [4] <-- loadFilesPhotos: 
+2016-12-26 11:05:55 TRACE (main    ) TimeEvaluatorGeneric                      -   .  .  .  . [4] --> loadTimes: 
+2016-12-26 11:05:55 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> determineDate: 
+2016-12-26 11:05:55 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> determineDate: 
+2016-12-26 11:05:56 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  determineDate: CreationDate: 2016:10:30 20:47:07
+2016-12-26 11:05:56 TRACE (main    ) ManagerExifSanselan                  .325 -   .  .  .  .  .  . [6] <-- determineDate: 
+2016-12-26 11:05:56 TRACE (main    ) ManagerExifAllTypes                  .327 -   .  .  .  .  . [5] <-- determineDate: 
+2016-12-26 11:05:56 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> modifyFile: 
+2016-12-26 11:05:56 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> modifyFile: 
+2016-12-26 11:05:56 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyFile: 
+2016-12-26 11:05:56 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7]  -  modifyFile: Modifying file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\timeXP_20161030-194707_20161030-204707.JPG
+2016-12-26 11:05:56 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7]  -  modifyFile: Date: 2016:10:30 20:47:07 Lon: null Lat: null
+2016-12-26 11:05:56 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  .  . [8] --> modifyDate: 
+2016-12-26 11:05:56 TRACE (main    ) ManagerExifSanselan                  .001 -   .  .  .  .  .  .  .  . [8] <-- modifyDate: 
+2016-12-26 11:05:56 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  .  . [8] --> writeFile: 
+2016-12-26 11:05:56 TRACE (main    ) ManagerExifSanselan                  .108 -   .  .  .  .  .  .  .  . [8] <-- writeFile: 
+2016-12-26 11:05:56 TRACE (main    ) ManagerExifSanselan                  .127 -   .  .  .  .  .  .  . [7] <-- modifyFile: 
+2016-12-26 11:05:56 TRACE (main    ) ManagerExifSanselan                  .129 -   .  .  .  .  .  . [6] <-- modifyFile: 
+2016-12-26 11:05:56 TRACE (main    ) ManagerExifAllTypes                  .130 -   .  .  .  .  . [5] <-- modifyFile: 
+2016-12-26 11:05:56 TRACE (main    ) TimeEvaluatorGeneric                 .465 -   .  .  .  . [4] <-- loadTimes: 
+2016-12-26 11:05:56 TRACE (main    ) BatchModifyPhotos                         -   .  .  .  . [4] --> loadFilesGpx: 
+2016-12-26 11:05:57 TRACE (main    ) BatchModifyPhotos                   1.069 -   .  .  .  . [4] <-- loadFilesGpx: 
+2016-12-26 11:05:57 TRACE (main    ) BatchModifyPhotos                         -   .  .  .  . [4] --> workTime: 
+2016-12-26 11:05:57 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> determineDate: 
+2016-12-26 11:05:57 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> determineDate: 
+2016-12-26 11:05:57 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  determineDate: CreationDate: 2016:10:30 20:47:07
+2016-12-26 11:05:57 TRACE (main    ) ManagerExifSanselan                  .004 -   .  .  .  .  .  . [6] <-- determineDate: 
+2016-12-26 11:05:57 TRACE (main    ) ManagerExifAllTypes                  .006 -   .  .  .  .  . [5] <-- determineDate: 
+2016-12-26 11:05:57 WARN  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  w  workTime: ### No GPS position found for the file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\timeXP_20161030-194707_20161030-204707.JPG
+2016-12-26 11:05:57 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> modifyFile: 
+2016-12-26 11:05:57 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> modifyFile: 
+2016-12-26 11:05:57 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Modifying file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\timeXP_20161030-194707_20161030-204707.JPG
+2016-12-26 11:05:57 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Date: 2016:10:30 19:47:07 Lon: null Lat: null
+2016-12-26 11:05:57 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyDate: 
+2016-12-26 11:05:57 TRACE (main    ) ManagerExifSanselan                  .001 -   .  .  .  .  .  .  . [7] <-- modifyDate: 
+2016-12-26 11:05:57 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> writeFile: 
+2016-12-26 11:05:57 TRACE (main    ) ManagerExifSanselan                  .057 -   .  .  .  .  .  .  . [7] <-- writeFile: 
+2016-12-26 11:05:57 TRACE (main    ) ManagerExifSanselan                  .068 -   .  .  .  .  .  . [6] <-- modifyFile: 
+2016-12-26 11:05:57 TRACE (main    ) ManagerExifAllTypes                  .069 -   .  .  .  .  . [5] <-- modifyFile: 
+2016-12-26 11:05:57 TRACE (main    ) BatchModifyPhotos                    .080 -   .  .  .  . [4] <-- workTime: 
+2016-12-26 11:05:57 TRACE (main    ) BatchModifyPhotos                         -   .  .  .  . [4] --> loadTags: 
+2016-12-26 11:05:57 TRACE (main    ) BatchModifyPhotos                    .001 -   .  .  .  . [4] <-- loadTags: 
+2016-12-26 11:05:57 TRACE (main    ) BatchModifyPhotos                         -   .  .  .  . [4] --> workDirPhotos: 
+2016-12-26 11:05:57 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: WORKING DIR: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\photosXP
+2016-12-26 11:05:57 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: Modifying PHOTOS files: -3600 sec.
+2016-12-26 11:05:58 TRACE (main    ) MainCreateDate                            -  [0] --> main: 
+2016-12-26 11:05:58 TRACE (main    ) MainCreateDate                            -   . [1] --> work: 
+2016-12-26 11:05:58 TRACE (main    ) UtilsBean                                 -   .  . [2] --> createBeanFactory: 
+2016-12-26 11:05:59 TRACE (main    ) UtilsBean                           1.711 -   .  . [2] <-- createBeanFactory: 
+2016-12-26 11:05:59 TRACE (main    ) BatchCreateDate                           -   .  . [2] --> run: 
+2016-12-26 11:05:59 TRACE (main    ) ManagerExifAllTypes                       -   .  .  . [3] --> determineDate: 
+2016-12-26 11:05:59 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  . [4] --> determineDate: 
+2016-12-26 11:06:00 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  . [4]  -  determineDate: CreationDate: 2016:12:25 14:01:26
+2016-12-26 11:06:00 TRACE (main    ) ManagerExifSanselan                  .179 -   .  .  .  . [4] <-- determineDate: 
+2016-12-26 11:06:00 TRACE (main    ) ManagerExifAllTypes                  .183 -   .  .  . [3] <-- determineDate: 
+2016-12-26 11:06:00 TRACE (main    ) BatchCreateDate                      .185 -   .  . [2] <-- run: 
+2016-12-26 11:06:00 TRACE (main    ) MainCreateDate                      1.946 -   . [1] <-- work: 
+2016-12-26 11:06:00 TRACE (main    ) MainCreateDate                      1.973 -  [0] <-- main: 
+2016-12-26 11:06:00 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Renaming file: DSC_0001.JPG to: CRUIDE_20161225-130126_XP.jpg
+2016-12-26 11:06:00 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Modifying file: CRUIDE_20161225-130126_XP.jpg Date: 20161225-130126 Lon/Lat: 5.831728530809302/45.11683327039302
+2016-12-26 11:06:00 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> modifyFile: 
+2016-12-26 11:06:00 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> modifyFile: 
+2016-12-26 11:06:00 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Modifying file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\_photos\CRUIDE_20161225-130126_XP.jpg
+2016-12-26 11:06:00 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Date: 2016:12:25 13:01:26 Lon: 5.831728530809302 Lat: 45.11683327039302
+2016-12-26 11:06:00 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyDate: 
+2016-12-26 11:06:00 TRACE (main    ) ManagerExifSanselan                  .001 -   .  .  .  .  .  .  . [7] <-- modifyDate: 
+2016-12-26 11:06:00 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyGPS: 
+2016-12-26 11:06:00 TRACE (main    ) ManagerExifSanselan                  .004 -   .  .  .  .  .  .  . [7] <-- modifyGPS: 
+2016-12-26 11:06:00 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> writeFile: 
+2016-12-26 11:06:00 TRACE (main    ) ManagerExifSanselan                  .051 -   .  .  .  .  .  .  . [7] <-- writeFile: 
+2016-12-26 11:06:00 TRACE (main    ) ManagerExifSanselan                  .066 -   .  .  .  .  .  . [6] <-- modifyFile: 
+2016-12-26 11:06:00 TRACE (main    ) ManagerExifAllTypes                  .067 -   .  .  .  .  . [5] <-- modifyFile: 
+2016-12-26 11:06:00 TRACE (main    ) MainCreateDate                            -  [0] --> main: 
+2016-12-26 11:06:00 TRACE (main    ) MainCreateDate                            -   . [1] --> work: 
+2016-12-26 11:06:00 TRACE (main    ) UtilsBean                                 -   .  . [2] --> createBeanFactory: 
+2016-12-26 11:06:02 TRACE (main    ) UtilsBean                           1.678 -   .  . [2] <-- createBeanFactory: 
+2016-12-26 11:06:02 TRACE (main    ) BatchCreateDate                           -   .  . [2] --> run: 
+2016-12-26 11:06:02 TRACE (main    ) ManagerExifAllTypes                       -   .  .  . [3] --> determineDate: 
+2016-12-26 11:06:02 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  . [4] --> determineDate: 
+2016-12-26 11:06:02 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  . [4]  -  determineDate: CreationDate: 2016:12:25 14:17:48
+2016-12-26 11:06:02 TRACE (main    ) ManagerExifSanselan                  .177 -   .  .  .  . [4] <-- determineDate: 
+2016-12-26 11:06:02 TRACE (main    ) ManagerExifAllTypes                  .181 -   .  .  . [3] <-- determineDate: 
+2016-12-26 11:06:02 TRACE (main    ) BatchCreateDate                      .183 -   .  . [2] <-- run: 
+2016-12-26 11:06:02 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Renaming file: DSC_0002.JPG to: CRUIDE_20161225-131748_XP.jpg
+2016-12-26 11:06:02 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Modifying file: CRUIDE_20161225-131748_XP.jpg Date: 20161225-131748 Lon/Lat: 5.835336044455814/45.11309026624535
+2016-12-26 11:06:02 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> modifyFile: 
+2016-12-26 11:06:02 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> modifyFile: 
+2016-12-26 11:06:02 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Modifying file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\_photos\CRUIDE_20161225-131748_XP.jpg
+2016-12-26 11:06:02 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Date: 2016:12:25 13:17:48 Lon: 5.835336044455814 Lat: 45.11309026624535
+2016-12-26 11:06:02 TRACE (main    ) MainCreateDate                      1.888 -   . [1] <-- work: 
+2016-12-26 11:06:02 TRACE (main    ) MainCreateDate                      1.916 -  [0] <-- main: 
+2016-12-26 11:06:02 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyDate: 
+2016-12-26 11:06:02 TRACE (main    ) ManagerExifSanselan                  .001 -   .  .  .  .  .  .  . [7] <-- modifyDate: 
+2016-12-26 11:06:02 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyGPS: 
+2016-12-26 11:06:02 TRACE (main    ) ManagerExifSanselan                  .001 -   .  .  .  .  .  .  . [7] <-- modifyGPS: 
+2016-12-26 11:06:02 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> writeFile: 
+2016-12-26 11:06:02 TRACE (main    ) ManagerExifSanselan                  .049 -   .  .  .  .  .  .  . [7] <-- writeFile: 
+2016-12-26 11:06:02 TRACE (main    ) ManagerExifSanselan                  .061 -   .  .  .  .  .  . [6] <-- modifyFile: 
+2016-12-26 11:06:02 TRACE (main    ) ManagerExifAllTypes                  .062 -   .  .  .  .  . [5] <-- modifyFile: 
+2016-12-26 11:06:03 TRACE (main    ) MainCreateDate                            -  [0] --> main: 
+2016-12-26 11:06:03 TRACE (main    ) MainCreateDate                            -   . [1] --> work: 
+2016-12-26 11:06:03 TRACE (main    ) UtilsBean                                 -   .  . [2] --> createBeanFactory: 
+2016-12-26 11:06:05 TRACE (main    ) UtilsBean                           1.671 -   .  . [2] <-- createBeanFactory: 
+2016-12-26 11:06:05 TRACE (main    ) BatchCreateDate                           -   .  . [2] --> run: 
+2016-12-26 11:06:05 TRACE (main    ) ManagerExifAllTypes                       -   .  .  . [3] --> determineDate: 
+2016-12-26 11:06:05 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  . [4] --> determineDate: 
+2016-12-26 11:06:05 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  . [4]  -  determineDate: CreationDate: 2016:12:25 15:08:10
+2016-12-26 11:06:05 TRACE (main    ) ManagerExifSanselan                  .175 -   .  .  .  . [4] <-- determineDate: 
+2016-12-26 11:06:05 TRACE (main    ) ManagerExifAllTypes                  .179 -   .  .  . [3] <-- determineDate: 
+2016-12-26 11:06:05 TRACE (main    ) BatchCreateDate                      .181 -   .  . [2] <-- run: 
+2016-12-26 11:06:05 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Renaming file: DSC_0003.JPG to: CRUIDE_20161225-140810_XP.jpg
+2016-12-26 11:06:05 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Modifying file: CRUIDE_20161225-140810_XP.jpg Date: 20161225-140810 Lon/Lat: 5.849798338128/45.106646732584
+2016-12-26 11:06:05 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> modifyFile: 
+2016-12-26 11:06:05 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> modifyFile: 
+2016-12-26 11:06:05 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Modifying file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\_photos\CRUIDE_20161225-140810_XP.jpg
+2016-12-26 11:06:05 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Date: 2016:12:25 14:08:10 Lon: 5.849798338128 Lat: 45.106646732584
+2016-12-26 11:06:05 TRACE (main    ) MainCreateDate                      1.882 -   . [1] <-- work: 
+2016-12-26 11:06:05 TRACE (main    ) MainCreateDate                      1.911 -  [0] <-- main: 
+2016-12-26 11:06:05 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyDate: 
+2016-12-26 11:06:05 TRACE (main    ) ManagerExifSanselan                  .001 -   .  .  .  .  .  .  . [7] <-- modifyDate: 
+2016-12-26 11:06:05 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyGPS: 
+2016-12-26 11:06:05 TRACE (main    ) ManagerExifSanselan                  .000 -   .  .  .  .  .  .  . [7] <-- modifyGPS: 
+2016-12-26 11:06:05 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> writeFile: 
+2016-12-26 11:06:05 TRACE (main    ) ManagerExifSanselan                  .113 -   .  .  .  .  .  .  . [7] <-- writeFile: 
+2016-12-26 11:06:05 TRACE (main    ) ManagerExifSanselan                  .129 -   .  .  .  .  .  . [6] <-- modifyFile: 
+2016-12-26 11:06:05 TRACE (main    ) ManagerExifAllTypes                  .131 -   .  .  .  .  . [5] <-- modifyFile: 
+2016-12-26 11:06:05 TRACE (main    ) MainCreateDate                            -  [0] --> main: 
+2016-12-26 11:06:06 TRACE (main    ) MainCreateDate                            -   . [1] --> work: 
+2016-12-26 11:06:06 TRACE (main    ) UtilsBean                                 -   .  . [2] --> createBeanFactory: 
+2016-12-26 11:06:07 TRACE (main    ) UtilsBean                           1.674 -   .  . [2] <-- createBeanFactory: 
+2016-12-26 11:06:07 TRACE (main    ) BatchCreateDate                           -   .  . [2] --> run: 
+2016-12-26 11:06:07 TRACE (main    ) ManagerExifAllTypes                       -   .  .  . [3] --> determineDate: 
+2016-12-26 11:06:07 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  . [4] --> determineDate: 
+2016-12-26 11:06:07 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  . [4]  -  determineDate: CreationDate: 2016:12:25 15:32:25
+2016-12-26 11:06:07 TRACE (main    ) ManagerExifSanselan                  .181 -   .  .  .  . [4] <-- determineDate: 
+2016-12-26 11:06:07 TRACE (main    ) ManagerExifAllTypes                  .185 -   .  .  . [3] <-- determineDate: 
+2016-12-26 11:06:07 TRACE (main    ) BatchCreateDate                      .187 -   .  . [2] <-- run: 
+2016-12-26 11:06:07 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Renaming file: DSC_0004.JPG to: CRUIDE_20161225-143225_XP.jpg
+2016-12-26 11:06:07 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Modifying file: CRUIDE_20161225-143225_XP.jpg Date: 20161225-143225 Lon/Lat: 5.859157769/45.11621152515
+2016-12-26 11:06:07 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> modifyFile: 
+2016-12-26 11:06:07 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> modifyFile: 
+2016-12-26 11:06:07 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Modifying file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\_photos\CRUIDE_20161225-143225_XP.jpg
+2016-12-26 11:06:07 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Date: 2016:12:25 14:32:25 Lon: 5.859157769 Lat: 45.11621152515
+2016-12-26 11:06:07 TRACE (main    ) MainCreateDate                      1.891 -   . [1] <-- work: 
+2016-12-26 11:06:07 TRACE (main    ) MainCreateDate                      1.919 -  [0] <-- main: 
+2016-12-26 11:06:07 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyDate: 
+2016-12-26 11:06:07 TRACE (main    ) ManagerExifSanselan                  .001 -   .  .  .  .  .  .  . [7] <-- modifyDate: 
+2016-12-26 11:06:07 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyGPS: 
+2016-12-26 11:06:07 TRACE (main    ) ManagerExifSanselan                  .001 -   .  .  .  .  .  .  . [7] <-- modifyGPS: 
+2016-12-26 11:06:07 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> writeFile: 
+2016-12-26 11:06:08 TRACE (main    ) ManagerExifSanselan                  .150 -   .  .  .  .  .  .  . [7] <-- writeFile: 
+2016-12-26 11:06:08 TRACE (main    ) ManagerExifSanselan                  .162 -   .  .  .  .  .  . [6] <-- modifyFile: 
+2016-12-26 11:06:08 TRACE (main    ) ManagerExifAllTypes                  .164 -   .  .  .  .  . [5] <-- modifyFile: 
+2016-12-26 11:06:08 TRACE (main    ) MainCreateDate                            -  [0] --> main: 
+2016-12-26 11:06:08 TRACE (main    ) MainCreateDate                            -   . [1] --> work: 
+2016-12-26 11:06:08 TRACE (main    ) UtilsBean                                 -   .  . [2] --> createBeanFactory: 
+2016-12-26 11:06:10 TRACE (main    ) UtilsBean                           1.688 -   .  . [2] <-- createBeanFactory: 
+2016-12-26 11:06:10 TRACE (main    ) BatchCreateDate                           -   .  . [2] --> run: 
+2016-12-26 11:06:10 TRACE (main    ) ManagerExifAllTypes                       -   .  .  . [3] --> determineDate: 
+2016-12-26 11:06:10 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  . [4] --> determineDate: 
+2016-12-26 11:06:10 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  . [4]  -  determineDate: CreationDate: 2016:12:25 15:37:00
+2016-12-26 11:06:10 TRACE (main    ) ManagerExifSanselan                  .181 -   .  .  .  . [4] <-- determineDate: 
+2016-12-26 11:06:10 TRACE (main    ) ManagerExifAllTypes                  .186 -   .  .  . [3] <-- determineDate: 
+2016-12-26 11:06:10 TRACE (main    ) BatchCreateDate                      .187 -   .  . [2] <-- run: 
+2016-12-26 11:06:10 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Renaming file: DSC_0005.JPG to: CRUIDE_20161225-143700_XP.jpg
+2016-12-26 11:06:10 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Modifying file: CRUIDE_20161225-143700_XP.jpg Date: 20161225-143700 Lon/Lat: 5.86032119392/45.11714128778
+2016-12-26 11:06:10 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> modifyFile: 
+2016-12-26 11:06:10 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> modifyFile: 
+2016-12-26 11:06:10 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Modifying file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\_photos\CRUIDE_20161225-143700_XP.jpg
+2016-12-26 11:06:10 TRACE (main    ) MainCreateDate                      1.903 -   . [1] <-- work: 
+2016-12-26 11:06:10 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Date: 2016:12:25 14:37:00 Lon: 5.86032119392 Lat: 45.11714128778
+2016-12-26 11:06:10 TRACE (main    ) MainCreateDate                      1.930 -  [0] <-- main: 
+2016-12-26 11:06:10 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyDate: 
+2016-12-26 11:06:10 TRACE (main    ) ManagerExifSanselan                  .001 -   .  .  .  .  .  .  . [7] <-- modifyDate: 
+2016-12-26 11:06:10 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyGPS: 
+2016-12-26 11:06:10 TRACE (main    ) ManagerExifSanselan                  .001 -   .  .  .  .  .  .  . [7] <-- modifyGPS: 
+2016-12-26 11:06:10 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> writeFile: 
+2016-12-26 11:06:10 TRACE (main    ) ManagerExifSanselan                  .102 -   .  .  .  .  .  .  . [7] <-- writeFile: 
+2016-12-26 11:06:10 TRACE (main    ) ManagerExifSanselan                  .117 -   .  .  .  .  .  . [6] <-- modifyFile: 
+2016-12-26 11:06:10 TRACE (main    ) ManagerExifAllTypes                  .120 -   .  .  .  .  . [5] <-- modifyFile: 
+2016-12-26 11:06:11 TRACE (main    ) MainCreateDate                            -  [0] --> main: 
+2016-12-26 11:06:11 TRACE (main    ) MainCreateDate                            -   . [1] --> work: 
+2016-12-26 11:06:11 TRACE (main    ) UtilsBean                                 -   .  . [2] --> createBeanFactory: 
+2016-12-26 11:06:12 TRACE (main    ) UtilsBean                           1.666 -   .  . [2] <-- createBeanFactory: 
+2016-12-26 11:06:12 TRACE (main    ) BatchCreateDate                           -   .  . [2] --> run: 
+2016-12-26 11:06:12 TRACE (main    ) ManagerExifAllTypes                       -   .  .  . [3] --> determineDate: 
+2016-12-26 11:06:12 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  . [4] --> determineDate: 
+2016-12-26 11:06:13 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  . [4]  -  determineDate: CreationDate: 2016:12:25 15:56:32
+2016-12-26 11:06:13 TRACE (main    ) ManagerExifSanselan                  .178 -   .  .  .  . [4] <-- determineDate: 
+2016-12-26 11:06:13 TRACE (main    ) ManagerExifAllTypes                  .182 -   .  .  . [3] <-- determineDate: 
+2016-12-26 11:06:13 TRACE (main    ) BatchCreateDate                      .184 -   .  . [2] <-- run: 
+2016-12-26 11:06:13 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Renaming file: DSC_0006.JPG to: CRUIDE_20161225-145632_XP.jpg
+2016-12-26 11:06:13 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Modifying file: CRUIDE_20161225-145632_XP.jpg Date: 20161225-145632 Lon/Lat: 5.870347719548276/45.11697914421379
+2016-12-26 11:06:13 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> modifyFile: 
+2016-12-26 11:06:13 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> modifyFile: 
+2016-12-26 11:06:13 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Modifying file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\_photos\CRUIDE_20161225-145632_XP.jpg
+2016-12-26 11:06:13 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Date: 2016:12:25 14:56:32 Lon: 5.870347719548276 Lat: 45.11697914421379
+2016-12-26 11:06:13 TRACE (main    ) MainCreateDate                      1.880 -   . [1] <-- work: 
+2016-12-26 11:06:13 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyDate: 
+2016-12-26 11:06:13 TRACE (main    ) MainCreateDate                      1.911 -  [0] <-- main: 
+2016-12-26 11:06:13 TRACE (main    ) ManagerExifSanselan                  .001 -   .  .  .  .  .  .  . [7] <-- modifyDate: 
+2016-12-26 11:06:13 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyGPS: 
+2016-12-26 11:06:13 TRACE (main    ) ManagerExifSanselan                  .001 -   .  .  .  .  .  .  . [7] <-- modifyGPS: 
+2016-12-26 11:06:13 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> writeFile: 
+2016-12-26 11:06:13 TRACE (main    ) ManagerExifSanselan                  .071 -   .  .  .  .  .  .  . [7] <-- writeFile: 
+2016-12-26 11:06:13 TRACE (main    ) ManagerExifSanselan                  .084 -   .  .  .  .  .  . [6] <-- modifyFile: 
+2016-12-26 11:06:13 TRACE (main    ) ManagerExifAllTypes                  .087 -   .  .  .  .  . [5] <-- modifyFile: 
+2016-12-26 11:06:13 TRACE (main    ) MainCreateDate                            -  [0] --> main: 
+2016-12-26 11:06:13 TRACE (main    ) MainCreateDate                            -   . [1] --> work: 
+2016-12-26 11:06:13 TRACE (main    ) UtilsBean                                 -   .  . [2] --> createBeanFactory: 
+2016-12-26 11:06:15 TRACE (main    ) UtilsBean                           1.674 -   .  . [2] <-- createBeanFactory: 
+2016-12-26 11:06:15 TRACE (main    ) BatchCreateDate                           -   .  . [2] --> run: 
+2016-12-26 11:06:15 TRACE (main    ) ManagerExifAllTypes                       -   .  .  . [3] --> determineDate: 
+2016-12-26 11:06:15 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  . [4] --> determineDate: 
+2016-12-26 11:06:15 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  . [4]  -  determineDate: CreationDate: 2016:12:25 15:56:36
+2016-12-26 11:06:15 TRACE (main    ) ManagerExifSanselan                  .174 -   .  .  .  . [4] <-- determineDate: 
+2016-12-26 11:06:15 TRACE (main    ) ManagerExifAllTypes                  .179 -   .  .  . [3] <-- determineDate: 
+2016-12-26 11:06:15 TRACE (main    ) BatchCreateDate                      .180 -   .  . [2] <-- run: 
+2016-12-26 11:06:15 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Renaming file: DSC_0007.JPG to: CRUIDE_20161225-145636_XP.jpg
+2016-12-26 11:06:15 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Modifying file: CRUIDE_20161225-145636_XP.jpg Date: 20161225-145636 Lon/Lat: 5.870356373141379/45.116979664468964
+2016-12-26 11:06:15 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> modifyFile: 
+2016-12-26 11:06:15 TRACE (main    ) MainCreateDate                      1.882 -   . [1] <-- work: 
+2016-12-26 11:06:15 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> modifyFile: 
+2016-12-26 11:06:15 TRACE (main    ) MainCreateDate                      1.909 -  [0] <-- main: 
+2016-12-26 11:06:15 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Modifying file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\_photos\CRUIDE_20161225-145636_XP.jpg
+2016-12-26 11:06:15 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Date: 2016:12:25 14:56:36 Lon: 5.870356373141379 Lat: 45.116979664468964
+2016-12-26 11:06:15 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyDate: 
+2016-12-26 11:06:15 TRACE (main    ) ManagerExifSanselan                  .000 -   .  .  .  .  .  .  . [7] <-- modifyDate: 
+2016-12-26 11:06:15 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyGPS: 
+2016-12-26 11:06:15 TRACE (main    ) ManagerExifSanselan                  .001 -   .  .  .  .  .  .  . [7] <-- modifyGPS: 
+2016-12-26 11:06:15 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> writeFile: 
+2016-12-26 11:06:15 TRACE (main    ) ManagerExifSanselan                  .042 -   .  .  .  .  .  .  . [7] <-- writeFile: 
+2016-12-26 11:06:15 TRACE (main    ) ManagerExifSanselan                  .055 -   .  .  .  .  .  . [6] <-- modifyFile: 
+2016-12-26 11:06:15 TRACE (main    ) ManagerExifAllTypes                  .056 -   .  .  .  .  . [5] <-- modifyFile: 
+2016-12-26 11:06:16 TRACE (main    ) MainCreateDate                            -  [0] --> main: 
+2016-12-26 11:06:16 TRACE (main    ) MainCreateDate                            -   . [1] --> work: 
+2016-12-26 11:06:16 TRACE (main    ) UtilsBean                                 -   .  . [2] --> createBeanFactory: 
+2016-12-26 11:06:18 TRACE (main    ) UtilsBean                           1.675 -   .  . [2] <-- createBeanFactory: 
+2016-12-26 11:06:18 TRACE (main    ) BatchCreateDate                           -   .  . [2] --> run: 
+2016-12-26 11:06:18 TRACE (main    ) ManagerExifAllTypes                       -   .  .  . [3] --> determineDate: 
+2016-12-26 11:06:18 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  . [4] --> determineDate: 
+2016-12-26 11:06:18 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  . [4]  -  determineDate: CreationDate: 2016:12:25 15:56:41
+2016-12-26 11:06:18 TRACE (main    ) ManagerExifSanselan                  .178 -   .  .  .  . [4] <-- determineDate: 
+2016-12-26 11:06:18 TRACE (main    ) ManagerExifAllTypes                  .182 -   .  .  . [3] <-- determineDate: 
+2016-12-26 11:06:18 TRACE (main    ) BatchCreateDate                      .184 -   .  . [2] <-- run: 
+2016-12-26 11:06:18 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Renaming file: DSC_0008.JPG to: CRUIDE_20161225-145641_XP.jpg
+2016-12-26 11:06:18 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Modifying file: CRUIDE_20161225-145641_XP.jpg Date: 20161225-145641 Lon/Lat: 5.870367190132758/45.11698031478793
+2016-12-26 11:06:18 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> modifyFile: 
+2016-12-26 11:06:18 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> modifyFile: 
+2016-12-26 11:06:18 TRACE (main    ) MainCreateDate                      1.889 -   . [1] <-- work: 
+2016-12-26 11:06:18 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Modifying file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\_photos\CRUIDE_20161225-145641_XP.jpg
+2016-12-26 11:06:18 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Date: 2016:12:25 14:56:41 Lon: 5.870367190132758 Lat: 45.11698031478793
+2016-12-26 11:06:18 TRACE (main    ) MainCreateDate                      1.918 -  [0] <-- main: 
+2016-12-26 11:06:18 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyDate: 
+2016-12-26 11:06:18 TRACE (main    ) ManagerExifSanselan                  .001 -   .  .  .  .  .  .  . [7] <-- modifyDate: 
+2016-12-26 11:06:18 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyGPS: 
+2016-12-26 11:06:18 TRACE (main    ) ManagerExifSanselan                  .000 -   .  .  .  .  .  .  . [7] <-- modifyGPS: 
+2016-12-26 11:06:18 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> writeFile: 
+2016-12-26 11:06:18 TRACE (main    ) ManagerExifSanselan                  .071 -   .  .  .  .  .  .  . [7] <-- writeFile: 
+2016-12-26 11:06:18 TRACE (main    ) ManagerExifSanselan                  .084 -   .  .  .  .  .  . [6] <-- modifyFile: 
+2016-12-26 11:06:18 TRACE (main    ) ManagerExifAllTypes                  .085 -   .  .  .  .  . [5] <-- modifyFile: 
+2016-12-26 11:06:18 TRACE (main    ) MainCreateDate                            -  [0] --> main: 
+2016-12-26 11:06:18 TRACE (main    ) MainCreateDate                            -   . [1] --> work: 
+2016-12-26 11:06:18 TRACE (main    ) UtilsBean                                 -   .  . [2] --> createBeanFactory: 
+2016-12-26 11:06:20 TRACE (main    ) UtilsBean                           1.683 -   .  . [2] <-- createBeanFactory: 
+2016-12-26 11:06:20 TRACE (main    ) BatchCreateDate                           -   .  . [2] --> run: 
+2016-12-26 11:06:20 TRACE (main    ) ManagerExifAllTypes                       -   .  .  . [3] --> determineDate: 
+2016-12-26 11:06:20 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  . [4] --> determineDate: 
+2016-12-26 11:06:20 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  . [4]  -  determineDate: CreationDate: 2016:12:25 16:27:23
+2016-12-26 11:06:20 TRACE (main    ) ManagerExifSanselan                  .175 -   .  .  .  . [4] <-- determineDate: 
+2016-12-26 11:06:20 TRACE (main    ) ManagerExifAllTypes                  .178 -   .  .  . [3] <-- determineDate: 
+2016-12-26 11:06:20 TRACE (main    ) BatchCreateDate                      .181 -   .  . [2] <-- run: 
+2016-12-26 11:06:20 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Renaming file: DSC_0009.JPG to: CRUIDE_20161225-152723_XP.jpg
+2016-12-26 11:06:20 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Modifying file: CRUIDE_20161225-152723_XP.jpg Date: 20161225-152723 Lon/Lat: 5.860445855076744/45.10288731756977
+2016-12-26 11:06:20 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> modifyFile: 
+2016-12-26 11:06:20 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> modifyFile: 
+2016-12-26 11:06:20 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Modifying file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\_photos\CRUIDE_20161225-152723_XP.jpg
+2016-12-26 11:06:20 TRACE (main    ) MainCreateDate                      1.891 -   . [1] <-- work: 
+2016-12-26 11:06:20 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Date: 2016:12:25 15:27:23 Lon: 5.860445855076744 Lat: 45.10288731756977
+2016-12-26 11:06:20 TRACE (main    ) MainCreateDate                      1.920 -  [0] <-- main: 
+2016-12-26 11:06:20 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyDate: 
+2016-12-26 11:06:20 TRACE (main    ) ManagerExifSanselan                  .001 -   .  .  .  .  .  .  . [7] <-- modifyDate: 
+2016-12-26 11:06:20 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyGPS: 
+2016-12-26 11:06:20 TRACE (main    ) ManagerExifSanselan                  .000 -   .  .  .  .  .  .  . [7] <-- modifyGPS: 
+2016-12-26 11:06:20 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> writeFile: 
+2016-12-26 11:06:20 TRACE (main    ) ManagerExifSanselan                  .058 -   .  .  .  .  .  .  . [7] <-- writeFile: 
+2016-12-26 11:06:20 TRACE (main    ) ManagerExifSanselan                  .069 -   .  .  .  .  .  . [6] <-- modifyFile: 
+2016-12-26 11:06:20 TRACE (main    ) ManagerExifAllTypes                  .070 -   .  .  .  .  . [5] <-- modifyFile: 
+2016-12-26 11:06:21 TRACE (main    ) MainCreateDate                            -  [0] --> main: 
+2016-12-26 11:06:21 TRACE (main    ) MainCreateDate                            -   . [1] --> work: 
+2016-12-26 11:06:21 TRACE (main    ) UtilsBean                                 -   .  . [2] --> createBeanFactory: 
+2016-12-26 11:06:23 TRACE (main    ) UtilsBean                           1.681 -   .  . [2] <-- createBeanFactory: 
+2016-12-26 11:06:23 TRACE (main    ) BatchCreateDate                           -   .  . [2] --> run: 
+2016-12-26 11:06:23 TRACE (main    ) ManagerExifAllTypes                       -   .  .  . [3] --> determineDate: 
+2016-12-26 11:06:23 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  . [4] --> determineDate: 
+2016-12-26 11:06:23 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  . [4]  -  determineDate: CreationDate: 2016:12:25 16:44:09
+2016-12-26 11:06:23 TRACE (main    ) ManagerExifSanselan                  .178 -   .  .  .  . [4] <-- determineDate: 
+2016-12-26 11:06:23 TRACE (main    ) ManagerExifAllTypes                  .182 -   .  .  . [3] <-- determineDate: 
+2016-12-26 11:06:23 TRACE (main    ) BatchCreateDate                      .184 -   .  . [2] <-- run: 
+2016-12-26 11:06:23 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Renaming file: DSC_0010.JPG to: CRUIDE_20161225-154409_XP.jpg
+2016-12-26 11:06:23 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Modifying file: CRUIDE_20161225-154409_XP.jpg Date: 20161225-154409 Lon/Lat: 5.844261940347368/45.091673819057895
+2016-12-26 11:06:23 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> modifyFile: 
+2016-12-26 11:06:23 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> modifyFile: 
+2016-12-26 11:06:23 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Modifying file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\_photos\CRUIDE_20161225-154409_XP.jpg
+2016-12-26 11:06:23 TRACE (main    ) MainCreateDate                      1.891 -   . [1] <-- work: 
+2016-12-26 11:06:23 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Date: 2016:12:25 15:44:09 Lon: 5.844261940347368 Lat: 45.091673819057895
+2016-12-26 11:06:23 TRACE (main    ) MainCreateDate                      1.921 -  [0] <-- main: 
+2016-12-26 11:06:23 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyDate: 
+2016-12-26 11:06:23 TRACE (main    ) ManagerExifSanselan                  .001 -   .  .  .  .  .  .  . [7] <-- modifyDate: 
+2016-12-26 11:06:23 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyGPS: 
+2016-12-26 11:06:23 TRACE (main    ) ManagerExifSanselan                  .001 -   .  .  .  .  .  .  . [7] <-- modifyGPS: 
+2016-12-26 11:06:23 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> writeFile: 
+2016-12-26 11:06:23 TRACE (main    ) ManagerExifSanselan                  .045 -   .  .  .  .  .  .  . [7] <-- writeFile: 
+2016-12-26 11:06:23 TRACE (main    ) ManagerExifSanselan                  .063 -   .  .  .  .  .  . [6] <-- modifyFile: 
+2016-12-26 11:06:23 TRACE (main    ) ManagerExifAllTypes                  .063 -   .  .  .  .  . [5] <-- modifyFile: 
+2016-12-26 11:06:24 TRACE (main    ) MainCreateDate                            -  [0] --> main: 
+2016-12-26 11:06:24 TRACE (main    ) MainCreateDate                            -   . [1] --> work: 
+2016-12-26 11:06:24 TRACE (main    ) UtilsBean                                 -   .  . [2] --> createBeanFactory: 
+2016-12-26 11:06:25 TRACE (main    ) UtilsBean                           1.678 -   .  . [2] <-- createBeanFactory: 
+2016-12-26 11:06:25 TRACE (main    ) BatchCreateDate                           -   .  . [2] --> run: 
+2016-12-26 11:06:25 TRACE (main    ) ManagerExifAllTypes                       -   .  .  . [3] --> determineDate: 
+2016-12-26 11:06:25 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  . [4] --> determineDate: 
+2016-12-26 11:06:25 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  . [4]  -  determineDate: CreationDate: 2016:12:25 16:54:25
+2016-12-26 11:06:25 TRACE (main    ) ManagerExifSanselan                  .178 -   .  .  .  . [4] <-- determineDate: 
+2016-12-26 11:06:25 TRACE (main    ) ManagerExifAllTypes                  .183 -   .  .  . [3] <-- determineDate: 
+2016-12-26 11:06:25 TRACE (main    ) BatchCreateDate                      .185 -   .  . [2] <-- run: 
+2016-12-26 11:06:25 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Renaming file: DSC_0011.JPG to: CRUIDE_20161225-155425_XP.jpg
+2016-12-26 11:06:25 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Modifying file: CRUIDE_20161225-155425_XP.jpg Date: 20161225-155425 Lon/Lat: 5.825271952082857/45.10200196132857
+2016-12-26 11:06:25 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> modifyFile: 
+2016-12-26 11:06:25 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> modifyFile: 
+2016-12-26 11:06:25 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Modifying file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\_photos\CRUIDE_20161225-155425_XP.jpg
+2016-12-26 11:06:25 TRACE (main    ) MainCreateDate                      1.890 -   . [1] <-- work: 
+2016-12-26 11:06:25 TRACE (main    ) MainCreateDate                      1.917 -  [0] <-- main: 
+2016-12-26 11:06:25 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Date: 2016:12:25 15:54:25 Lon: 5.825271952082857 Lat: 45.10200196132857
+2016-12-26 11:06:25 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyDate: 
+2016-12-26 11:06:25 TRACE (main    ) ManagerExifSanselan                  .001 -   .  .  .  .  .  .  . [7] <-- modifyDate: 
+2016-12-26 11:06:25 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyGPS: 
+2016-12-26 11:06:25 TRACE (main    ) ManagerExifSanselan                  .001 -   .  .  .  .  .  .  . [7] <-- modifyGPS: 
+2016-12-26 11:06:25 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> writeFile: 
+2016-12-26 11:06:25 TRACE (main    ) ManagerExifSanselan                  .035 -   .  .  .  .  .  .  . [7] <-- writeFile: 
+2016-12-26 11:06:25 TRACE (main    ) ManagerExifSanselan                  .048 -   .  .  .  .  .  . [6] <-- modifyFile: 
+2016-12-26 11:06:25 TRACE (main    ) ManagerExifAllTypes                  .049 -   .  .  .  .  . [5] <-- modifyFile: 
+2016-12-26 11:06:26 TRACE (main    ) MainCreateDate                            -  [0] --> main: 
+2016-12-26 11:06:26 TRACE (main    ) MainCreateDate                            -   . [1] --> work: 
+2016-12-26 11:06:26 TRACE (main    ) UtilsBean                                 -   .  . [2] --> createBeanFactory: 
+2016-12-26 11:06:28 TRACE (main    ) UtilsBean                           1.683 -   .  . [2] <-- createBeanFactory: 
+2016-12-26 11:06:28 TRACE (main    ) BatchCreateDate                           -   .  . [2] --> run: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifAllTypes                       -   .  .  . [3] --> determineDate: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  . [4] --> determineDate: 
+2016-12-26 11:06:28 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  . [4]  -  determineDate: CreationDate: 2016:12:25 16:54:29
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifSanselan                  .177 -   .  .  .  . [4] <-- determineDate: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifAllTypes                  .181 -   .  .  . [3] <-- determineDate: 
+2016-12-26 11:06:28 TRACE (main    ) BatchCreateDate                      .183 -   .  . [2] <-- run: 
+2016-12-26 11:06:28 TRACE (main    ) MainCreateDate                      1.893 -   . [1] <-- work: 
+2016-12-26 11:06:28 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Renaming file: DSC_0012.JPG to: CRUIDE_20161225-155429_XP.jpg
+2016-12-26 11:06:28 TRACE (main    ) MainCreateDate                      1.922 -  [0] <-- main: 
+2016-12-26 11:06:28 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirPhotos: 	Modifying file: CRUIDE_20161225-155429_XP.jpg Date: 20161225-155429 Lon/Lat: 5.825257525637142/45.10200068727143
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> modifyFile: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> modifyFile: 
+2016-12-26 11:06:28 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Modifying file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\_photos\CRUIDE_20161225-155429_XP.jpg
+2016-12-26 11:06:28 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Date: 2016:12:25 15:54:29 Lon: 5.825257525637142 Lat: 45.10200068727143
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyDate: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifSanselan                  .000 -   .  .  .  .  .  .  . [7] <-- modifyDate: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> modifyGPS: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifSanselan                  .000 -   .  .  .  .  .  .  . [7] <-- modifyGPS: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  .  . [7] --> writeFile: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifSanselan                  .062 -   .  .  .  .  .  .  . [7] <-- writeFile: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifSanselan                  .072 -   .  .  .  .  .  . [6] <-- modifyFile: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifAllTypes                  .074 -   .  .  .  .  . [5] <-- modifyFile: 
+2016-12-26 11:06:28 TRACE (main    ) BatchModifyPhotos                  31.049 -   .  .  .  . [4] <-- workDirPhotos: 
+2016-12-26 11:06:28 TRACE (main    ) BatchModifyPhotos                         -   .  .  .  . [4] --> workDirGps: 
+2016-12-26 11:06:28 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirGps: WORKING DIR: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps
+2016-12-26 11:06:28 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirGps: Modifying GPS files
+2016-12-26 11:06:28 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirGps: 	Renaming file: 01.jpg to: 20161225-000000_01.jpg
+2016-12-26 11:06:28 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirGps: 	Modifying file: 20161225-000000_01.jpg Date: 20161225-000000 Lon/Lat: 5.7631057687/45.168938851
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> modifyFile: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> modifyFile: 
+2016-12-26 11:06:28 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Modifying file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\20161225-000000_01.jpg
+2016-12-26 11:06:28 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Date: 2016:12:25 00:00:00 Lon: 5.7631057687 Lat: 45.168938851
+2016-12-26 11:06:28 WARN  (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  w  modifyFile: 	### The file has not JPEG Metadata: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\20161225-000000_01.jpg
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifSanselan                  .029 -   .  .  .  .  .  . [6] <-- modifyFile: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifAllTypes                  .030 -   .  .  .  .  . [5] <-- modifyFile: 
+2016-12-26 11:06:28 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirGps: 	Renaming file: 02.jpg to: 20161225-000000_02.jpg
+2016-12-26 11:06:28 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirGps: 	Modifying file: 20161225-000000_02.jpg Date: 20161225-000000 Lon/Lat: 5.7631057687/45.168938851
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> modifyFile: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> modifyFile: 
+2016-12-26 11:06:28 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Modifying file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\20161225-000000_02.jpg
+2016-12-26 11:06:28 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Date: 2016:12:25 00:00:00 Lon: 5.7631057687 Lat: 45.168938851
+2016-12-26 11:06:28 WARN  (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  w  modifyFile: 	### The file has not JPEG Metadata: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\20161225-000000_02.jpg
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifSanselan                  .025 -   .  .  .  .  .  . [6] <-- modifyFile: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifAllTypes                  .026 -   .  .  .  .  . [5] <-- modifyFile: 
+2016-12-26 11:06:28 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirGps: 	Renaming file: 03.jpg to: 20161225-000000_03.jpg
+2016-12-26 11:06:28 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirGps: 	Modifying file: 20161225-000000_03.jpg Date: 20161225-000000 Lon/Lat: 5.7631057687/45.168938851
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> modifyFile: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> modifyFile: 
+2016-12-26 11:06:28 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Modifying file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\20161225-000000_03.jpg
+2016-12-26 11:06:28 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Date: 2016:12:25 00:00:00 Lon: 5.7631057687 Lat: 45.168938851
+2016-12-26 11:06:28 WARN  (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  w  modifyFile: 	### The file has not JPEG Metadata: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\20161225-000000_03.jpg
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifSanselan                  .019 -   .  .  .  .  .  . [6] <-- modifyFile: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifAllTypes                  .020 -   .  .  .  .  . [5] <-- modifyFile: 
+2016-12-26 11:06:28 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirGps: 	Renaming file: 04.jpg to: 20161225-000000_04.jpg
+2016-12-26 11:06:28 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirGps: 	Modifying file: 20161225-000000_04.jpg Date: 20161225-000000 Lon/Lat: 5.7631057687/45.168938851
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> modifyFile: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> modifyFile: 
+2016-12-26 11:06:28 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Modifying file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\20161225-000000_04.jpg
+2016-12-26 11:06:28 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Date: 2016:12:25 00:00:00 Lon: 5.7631057687 Lat: 45.168938851
+2016-12-26 11:06:28 WARN  (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  w  modifyFile: 	### The file has not JPEG Metadata: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\20161225-000000_04.jpg
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifSanselan                  .012 -   .  .  .  .  .  . [6] <-- modifyFile: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifAllTypes                  .012 -   .  .  .  .  . [5] <-- modifyFile: 
+2016-12-26 11:06:28 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirGps: 	Renaming file: 05.jpg to: 20161225-000000_05.jpg
+2016-12-26 11:06:28 INFO  (main    ) BatchModifyPhotos                         -   .  .  .  . [4]  -  workDirGps: 	Modifying file: 20161225-000000_05.jpg Date: 20161225-000000 Lon/Lat: 5.7631057687/45.168938851
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> modifyFile: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> modifyFile: 
+2016-12-26 11:06:28 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Modifying file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\20161225-000000_05.jpg
+2016-12-26 11:06:28 DEBUG (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  -  modifyFile: Date: 2016:12:25 00:00:00 Lon: 5.7631057687 Lat: 45.168938851
+2016-12-26 11:06:28 WARN  (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6]  w  modifyFile: 	### The file has not JPEG Metadata: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\20161225-000000_05.jpg
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifSanselan                  .025 -   .  .  .  .  .  . [6] <-- modifyFile: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerExifAllTypes                  .026 -   .  .  .  .  . [5] <-- modifyFile: 
+2016-12-26 11:06:28 TRACE (main    ) BatchModifyPhotos                    .134 -   .  .  .  . [4] <-- workDirGps: 
+2016-12-26 11:06:28 TRACE (main    ) BatchModifyPhotos                  32.811 -   .  .  . [3] <-- run: 
+2016-12-26 11:06:28 TRACE (main    ) MainModifyPhotos                   34.560 -   .  . [2] <-- work: 
+2016-12-26 11:06:28 INFO  (main    ) MainGroupA                                -   . [1]  -  work: ####################################################
+2016-12-26 11:06:28 INFO  (main    ) MainGroupA                                -   . [1]  -  work: BATCH_INDEX_FILES
+2016-12-26 11:06:28 INFO  (main    ) MainGroupA                                -   . [1]  -  work: ####################################################
+2016-12-26 11:06:28 TRACE (main    ) MainIndexFiles                            -   .  . [2] --> work: 
+2016-12-26 11:06:28 TRACE (main    ) UtilsBean                                 -   .  .  . [3] --> createBeanFactory: 
+2016-12-26 11:06:28 TRACE (main    ) UtilsBean                            .113 -   .  .  . [3] <-- createBeanFactory: 
+2016-12-26 11:06:28 TRACE (main    ) BatchArchiveFiles                         -   .  .  . [3] --> runIndex: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> nextIndex: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> checkDirectories: 
+2016-12-26 11:06:28 TRACE (main    ) ManagerArchiveGeneric                .035 -   .  .  .  .  . [5] <-- checkDirectories: 
+2016-12-26 11:06:30 TRACE (main    ) ManagerArchiveGeneric               1.295 -   .  .  .  . [4] <-- nextIndex: 
+2016-12-26 11:06:30 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runIndex: WORKING DIR: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps
+2016-12-26 11:06:30 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runIndex: Indexing GPS files
+2016-12-26 11:06:30 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runIndex: 	Indexing file: 20161225-000000_01.jpg to: 00049975o_20161225-000000.jpg
+2016-12-26 11:06:30 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runIndex: 	Indexing file: 20161225-000000_02.jpg to: 00049976o_20161225-000000.jpg
+2016-12-26 11:06:30 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runIndex: 	Indexing file: 20161225-000000_03.jpg to: 00049977o_20161225-000000.jpg
+2016-12-26 11:06:30 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runIndex: 	Indexing file: 20161225-000000_04.jpg to: 00049978o_20161225-000000.jpg
+2016-12-26 11:06:30 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runIndex: 	Indexing file: 20161225-000000_05.jpg to: 00049979o_20161225-000000.jpg
+2016-12-26 11:06:30 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runIndex: WORKING DIR: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\_photos
+2016-12-26 11:06:30 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runIndex: Indexing PHOTOS files
+2016-12-26 11:06:30 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runIndex: 	Indexing file: CRUIDE_20161225-130126_XP.jpg to: 00049980o_20161225-130126.jpg
+2016-12-26 11:06:30 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runIndex: 	Indexing file: CRUIDE_20161225-131748_XP.jpg to: 00049981o_20161225-131748.jpg
+2016-12-26 11:06:30 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runIndex: 	Indexing file: CRUIDE_20161225-140810_XP.jpg to: 00049982o_20161225-140810.jpg
+2016-12-26 11:06:30 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runIndex: 	Indexing file: CRUIDE_20161225-143225_XP.jpg to: 00049983o_20161225-143225.jpg
+2016-12-26 11:06:30 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runIndex: 	Indexing file: CRUIDE_20161225-143700_XP.jpg to: 00049984o_20161225-143700.jpg
+2016-12-26 11:06:30 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runIndex: 	Indexing file: CRUIDE_20161225-145632_XP.jpg to: 00049985o_20161225-145632.jpg
+2016-12-26 11:06:30 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runIndex: 	Indexing file: CRUIDE_20161225-145636_XP.jpg to: 00049986o_20161225-145636.jpg
+2016-12-26 11:06:30 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runIndex: 	Indexing file: CRUIDE_20161225-145641_XP.jpg to: 00049987o_20161225-145641.jpg
+2016-12-26 11:06:30 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runIndex: 	Indexing file: CRUIDE_20161225-152723_XP.jpg to: 00049988o_20161225-152723.jpg
+2016-12-26 11:06:30 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runIndex: 	Indexing file: CRUIDE_20161225-154409_XP.jpg to: 00049989o_20161225-154409.jpg
+2016-12-26 11:06:30 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runIndex: 	Indexing file: CRUIDE_20161225-155425_XP.jpg to: 00049990o_20161225-155425.jpg
+2016-12-26 11:06:30 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runIndex: 	Indexing file: CRUIDE_20161225-155429_XP.jpg to: 00049991o_20161225-155429.jpg
+2016-12-26 11:06:30 TRACE (main    ) BatchArchiveFiles                   1.375 -   .  .  . [3] <-- runIndex: 
+2016-12-26 11:06:30 TRACE (main    ) MainIndexFiles                      1.490 -   .  . [2] <-- work: 
+2016-12-26 11:06:30 INFO  (main    ) MainGroupA                                -   . [1]  -  work: ####################################################
+2016-12-26 11:06:30 INFO  (main    ) MainGroupA                                -   . [1]  -  work: BATCH_RESIZE_PHOTOS
+2016-12-26 11:06:30 INFO  (main    ) MainGroupA                                -   . [1]  -  work: ####################################################
+2016-12-26 11:06:30 TRACE (main    ) MainResizePhotos                          -   .  . [2] --> work: 
+2016-12-26 11:06:30 TRACE (main    ) UtilsBean                                 -   .  .  . [3] --> createBeanFactory: 
+2016-12-26 11:06:30 TRACE (main    ) UtilsBean                            .117 -   .  .  . [3] <-- createBeanFactory: 
+2016-12-26 11:06:30 TRACE (main    ) BatchResizePhotos                         -   .  .  . [3] --> runResize: 
+2016-12-26 11:06:30 INFO  (main    ) BatchResizePhotos                         -   .  .  . [3]  -  runResize: WORKING DIR: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps
+2016-12-26 11:06:30 INFO  (main    ) BatchResizePhotos                         -   .  .  . [3]  -  runResize: Copying files: 
+2016-12-26 11:06:30 INFO  (main    ) BatchResizePhotos                         -   .  .  . [3]  -  runResize: 	Copying file: 00049975o_20161225-000000.jpg to: 00049975n_20161225-000000.jpg
+2016-12-26 11:06:30 INFO  (main    ) BatchResizePhotos                         -   .  .  . [3]  -  runResize: 	Copying file: 00049976o_20161225-000000.jpg to: 00049976n_20161225-000000.jpg
+2016-12-26 11:06:30 INFO  (main    ) BatchResizePhotos                         -   .  .  . [3]  -  runResize: 	Copying file: 00049977o_20161225-000000.jpg to: 00049977n_20161225-000000.jpg
+2016-12-26 11:06:30 INFO  (main    ) BatchResizePhotos                         -   .  .  . [3]  -  runResize: 	Copying file: 00049978o_20161225-000000.jpg to: 00049978n_20161225-000000.jpg
+2016-12-26 11:06:30 INFO  (main    ) BatchResizePhotos                         -   .  .  . [3]  -  runResize: 	Copying file: 00049979o_20161225-000000.jpg to: 00049979n_20161225-000000.jpg
+2016-12-26 11:06:30 INFO  (main    ) BatchResizePhotos                         -   .  .  . [3]  -  runResize: WORKING DIR: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps
+2016-12-26 11:06:30 INFO  (main    ) BatchResizePhotos                         -   .  .  . [3]  -  runResize: Resizing files: 
+2016-12-26 11:06:30 INFO  (main    ) BatchResizePhotos                         -   .  .  . [3]  -  runResize: 	Resizing file: 00049980o_20161225-130126.jpg to: 00049980n_20161225-130126.jpg
+2016-12-26 11:06:30 TRACE (main    ) ManagerImageImgscalr                      -   .  .  .  . [4] --> resize: 
+2016-12-26 11:06:34 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> copyExif: 
+2016-12-26 11:06:34 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> copyExif: 
+2016-12-26 11:06:34 TRACE (main    ) ManagerExifSanselan                  .238 -   .  .  .  .  .  . [6] <-- copyExif: 
+2016-12-26 11:06:34 TRACE (main    ) ManagerExifAllTypes                  .240 -   .  .  .  .  . [5] <-- copyExif: 
+2016-12-26 11:06:34 TRACE (main    ) ManagerImageImgscalr                4.159 -   .  .  .  . [4] <-- resize: 
+2016-12-26 11:06:34 INFO  (main    ) BatchResizePhotos                         -   .  .  . [3]  -  runResize: 	Resizing file: 00049981o_20161225-131748.jpg to: 00049981n_20161225-131748.jpg
+2016-12-26 11:06:34 TRACE (main    ) ManagerImageImgscalr                      -   .  .  .  . [4] --> resize: 
+2016-12-26 11:06:35 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> copyExif: 
+2016-12-26 11:06:35 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> copyExif: 
+2016-12-26 11:06:35 TRACE (main    ) ManagerExifSanselan                  .018 -   .  .  .  .  .  . [6] <-- copyExif: 
+2016-12-26 11:06:35 TRACE (main    ) ManagerExifAllTypes                  .019 -   .  .  .  .  . [5] <-- copyExif: 
+2016-12-26 11:06:35 TRACE (main    ) ManagerImageImgscalr                 .906 -   .  .  .  . [4] <-- resize: 
+2016-12-26 11:06:35 INFO  (main    ) BatchResizePhotos                         -   .  .  . [3]  -  runResize: 	Resizing file: 00049982o_20161225-140810.jpg to: 00049982n_20161225-140810.jpg
+2016-12-26 11:06:35 TRACE (main    ) ManagerImageImgscalr                      -   .  .  .  . [4] --> resize: 
+2016-12-26 11:06:36 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> copyExif: 
+2016-12-26 11:06:36 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> copyExif: 
+2016-12-26 11:06:36 TRACE (main    ) ManagerExifSanselan                  .018 -   .  .  .  .  .  . [6] <-- copyExif: 
+2016-12-26 11:06:36 TRACE (main    ) ManagerExifAllTypes                  .020 -   .  .  .  .  . [5] <-- copyExif: 
+2016-12-26 11:06:36 TRACE (main    ) ManagerImageImgscalr                 .951 -   .  .  .  . [4] <-- resize: 
+2016-12-26 11:06:36 INFO  (main    ) BatchResizePhotos                         -   .  .  . [3]  -  runResize: 	Resizing file: 00049983o_20161225-143225.jpg to: 00049983n_20161225-143225.jpg
+2016-12-26 11:06:36 TRACE (main    ) ManagerImageImgscalr                      -   .  .  .  . [4] --> resize: 
+2016-12-26 11:06:37 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> copyExif: 
+2016-12-26 11:06:37 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> copyExif: 
+2016-12-26 11:06:37 TRACE (main    ) ManagerExifSanselan                  .018 -   .  .  .  .  .  . [6] <-- copyExif: 
+2016-12-26 11:06:37 TRACE (main    ) ManagerExifAllTypes                  .019 -   .  .  .  .  . [5] <-- copyExif: 
+2016-12-26 11:06:37 TRACE (main    ) ManagerImageImgscalr                 .910 -   .  .  .  . [4] <-- resize: 
+2016-12-26 11:06:37 INFO  (main    ) BatchResizePhotos                         -   .  .  . [3]  -  runResize: 	Resizing file: 00049984o_20161225-143700.jpg to: 00049984n_20161225-143700.jpg
+2016-12-26 11:06:37 TRACE (main    ) ManagerImageImgscalr                      -   .  .  .  . [4] --> resize: 
+2016-12-26 11:06:38 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> copyExif: 
+2016-12-26 11:06:38 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> copyExif: 
+2016-12-26 11:06:38 TRACE (main    ) ManagerExifSanselan                  .067 -   .  .  .  .  .  . [6] <-- copyExif: 
+2016-12-26 11:06:38 TRACE (main    ) ManagerExifAllTypes                  .067 -   .  .  .  .  . [5] <-- copyExif: 
+2016-12-26 11:06:38 TRACE (main    ) ManagerImageImgscalr                1.010 -   .  .  .  . [4] <-- resize: 
+2016-12-26 11:06:38 INFO  (main    ) BatchResizePhotos                         -   .  .  . [3]  -  runResize: 	Resizing file: 00049985o_20161225-145632.jpg to: 00049985n_20161225-145632.jpg
+2016-12-26 11:06:38 TRACE (main    ) ManagerImageImgscalr                      -   .  .  .  . [4] --> resize: 
+2016-12-26 11:06:39 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> copyExif: 
+2016-12-26 11:06:39 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> copyExif: 
+2016-12-26 11:06:39 TRACE (main    ) ManagerExifSanselan                  .101 -   .  .  .  .  .  . [6] <-- copyExif: 
+2016-12-26 11:06:39 TRACE (main    ) ManagerExifAllTypes                  .102 -   .  .  .  .  . [5] <-- copyExif: 
+2016-12-26 11:06:39 TRACE (main    ) ManagerImageImgscalr                1.025 -   .  .  .  . [4] <-- resize: 
+2016-12-26 11:06:39 INFO  (main    ) BatchResizePhotos                         -   .  .  . [3]  -  runResize: 	Resizing file: 00049986o_20161225-145636.jpg to: 00049986n_20161225-145636.jpg
+2016-12-26 11:06:39 TRACE (main    ) ManagerImageImgscalr                      -   .  .  .  . [4] --> resize: 
+2016-12-26 11:06:40 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> copyExif: 
+2016-12-26 11:06:40 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> copyExif: 
+2016-12-26 11:06:40 TRACE (main    ) ManagerExifSanselan                  .018 -   .  .  .  .  .  . [6] <-- copyExif: 
+2016-12-26 11:06:40 TRACE (main    ) ManagerExifAllTypes                  .018 -   .  .  .  .  . [5] <-- copyExif: 
+2016-12-26 11:06:40 TRACE (main    ) ManagerImageImgscalr                 .851 -   .  .  .  . [4] <-- resize: 
+2016-12-26 11:06:40 INFO  (main    ) BatchResizePhotos                         -   .  .  . [3]  -  runResize: 	Resizing file: 00049987o_20161225-145641.jpg to: 00049987n_20161225-145641.jpg
+2016-12-26 11:06:40 TRACE (main    ) ManagerImageImgscalr                      -   .  .  .  . [4] --> resize: 
+2016-12-26 11:06:41 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> copyExif: 
+2016-12-26 11:06:41 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> copyExif: 
+2016-12-26 11:06:41 TRACE (main    ) ManagerExifSanselan                  .018 -   .  .  .  .  .  . [6] <-- copyExif: 
+2016-12-26 11:06:41 TRACE (main    ) ManagerExifAllTypes                  .020 -   .  .  .  .  . [5] <-- copyExif: 
+2016-12-26 11:06:41 TRACE (main    ) ManagerImageImgscalr                 .899 -   .  .  .  . [4] <-- resize: 
+2016-12-26 11:06:41 INFO  (main    ) BatchResizePhotos                         -   .  .  . [3]  -  runResize: 	Resizing file: 00049988o_20161225-152723.jpg to: 00049988n_20161225-152723.jpg
+2016-12-26 11:06:41 TRACE (main    ) ManagerImageImgscalr                      -   .  .  .  . [4] --> resize: 
+2016-12-26 11:06:41 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> copyExif: 
+2016-12-26 11:06:41 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> copyExif: 
+2016-12-26 11:06:41 TRACE (main    ) ManagerExifSanselan                  .017 -   .  .  .  .  .  . [6] <-- copyExif: 
+2016-12-26 11:06:41 TRACE (main    ) ManagerExifAllTypes                  .018 -   .  .  .  .  . [5] <-- copyExif: 
+2016-12-26 11:06:41 TRACE (main    ) ManagerImageImgscalr                 .824 -   .  .  .  . [4] <-- resize: 
+2016-12-26 11:06:41 INFO  (main    ) BatchResizePhotos                         -   .  .  . [3]  -  runResize: 	Resizing file: 00049989o_20161225-154409.jpg to: 00049989n_20161225-154409.jpg
+2016-12-26 11:06:41 TRACE (main    ) ManagerImageImgscalr                      -   .  .  .  . [4] --> resize: 
+2016-12-26 11:06:42 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> copyExif: 
+2016-12-26 11:06:42 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> copyExif: 
+2016-12-26 11:06:42 TRACE (main    ) ManagerExifSanselan                  .018 -   .  .  .  .  .  . [6] <-- copyExif: 
+2016-12-26 11:06:42 TRACE (main    ) ManagerExifAllTypes                  .019 -   .  .  .  .  . [5] <-- copyExif: 
+2016-12-26 11:06:42 TRACE (main    ) ManagerImageImgscalr                 .981 -   .  .  .  . [4] <-- resize: 
+2016-12-26 11:06:42 INFO  (main    ) BatchResizePhotos                         -   .  .  . [3]  -  runResize: 	Resizing file: 00049990o_20161225-155425.jpg to: 00049990n_20161225-155425.jpg
+2016-12-26 11:06:42 TRACE (main    ) ManagerImageImgscalr                      -   .  .  .  . [4] --> resize: 
+2016-12-26 11:06:43 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> copyExif: 
+2016-12-26 11:06:43 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> copyExif: 
+2016-12-26 11:06:43 TRACE (main    ) ManagerExifSanselan                  .016 -   .  .  .  .  .  . [6] <-- copyExif: 
+2016-12-26 11:06:43 TRACE (main    ) ManagerExifAllTypes                  .018 -   .  .  .  .  . [5] <-- copyExif: 
+2016-12-26 11:06:43 TRACE (main    ) ManagerImageImgscalr                 .806 -   .  .  .  . [4] <-- resize: 
+2016-12-26 11:06:43 INFO  (main    ) BatchResizePhotos                         -   .  .  . [3]  -  runResize: 	Resizing file: 00049991o_20161225-155429.jpg to: 00049991n_20161225-155429.jpg
+2016-12-26 11:06:43 TRACE (main    ) ManagerImageImgscalr                      -   .  .  .  . [4] --> resize: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerExifAllTypes                       -   .  .  .  .  . [5] --> copyExif: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerExifSanselan                       -   .  .  .  .  .  . [6] --> copyExif: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerExifSanselan                  .016 -   .  .  .  .  .  . [6] <-- copyExif: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerExifAllTypes                  .018 -   .  .  .  .  . [5] <-- copyExif: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerImageImgscalr                 .902 -   .  .  .  . [4] <-- resize: 
+2016-12-26 11:06:44 TRACE (main    ) BatchResizePhotos                  14.388 -   .  .  . [3] <-- runResize: 
+2016-12-26 11:06:44 TRACE (main    ) MainResizePhotos                   14.506 -   .  . [2] <-- work: 
+2016-12-26 11:06:44 INFO  (main    ) MainGroupA                                -   . [1]  -  work: ####################################################
+2016-12-26 11:06:44 INFO  (main    ) MainGroupA                                -   . [1]  -  work: BATCH_ARCHIVE_FILES
+2016-12-26 11:06:44 INFO  (main    ) MainGroupA                                -   . [1]  -  work: ####################################################
+2016-12-26 11:06:44 TRACE (main    ) MainArchiveFiles                          -   .  . [2] --> work: 
+2016-12-26 11:06:44 TRACE (main    ) UtilsBean                                 -   .  .  . [3] --> createBeanFactory: 
+2016-12-26 11:06:44 TRACE (main    ) UtilsBean                            .111 -   .  .  . [3] <-- createBeanFactory: 
+2016-12-26 11:06:44 TRACE (main    ) BatchArchiveFiles                         -   .  .  . [3] --> runCopyN: 
+2016-12-26 11:06:44 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runCopyN: WORKING DIR: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps
+2016-12-26 11:06:44 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runCopyN: Archiving COPY N GPS files
+2016-12-26 11:06:44 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runCopyN: 	Archiving file: 00049975n_20161225-000000.jpg
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> copyToArchiv: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .003 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .023 -   .  .  .  . [4] <-- copyToArchiv: 
+2016-12-26 11:06:44 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runCopyN: 	Archiving file: 00049976n_20161225-000000.jpg
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> copyToArchiv: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .002 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .016 -   .  .  .  . [4] <-- copyToArchiv: 
+2016-12-26 11:06:44 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runCopyN: 	Archiving file: 00049977n_20161225-000000.jpg
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> copyToArchiv: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .002 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .015 -   .  .  .  . [4] <-- copyToArchiv: 
+2016-12-26 11:06:44 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runCopyN: 	Archiving file: 00049978n_20161225-000000.jpg
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> copyToArchiv: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .002 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .015 -   .  .  .  . [4] <-- copyToArchiv: 
+2016-12-26 11:06:44 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runCopyN: 	Archiving file: 00049979n_20161225-000000.jpg
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> copyToArchiv: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .014 -   .  .  .  . [4] <-- copyToArchiv: 
+2016-12-26 11:06:44 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runCopyN: WORKING DIR: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\_photos
+2016-12-26 11:06:44 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runCopyN: Archiving COPY N PHOTOS files
+2016-12-26 11:06:44 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runCopyN: 	Archiving file: 00049980n_20161225-130126.jpg
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> copyToArchiv: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .015 -   .  .  .  . [4] <-- copyToArchiv: 
+2016-12-26 11:06:44 TRACE (main    ) BatchArchiveFiles                         -   .  .  .  . [4] --> moveToFinal: 
+2016-12-26 11:06:44 TRACE (main    ) BatchArchiveFiles                    .002 -   .  .  .  . [4] <-- moveToFinal: 
+2016-12-26 11:06:44 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runCopyN: 	Archiving file: 00049981n_20161225-131748.jpg
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> copyToArchiv: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .002 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .014 -   .  .  .  . [4] <-- copyToArchiv: 
+2016-12-26 11:06:44 TRACE (main    ) BatchArchiveFiles                         -   .  .  .  . [4] --> moveToFinal: 
+2016-12-26 11:06:44 TRACE (main    ) BatchArchiveFiles                    .002 -   .  .  .  . [4] <-- moveToFinal: 
+2016-12-26 11:06:44 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runCopyN: 	Archiving file: 00049982n_20161225-140810.jpg
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> copyToArchiv: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .000 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .002 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .015 -   .  .  .  . [4] <-- copyToArchiv: 
+2016-12-26 11:06:44 TRACE (main    ) BatchArchiveFiles                         -   .  .  .  . [4] --> moveToFinal: 
+2016-12-26 11:06:44 TRACE (main    ) BatchArchiveFiles                    .002 -   .  .  .  . [4] <-- moveToFinal: 
+2016-12-26 11:06:44 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runCopyN: 	Archiving file: 00049983n_20161225-143225.jpg
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> copyToArchiv: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .002 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .013 -   .  .  .  . [4] <-- copyToArchiv: 
+2016-12-26 11:06:44 TRACE (main    ) BatchArchiveFiles                         -   .  .  .  . [4] --> moveToFinal: 
+2016-12-26 11:06:44 TRACE (main    ) BatchArchiveFiles                    .003 -   .  .  .  . [4] <-- moveToFinal: 
+2016-12-26 11:06:44 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runCopyN: 	Archiving file: 00049984n_20161225-143700.jpg
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> copyToArchiv: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:44 TRACE (main    ) ManagerArchiveGeneric                .003 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .017 -   .  .  .  . [4] <-- copyToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) BatchArchiveFiles                         -   .  .  .  . [4] --> moveToFinal: 
+2016-12-26 11:06:45 TRACE (main    ) BatchArchiveFiles                    .002 -   .  .  .  . [4] <-- moveToFinal: 
+2016-12-26 11:06:45 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runCopyN: 	Archiving file: 00049985n_20161225-145632.jpg
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> copyToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .002 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .017 -   .  .  .  . [4] <-- copyToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) BatchArchiveFiles                         -   .  .  .  . [4] --> moveToFinal: 
+2016-12-26 11:06:45 TRACE (main    ) BatchArchiveFiles                    .001 -   .  .  .  . [4] <-- moveToFinal: 
+2016-12-26 11:06:45 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runCopyN: 	Archiving file: 00049986n_20161225-145636.jpg
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> copyToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .002 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .015 -   .  .  .  . [4] <-- copyToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) BatchArchiveFiles                         -   .  .  .  . [4] --> moveToFinal: 
+2016-12-26 11:06:45 TRACE (main    ) BatchArchiveFiles                    .002 -   .  .  .  . [4] <-- moveToFinal: 
+2016-12-26 11:06:45 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runCopyN: 	Archiving file: 00049987n_20161225-145641.jpg
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> copyToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .002 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .003 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .017 -   .  .  .  . [4] <-- copyToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) BatchArchiveFiles                         -   .  .  .  . [4] --> moveToFinal: 
+2016-12-26 11:06:45 TRACE (main    ) BatchArchiveFiles                    .002 -   .  .  .  . [4] <-- moveToFinal: 
+2016-12-26 11:06:45 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runCopyN: 	Archiving file: 00049988n_20161225-152723.jpg
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> copyToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .002 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .015 -   .  .  .  . [4] <-- copyToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) BatchArchiveFiles                         -   .  .  .  . [4] --> moveToFinal: 
+2016-12-26 11:06:45 TRACE (main    ) BatchArchiveFiles                    .002 -   .  .  .  . [4] <-- moveToFinal: 
+2016-12-26 11:06:45 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runCopyN: 	Archiving file: 00049989n_20161225-154409.jpg
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> copyToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .002 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .015 -   .  .  .  . [4] <-- copyToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) BatchArchiveFiles                         -   .  .  .  . [4] --> moveToFinal: 
+2016-12-26 11:06:45 TRACE (main    ) BatchArchiveFiles                    .002 -   .  .  .  . [4] <-- moveToFinal: 
+2016-12-26 11:06:45 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runCopyN: 	Archiving file: 00049990n_20161225-155425.jpg
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> copyToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .013 -   .  .  .  . [4] <-- copyToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) BatchArchiveFiles                         -   .  .  .  . [4] --> moveToFinal: 
+2016-12-26 11:06:45 TRACE (main    ) BatchArchiveFiles                    .002 -   .  .  .  . [4] <-- moveToFinal: 
+2016-12-26 11:06:45 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runCopyN: 	Archiving file: 00049991n_20161225-155429.jpg
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> copyToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .002 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .013 -   .  .  .  . [4] <-- copyToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) BatchArchiveFiles                         -   .  .  .  . [4] --> moveToFinal: 
+2016-12-26 11:06:45 TRACE (main    ) BatchArchiveFiles                    .002 -   .  .  .  . [4] <-- moveToFinal: 
+2016-12-26 11:06:45 TRACE (main    ) BatchArchiveFiles                    .329 -   .  .  . [3] <-- runCopyN: 
+2016-12-26 11:06:45 TRACE (main    ) BatchArchiveFiles                         -   .  .  . [3] --> runMoveOV: 
+2016-12-26 11:06:45 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runMoveOV: WORKING DIR: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps
+2016-12-26 11:06:45 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runMoveOV: Archiving MOVE O&V GPS files
+2016-12-26 11:06:45 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runMoveOV: 	Archiving file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\00049975o_20161225-000000.jpg
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .003 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .007 -   .  .  .  . [4] <-- moveToArchiv: 
+2016-12-26 11:06:45 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runMoveOV: 	Archiving file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\00049976o_20161225-000000.jpg
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .003 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .004 -   .  .  .  . [4] <-- moveToArchiv: 
+2016-12-26 11:06:45 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runMoveOV: 	Archiving file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\00049977o_20161225-000000.jpg
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .002 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .008 -   .  .  .  . [4] <-- moveToArchiv: 
+2016-12-26 11:06:45 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runMoveOV: 	Archiving file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\00049978o_20161225-000000.jpg
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .003 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .005 -   .  .  .  . [4] <-- moveToArchiv: 
+2016-12-26 11:06:45 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runMoveOV: 	Archiving file: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\gps\00049979o_20161225-000000.jpg
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .002 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .005 -   .  .  .  . [4] <-- moveToArchiv: 
+2016-12-26 11:06:45 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runMoveOV: WORKING DIR: c:\media\traces\2016\albums\20161225_MTB_FRA_Grenoble,Chamrousse\_photos
+2016-12-26 11:06:45 INFO  (main    ) BatchArchiveFiles                         -   .  .  . [3]  -  runMoveOV: Archiving MOVE O&V PHOTOS files
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .000 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .004 -   .  .  .  . [4] <-- moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .002 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .003 -   .  .  .  . [4] <-- moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .002 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .004 -   .  .  .  . [4] <-- moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .003 -   .  .  .  . [4] <-- moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .000 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .004 -   .  .  .  . [4] <-- moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .003 -   .  .  .  . [4] <-- moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .000 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .003 -   .  .  .  . [4] <-- moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .000 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .004 -   .  .  .  . [4] <-- moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .003 -   .  .  .  . [4] <-- moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .000 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .003 -   .  .  .  . [4] <-- moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .002 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .003 -   .  .  .  . [4] <-- moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  . [4] --> moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  . [5] --> fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                     -   .  .  .  .  .  . [6] --> checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  .  . [6] <-- checkDirectories: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .001 -   .  .  .  .  . [5] <-- fileTarget: 
+2016-12-26 11:06:45 TRACE (main    ) ManagerArchiveGeneric                .003 -   .  .  .  . [4] <-- moveToArchiv: 
+2016-12-26 11:06:45 TRACE (main    ) BatchArchiveFiles                    .097 -   .  .  . [3] <-- runMoveOV: 
+2016-12-26 11:06:45 TRACE (main    ) MainArchiveFiles                     .539 -   .  . [2] <-- work: 
+2016-12-26 11:06:45 TRACE (main    ) MainGroupA                         51.115 -   . [1] <-- work: 
+2016-12-26 11:06:45 TRACE (main    ) MainGroupA                         51.143 -  [0] <-- main: 
