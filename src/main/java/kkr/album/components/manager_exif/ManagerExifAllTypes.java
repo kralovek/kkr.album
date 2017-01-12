@@ -1,24 +1,22 @@
 package kkr.album.components.manager_exif;
 
 import java.io.File;
-import java.util.Date;
-
-import kkr.album.exception.BaseException;
-import kkr.album.exception.ConfigurationException;
 
 import org.apache.log4j.Logger;
 
-public class ManagerExifAllTypes extends ManagerExifAllTypesFwk implements
-		ManagerExif {
-	private static final Logger LOGGER = Logger
-			.getLogger(ManagerExifAllTypes.class);
+import kkr.album.exception.BaseException;
+import kkr.album.exception.ConfigurationException;
+import kkr.album.model.DateNZ;
 
-	public Date determineDate(File file) throws BaseException {
+public class ManagerExifAllTypes extends ManagerExifAllTypesFwk implements ManagerExif {
+	private static final Logger LOGGER = Logger.getLogger(ManagerExifAllTypes.class);
+
+	public DateNZ determineDate(File file) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
 			testConfigured();
 			ManagerExif managerExif = determineManagerExif(file);
-			Date date = managerExif.determineDate(file);
+			DateNZ date = managerExif.determineDate(file);
 			LOGGER.trace("OK");
 			return date;
 		} finally {
@@ -26,8 +24,7 @@ public class ManagerExifAllTypes extends ManagerExifAllTypesFwk implements
 		}
 	}
 
-	public void modifyFile(File file, Date date, Double longitude,
-			Double latitude) throws BaseException {
+	public void modifyFile(File file, DateNZ date, Double longitude, Double latitude) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
 			testConfigured();
@@ -39,7 +36,7 @@ public class ManagerExifAllTypes extends ManagerExifAllTypesFwk implements
 		}
 	}
 
-	public void modifyFile(File file, Date date) throws BaseException {
+	public void modifyFile(File file, DateNZ date) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
 			testConfigured();
@@ -59,12 +56,11 @@ public class ManagerExifAllTypes extends ManagerExifAllTypesFwk implements
 		}
 		ManagerExif managerExif = managersExif.get(ext);
 		if (managerExif == null) {
-			throw new ConfigurationException(
-					"No ManagerExif is configured for extension: " + ext);
+			throw new ConfigurationException("No ManagerExif is configured for extension: " + ext);
 		}
 		return managerExif;
 	}
-	
+
 	public void copyExif(File fileSource, File fileTarget) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {

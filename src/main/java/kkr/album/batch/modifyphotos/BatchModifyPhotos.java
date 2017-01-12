@@ -8,16 +8,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.TreeMap;
 import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
@@ -25,14 +22,17 @@ import org.apache.log4j.Logger;
 import kkr.album.components.manager_gpx.model.Gpx;
 import kkr.album.components.manager_gpx.model.Point;
 import kkr.album.components.manager_gpx.model.Trace;
-import kkr.album.components.timeevaluator.TimeEvaluator;
+import kkr.album.components.timeevaluator.FileTime;
+import kkr.album.components.timeevaluator.TimeType;
 import kkr.album.exception.BaseException;
 import kkr.album.exception.FunctionalException;
 import kkr.album.exception.TechnicalException;
+import kkr.album.model.DateNZ;
 import kkr.album.utils.UtilsAlbums;
 import kkr.album.utils.UtilsConsole;
 import kkr.album.utils.UtilsFile;
 import kkr.album.utils.UtilsPattern;
+import kkr.album.utils.UtilsTimes;
 import kkr.common.utils.UtilsResource;
 
 public class BatchModifyPhotos extends BatchModifyPhotosFwk {
@@ -57,12 +57,12 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 
 	private static final FileFilter FILE_FILTER_GPX = new UtilsPattern.FileFilterFile(PATTERN_GPX);
 
-	private static final DateFormat DATE_FORMAT_CREATE = new SimpleDateFormat("yyyyMMdd-HHmmss");
+	private static final String DATE_PATTERN_CREATE = "yyyyMMdd-HHmmss";
 
 	public void run(File dirBase) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
-			Date date = UtilsAlbums.determineDate(dirBase);
+			DateNZ date = UtilsAlbums.determineDate(dirBase);
 
 			File dirGps = new File(dirBase, "gps");
 			File dirPhotos = new File(dirBase, dirnamePhotos);
@@ -73,29 +73,33 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 
 			Map<String, File> dirsPhotos = loadFilesPhotos(dirBase);
 
-			Map<String, TimeEvaluator.FileTime> times;
+			Map<String, Map<TimeType, FileTime>> times;
 			times = timeEvaluator.loadTimes(dirGps);
 
 			Gpx gpx = loadFilesGpx(dirGps);
 
-			for (TimeEvaluator.FileTime fileTime : times.values()) {
-				workTime(fileTime, gpx);
+			for (Map<TimeType, FileTime> map : times.values()) {
+				for (FileTime fileTime : map.values()) {
+					workTime(fileTime, gpx);
+				}
 			}
 
 			if (dirsPhotos.size() != 0) {
-
 				Map<String, String> tags = loadTags(dirGps);
 
 				for (Map.Entry<String, File> entry : dirsPhotos.entrySet()) {
-					if (!times.containsKey(entry.getKey())) {
+					Map<TimeType, FileTime> types = times.get(entry.getKey());
+					if (types == null) {
 						throw new FunctionalException(
 								"No time file for the photos directory: " + entry.getValue().getAbsolutePath());
 					}
 				}
 
 				for (Map.Entry<String, File> entry : dirsPhotos.entrySet()) {
-					TimeEvaluator.FileTime fileTime = times.get(entry.getKey());
-					workDirPhotos(entry.getKey(), entry.getValue(), dirPhotos, fileTime.getMove(), tags, gpx);
+					String symbolName = entry.getKey();
+					File dir = entry.getValue();
+					Map<TimeType, FileTime> fileTimeTypes = times.get(symbolName);
+					workDirPhotos(symbolName, dir, dirPhotos, fileTimeTypes, tags, gpx);
 				}
 			}
 
@@ -200,11 +204,11 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 		}
 	}
 
-	private void workTime(TimeEvaluator.FileTime fileTime, Gpx gpx) throws BaseException {
+	private void workTime(FileTime fileTime, Gpx gpx) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
-			Date time = managerExif.determineDate(fileTime.getFile());
-			Date timeMove = moveTime(time, fileTime.getMove());
+			DateNZ time = managerExif.determineDate(fileTime.getFile());
+			DateNZ timeMove = time.moveSeconds(fileTime.getMove() != null ? fileTime.getMove().intValue() : 0);
 
 			Point point = interpolateGpx(timeMove, gpx);
 			if (point == null) {
@@ -219,7 +223,7 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 		}
 	}
 
-	private void workDirGps(File dirGps, Gpx gpx, Date date) throws BaseException {
+	private void workDirGps(File dirGps, Gpx gpx, DateNZ date) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
 			LOGGER.info("WORKING DIR: " + dirGps.getAbsolutePath());
@@ -234,7 +238,7 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 				Point point = mainPointGpx(gpx);
 
 				for (File file : files) {
-					String stringTime = UtilsPattern.DATE_FORMAT_DATETIME0.format(date);
+					String stringTime = date.toString(UtilsPattern.DATE_PATTERN_DATETIME0);
 					File fileTarget = new File(dirGps, stringTime + "_" + file.getName());
 					LOGGER.info("\tRenaming file: " + file.getName() + " to: " + fileTarget.getName());
 					UtilsFile.moveFile(file, fileTarget);
@@ -251,32 +255,90 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 		}
 	}
 
-	private void workDirPhotos(String symbolName, File dir, File dirTarget, Long move, Map<String, String> tags,
-			Gpx gpx) throws BaseException {
+	private void workDirPhotos(String symbolName, File dir, File dirTarget, Map<TimeType, FileTime> fileTimeTypes,
+			Map<String, String> tags, Gpx gpx) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
 			LOGGER.info("WORKING DIR: " + dir.getAbsolutePath());
-			LOGGER.info("Modifying PHOTOS files: " + move + " sec.");
 
 			File[] files = dir.listFiles(FILE_FILTER_FILES_FROM_PHOTOS);
 			if (files == null) {
 				throw new TechnicalException("The listed directory does not exist: " + dir.getAbsolutePath());
 			}
-			boolean eqDir = dir.equals(dirTarget);
-			List<File> filesNoGps = new ArrayList<File>();
+
+			Map<TimeType, Collection<File>> filesByType = new TreeMap<TimeType, Collection<File>>();
+			for (File file : files) {
+				TimeType timeType = UtilsTimes.timeTypeFromFile(file);
+				if (!fileTimeTypes.containsKey(timeType)) {
+					throw new FunctionalException(
+							"No time file for the type: " + timeType + " in the directory: " + dir.getAbsolutePath());
+				}
+				Collection<File> filesOfType = filesByType.get(timeType);
+				if (filesOfType == null) {
+					filesOfType = new ArrayList<File>();
+					filesByType.put(timeType, filesOfType);
+				}
+				filesOfType.add(file);
+			}
+
+			Collection<File> filesNoGps = new ArrayList<File>();
+
+			for (Map.Entry<TimeType, Collection<File>> entry : filesByType.entrySet()) {
+				TimeType timeType = entry.getKey();
+				FileTime fileTime = fileTimeTypes.get(timeType);
+				Collection<File> filesOfType = entry.getValue();
+
+				int moveSeconds = fileTime.getMove() != null ? fileTime.getMove().intValue() : 0;
+				LOGGER.info("Modifying PHOTOS files " + timeType.name() + ": " + moveSeconds + " sec.");
+
+				workPhotosType(dir, dirTarget, filesOfType, moveSeconds, symbolName, gpx, filesNoGps);
+			}
+
+			if (!filesNoGps.isEmpty()) {
+				LOGGER.warn("\tList of NON GPS files: " + filesNoGps.size());
+				for (File file : filesNoGps) {
+					LOGGER.warn("\t\tFile: " + file.getAbsolutePath());
+				}
+				String message = "Now you can geolocalize them yourself.";
+				if (UtilsConsole.readAnswerYN(message + "\nDo you want to continue?")) {
+					LOGGER.warn("No GPX file found. Photos will not be geolocalized!");
+				} else {
+					throw new FunctionalException(message);
+				}
+			}
+
+			files = dir.listFiles();
+			if (files.length == 0) {
+				if (!dir.delete()) {
+					throw new TechnicalException("Cannot remove the directory: " + dir.getAbsolutePath());
+				}
+			} else {
+				LOGGER.warn("The directory will not be removed because it's not empty: " + dir.getAbsolutePath());
+			}
+
+			LOGGER.trace("OK");
+		} finally {
+			LOGGER.trace("END");
+		}
+	}
+
+	private void workPhotosType(File dir, File dirTarget, Collection<File> files, int moveSeconds, String symbolName,
+			Gpx gpx, Collection<File> filesNoGps) throws BaseException {
+		LOGGER.trace("BEGIN");
+		try {
 			for (File file : files) {
 				// Date time = managerExif.determineDate(file);
-				Date time = determineDate(file);
+				DateNZ time = determineDate(file);
 
 				if (time == null) {
 					throw new TechnicalException("Cannot determine the time from the file: " + file.getAbsolutePath());
 				}
-				Date timeMove = moveTime(time, move);
+				DateNZ timeMove = time.moveSeconds(moveSeconds);
 				Point point = interpolateGpx(timeMove, gpx);
 				if (point == null) {
 					LOGGER.warn("### No GPS position found for the file: " + file.getAbsolutePath());
 				}
-				String stringTime = UtilsPattern.DATE_FORMAT_DATETIME.format(timeMove);
+				String stringTime = timeMove.toString(UtilsPattern.DATE_PATTERN_DATETIME);
 				String ext = UtilsFile.extension(file);
 				File fileTarget = new File(dirTarget, "CRUIDE_" + stringTime + "_" + symbolName + "." + ext);
 				LOGGER.info("\tRenaming file: " + file.getName() + " to: " + fileTarget.getName());
@@ -293,39 +355,10 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 				}
 			}
 
-			if (!filesNoGps.isEmpty()) {
-				LOGGER.warn("\tList of NON GPS files: " + filesNoGps.size());
-				for (File file : filesNoGps) {
-					LOGGER.warn("\t\tFile: " + file.getAbsolutePath());
-				}
-				String message = "Now you can geolocalize them yourself.";
-				if (UtilsConsole.readAnswerYN(message + "\nDo you want to continue?")) {
-					LOGGER.warn("No GPX file found. Photos will not be geolocalized!");
-				} else {
-					throw new FunctionalException(message);
-				}
-			}
-
-			if (!eqDir) {
-				files = dir.listFiles();
-				if (files.length == 0) {
-					if (!dir.delete()) {
-						throw new TechnicalException("Cannot remove the directory: " + dir.getAbsolutePath());
-					}
-				} else {
-					LOGGER.warn("The directory will not be removed because it's not empty: " + dir.getAbsolutePath());
-				}
-			}
-
 			LOGGER.trace("OK");
 		} finally {
 			LOGGER.trace("END");
 		}
-	}
-
-	private Date moveTime(Date date, long seconds) {
-		Date retval = new Date(date.getTime() + seconds * 1000L);
-		return retval;
 	}
 
 	private Point mainPointGpx(Gpx gpx) {
@@ -337,7 +370,7 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 		return null;
 	}
 
-	private Point interpolateGpx(Date time, Gpx gpx) {
+	private Point interpolateGpx(DateNZ time, Gpx gpx) {
 		Point point1 = null;
 		Point point2 = null;
 		go_gpx: for (Trace trace : gpx.getTraces()) {
@@ -377,33 +410,27 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 		return point;
 	}
 
-	private Double interpolate(Date time, Date time1, Date time2, Double value1, Double value2) {
+	private Double interpolate(DateNZ time, DateNZ time1, DateNZ time2, Double value1, Double value2) {
 		if (value1 == null || value2 == null) {
 			return null;
 		}
-		double dt = (double) (time2.getTime() - time1.getTime());
-		double dtt = (double) (time.getTime() - time1.getTime());
+		double dt = (double) time2.durationMs(time1);
+		double dtt = (double) time.durationMs(time1);
 		double dv = (double) (value2 - value1);
 		double value = dv * dtt / dt + value1;
 		return value;
-	}
-
-	private Integer interpolate(Date time, Date time1, Date time2, Integer value1, Integer value2) {
-		if (value1 == null || value2 == null) {
-			return null;
-		}
-		double dt = (double) (time2.getTime() - time1.getTime());
-		double dtt = (double) (time.getTime() - time1.getTime());
-		double dv = (double) (value2 - value1);
-		double value = dv * dtt / dt + (double) value1;
-		return (int) value;
 	}
 
 	private String toString(Object object) {
 		return object != null ? object.toString() : "-";
 	}
 
-	private Date determineDate(File file) throws BaseException {
+	private DateNZ determineDate(File file) throws BaseException {
+		DateNZ date = managerExif.determineDate(file);
+		return date;
+	}
+
+	private DateNZ determineDateX(File file) throws BaseException {
 		String line;
 		Process process = null;
 		try {
@@ -445,9 +472,9 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 		}
 
 		try {
-			Date date = DATE_FORMAT_CREATE.parse(line);
+			DateNZ date = new DateNZ(line, DATE_PATTERN_CREATE);
 			return date;
-		} catch (ParseException ex) {
+		} catch (Exception ex) {
 			throw new TechnicalException("Cannot retrieve date by external xBatchCreateDate - bad format. File: "
 					+ file.getAbsolutePath() + " Source: " + line, ex);
 		}

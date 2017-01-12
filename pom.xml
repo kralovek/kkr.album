@@ -58,7 +58,7 @@
 		<dependency>
 			<groupId>com.googlecode.mp4parser</groupId>
 			<artifactId>isoparser</artifactId>
-			<version>1.0.1</version>
+			<version>1.1.21</version>
 		</dependency>
 		<dependency>
 			<groupId>com.drewnoakes</groupId>
@@ -90,13 +90,37 @@
 			<version>v3-rev132-1.20.0</version>
 		</dependency>
 
-        <dependency>
-            <groupId>kkr.common</groupId>
-            <artifactId>kkr.common</artifactId>
-            <version>0.0.1</version>
-        </dependency>
+		<dependency>
+			<groupId>kkr.common</groupId>
+			<artifactId>kkr.common</artifactId>
+			<version>0.0.1</version>
+		</dependency>
 
+		<dependency>
+			<groupId>org.apache.tika</groupId>
+			<artifactId>tika-core</artifactId>
+			<version>1.14</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tika</groupId>
+			<artifactId>tika-parsers</artifactId>
+			<version>1.14</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-junit</artifactId>
+			<version>2.0.0.0</version>
+		</dependency>
 	</dependencies>
+
 
 
 	<build>
@@ -115,6 +139,7 @@
 					<target>1.5</target>
 				</configuration>
 			</plugin>
+			<!-- 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
@@ -140,6 +165,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			 -->
 		</plugins>
 	</build>
 

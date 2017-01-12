@@ -1,21 +1,21 @@
 package kkr.album.components.manager_gpx.model;
 
-import kkr.album.components.manager_gpx.XmlReader;
-
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+import kkr.album.components.manager_gpx.XmlReader;
+import kkr.album.model.DateNZ;
+
 public class Gpx implements Cloneable {
-	private Date time;
+	private DateNZ time;
 	private List<XmlReader.Attribute> attributes = new ArrayList<XmlReader.Attribute>();
 	private List<Trace> traces = new ArrayList<Trace>();
 
-	public Date getTime() {
+	public DateNZ getTime() {
 		return time;
 	}
 
-	public void setTime(Date time) {
+	public void setTime(DateNZ time) {
 		this.time = time;
 	}
 
@@ -40,7 +40,7 @@ public class Gpx implements Cloneable {
 		gpx.time = time;
 		if (attributes != null) {
 			for (XmlReader.Attribute attribute : attributes) {
-				gpx.attributes.add((XmlReader.Attribute) attribute.clone()); 
+				gpx.attributes.add((XmlReader.Attribute) attribute.clone());
 			}
 		}
 		if (traces != null) {

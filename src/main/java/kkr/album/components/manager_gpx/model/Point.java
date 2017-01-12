@@ -1,6 +1,6 @@
 package kkr.album.components.manager_gpx.model;
 
-import java.util.Date;
+import kkr.album.model.DateNZ;
 
 public class Point implements Cloneable, Comparable<Point> {
 	private Double latitude;
@@ -9,7 +9,7 @@ public class Point implements Cloneable, Comparable<Point> {
 	private Double temperature;
 	private Double heartRate;
 	private Double cadence;
-	private Date time;
+	private DateNZ time;
 
 	public Double getLatitude() {
 		return latitude;
@@ -51,11 +51,11 @@ public class Point implements Cloneable, Comparable<Point> {
 		this.cadence = cadence;
 	}
 
-	public Date getTime() {
+	public DateNZ getTime() {
 		return time;
 	}
 
-	public void setTime(Date time) {
+	public void setTime(DateNZ time) {
 		this.time = time;
 	}
 
@@ -86,7 +86,12 @@ public class Point implements Cloneable, Comparable<Point> {
 		return 0;
 	}
 
+	public int hashCode() {
+		return time.hashCode();
+	}
+
 	public String toString() {
-		return "[" + latitude + "/" + longitude + "] E:" + elevation + " HR:" + heartRate + " T:" + temperature;
+		return "(" + time.toString() + ") [" + latitude + "/" + longitude + "] E:" + elevation + " HR:" + heartRate
+				+ " T:" + temperature;
 	}
 }

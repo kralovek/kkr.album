@@ -4,29 +4,35 @@ import java.io.File;
 import java.io.FileFilter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.SimpleTimeZone;
 import java.util.TimeZone;
 import java.util.regex.Pattern;
 
 public class UtilsPattern {
 
+	public static final TimeZone GMT = new SimpleTimeZone(0, "GMT");
+
+	public static final String DATE_PATTERN_DATETIME = "yyyyMMdd-HHmmss";
 	public static final DateFormat DATE_FORMAT_DATETIME;
 
 	static {
-		DATE_FORMAT_DATETIME = new SimpleDateFormat("yyyyMMdd-HHmmss");
+		DATE_FORMAT_DATETIME = new SimpleDateFormat(DATE_PATTERN_DATETIME);
 		DATE_FORMAT_DATETIME.setTimeZone(TimeZone.getTimeZone("GMT"));
 	}
 
+	public static final String DATE_PATTERN_DATE = "yyyyMMdd";
 	public static final DateFormat DATE_FORMAT_DATE;
 
 	static {
-		DATE_FORMAT_DATE = new SimpleDateFormat("yyyyMMdd");
+		DATE_FORMAT_DATE = new SimpleDateFormat(DATE_PATTERN_DATE);
 		DATE_FORMAT_DATE.setTimeZone(TimeZone.getTimeZone("GMT"));
 	}
 
+	public static final String DATE_PATTERN_DATETIME0 = "yyyyMMdd-000000";
 	public static final DateFormat DATE_FORMAT_DATETIME0;
 
 	static {
-		DATE_FORMAT_DATETIME0 = new SimpleDateFormat("yyyyMMdd-000000");
+		DATE_FORMAT_DATETIME0 = new SimpleDateFormat(DATE_PATTERN_DATETIME0);
 		DATE_FORMAT_DATETIME0.setTimeZone(TimeZone.getTimeZone("GMT"));
 	}
 

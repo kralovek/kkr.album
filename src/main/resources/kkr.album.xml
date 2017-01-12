@@ -45,10 +45,6 @@
 		<property name="dirPicasa" value="c:\media\photos\picasa" />
 	</bean>
 
-	<bean id="batchUploadPicasa" class="kkr.album.batch.uploadpicasa.BatchUploadPicasa">
-		<property name="managerPicasa" ref="managerPicasa" />
-	</bean>
-
 	<bean id="batchArchiveFiles" class="kkr.album.batch.archivefiles.BatchArchiveFiles">
 		<property name="managerArchive" ref="managerArchive" />
 	</bean>

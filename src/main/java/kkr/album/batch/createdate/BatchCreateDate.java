@@ -1,25 +1,23 @@
 package kkr.album.batch.createdate;
 
 import java.io.File;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.apache.log4j.Logger;
 
 import kkr.album.exception.BaseException;
+import kkr.album.model.DateNZ;
 
 public class BatchCreateDate extends BatchCreateDateFwk {
 	private static final Logger LOG = Logger.getLogger(BatchCreateDate.class);
 
-	private static DateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMdd-HHmmss");
+	private static String DATE_PATTERN = "yyyyMMdd-HHmmss";
 
 	public void run(File file) throws BaseException {
 		LOG.trace("BEGIN");
 		try {
-			Date date = managerExif.determineDate(file);
+			DateNZ date = managerExif.determineDate(file);
 			if (date != null) {
-				String dateString = DATE_FORMAT.format(date);
+				String dateString = date.toString(DATE_PATTERN);
 				System.out.println(dateString);
 			} else {
 				System.out.println("NULL");

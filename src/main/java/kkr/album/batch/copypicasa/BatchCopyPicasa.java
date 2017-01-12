@@ -2,29 +2,25 @@ package kkr.album.batch.copypicasa;
 
 import java.io.File;
 import java.io.FileFilter;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.regex.Pattern;
+
+import org.apache.log4j.Logger;
 
 import kkr.album.exception.BaseException;
 import kkr.album.exception.FunctionalException;
+import kkr.album.model.DateNZ;
 import kkr.album.utils.UtilsAlbums;
 import kkr.album.utils.UtilsConsole;
 import kkr.album.utils.UtilsFile;
 import kkr.album.utils.UtilsPattern;
 
-import org.apache.log4j.Logger;
-
 public class BatchCopyPicasa extends BatchCopyPicasaFwk {
-	private static final Logger LOGGER = Logger
-			.getLogger(BatchCopyPicasa.class);
+	private static final Logger LOGGER = Logger.getLogger(BatchCopyPicasa.class);
 
-	private static final Pattern PATTERN_N = Pattern.compile("[0-9]{8}n_"
-			+ UtilsPattern.MASK_TIME + "\\." + UtilsPattern.MASK_EXT_FILE);
+	private static final Pattern PATTERN_N = Pattern
+			.compile("[0-9]{8}n_" + UtilsPattern.MASK_TIME + "\\." + UtilsPattern.MASK_EXT_FILE);
 
-	private static final FileFilter FILE_FILTER_N = new UtilsPattern.FileFilterFile(
-			PATTERN_N);
+	private static final FileFilter FILE_FILTER_N = new UtilsPattern.FileFilterFile(PATTERN_N);
 
 	public void run(File dirBase) throws BaseException {
 		LOGGER.trace("BEGIN");
@@ -34,13 +30,9 @@ public class BatchCopyPicasa extends BatchCopyPicasaFwk {
 			File dirPhotos = new File(dirBase, "photos");
 
 			String name = UtilsAlbums.determineName(dirBase);
-			Date date = UtilsAlbums.determineDate(dirBase);
+			DateNZ date = UtilsAlbums.determineDate(dirBase);
 
-			Calendar calendar = new GregorianCalendar();
-			calendar.setTime(date);
-
-			File dirPicasaYear = new File(dirPicasa, String.format("%04d",
-					calendar.get(Calendar.YEAR)));
+			File dirPicasaYear = new File(dirPicasa, String.format("%04d", date.getYear()));
 			File dirPicasaAlbum = new File(dirPicasaYear, name);
 
 			if (dirPicasaAlbum.isDirectory()) {
@@ -51,7 +43,7 @@ public class BatchCopyPicasa extends BatchCopyPicasaFwk {
 					throw new FunctionalException(message);
 				}
 			}
-			
+
 			if (dirGps.isDirectory()) {
 				LOGGER.info("WORKING DIR: " + dirGps.getAbsolutePath());
 				LOGGER.info("Copyig GPS files to PICASA: " + dirPicasaAlbum.getAbsolutePath());

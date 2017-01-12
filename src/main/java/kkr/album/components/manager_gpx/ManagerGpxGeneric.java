@@ -5,15 +5,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Set;
-import java.util.SimpleTimeZone;
 import java.util.TreeSet;
 
 import javax.xml.stream.XMLInputFactory;
@@ -29,20 +25,14 @@ import kkr.album.components.manager_gpx.model.Trace;
 import kkr.album.exception.BaseException;
 import kkr.album.exception.FunctionalException;
 import kkr.album.exception.TechnicalException;
+import kkr.album.model.DateNZ;
 import kkr.album.utils.UtilsFile;
 
 public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGpx {
 	private static transient final Logger LOGGER = Logger.getLogger(ManagerGpxGeneric.class);
 
-	private static DateFormat DATE_FORMAT_1;
-	private static DateFormat DATE_FORMAT_2;
-
-	static {
-		DATE_FORMAT_1 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-		DATE_FORMAT_1.setTimeZone(new SimpleTimeZone(0, "GMT"));
-		DATE_FORMAT_2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-		DATE_FORMAT_2.setTimeZone(new SimpleTimeZone(0, "GMT"));
-	}
+	private static String DATE_PATTERN_1 = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+	private static String DATE_PATTERN_2 = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
 
 	private static Comparator<Point> COMPARATOR_POINTS_TIME = new Comparator<Point>() {
 		public int compare(Point point1, Point point2) {
@@ -50,37 +40,6 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 					: point2.getTime() == null ? +1 : point1.getTime().compareTo(point2.getTime());
 		}
 	};
-
-	public void formatGpxFile(File fileSource, File fileTarget, String traceName) throws BaseException {
-		XMLStreamReader xmlStreamReader = null;
-		PrintStream printStream = null;
-		try {
-			testConfigured();
-			FileInputStream fileInputStream = new FileInputStream(fileSource);
-			xmlStreamReader = XMLInputFactory.newInstance().createXMLStreamReader(fileInputStream);
-
-			FileOutputStream fileOutputStream = new FileOutputStream(fileTarget);
-			printStream = new PrintStream(fileOutputStream);
-
-			workFormat(xmlStreamReader, printStream);
-
-			printStream.close();
-			xmlStreamReader.close();
-			xmlStreamReader = null;
-
-		} catch (FileNotFoundException ex) {
-			throw new TechnicalException("The fileSource does not exist: " + fileSource.getAbsolutePath(), ex);
-		} catch (XMLStreamException ex) {
-			throw new TechnicalException("Bad format of the XML: " + fileSource.getAbsolutePath(), ex);
-		} finally {
-			UtilsFile.closeRessource(printStream);
-			UtilsFile.closeRessource(xmlStreamReader);
-		}
-		// fileSource.delete();
-		// if (fileSource.isFile()) {
-		// fileSource.deleteOnExit();
-		// }
-	}
 
 	public Gpx loadGpx(File file) throws BaseException {
 		XMLStreamReader xmlStreamReader = null;
@@ -135,15 +94,6 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 							: attribute.getName()) + "=\"" + attribute.getValue() + "\"");
 		}
 		printStream.println(">");
-		if (false) {
-			printStream.println("<metadata>");
-			printStream.println("<link href=\"http://www.garmin.com\"><text>Garmin International</text></link>");
-			if (gpx.getTime() != null) {
-				printStream.println("<time>" + DATE_FORMAT_1.format(gpx.getTime()) + "</time>");
-			}
-			printStream.println("</metadata>");
-			printStream.println();
-		}
 
 		for (Trace trace : gpx.getTraces()) {
 			printStream.println("<trk>");
@@ -164,7 +114,7 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 							.print("<ele>" + String.format("%.2f", point.getElevation()).replace(",", ".") + "</ele>");
 				}
 				if (point.getTime() != null) {
-					printStream.print("<time>" + DATE_FORMAT_1.format(point.getTime()) + "</time>");
+					printStream.print("<time>" + point.getTime().toString(DATE_PATTERN_1) + "</time>");
 				}
 				if (point.getHeartRate() != null || point.getCadence() != null || point.getTemperature() != null) {
 					printStream.print("<extensions><gpxtpx:TrackPointExtension>");
@@ -207,7 +157,7 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 					if (openedMetadata) {
 						if (startTag.getPrefix() == null && "time".equals(startTag.getName())) {
 							String value = xmlReader.getTextValue();
-							Date time = valueDate(value);
+							DateNZ time = valueDate(value);
 							retval.setTime(time);
 						}
 					} else if (openedTrk) {
@@ -218,7 +168,7 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 								point.setElevation(elevation);
 							} else if (startTag.getPrefix() == null && "time".equals(startTag.getName())) {
 								String value = xmlReader.getTextValue();
-								Date time = valueDate(value);
+								DateNZ time = valueDate(value);
 								point.setTime(time);
 							} else if ("gpxtpx".equals(startTag.getPrefix()) && "hr".equals(startTag.getName())) {
 								String value = xmlReader.getTextValue();
@@ -293,6 +243,7 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 				Collections.sort(traceLoc.getPoints(), COMPARATOR_POINTS_TIME);
 				Set<Point> sortedPoints = new TreeSet<Point>(COMPARATOR_POINTS_TIME);
 				sortedPoints.addAll(traceLoc.getPoints());
+				filterDoubles(sortedPoints);
 				traceLoc.getPoints().clear();
 				traceLoc.getPoints().addAll(sortedPoints);
 			}
@@ -303,7 +254,17 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 		}
 	}
 
-	private void filterDoubles(List<Point> points) {
+	private void filterDoubles(Collection<Point> points) {
+		Iterator<Point> iterator = points.iterator();
+		Point pointLast = null;
+		while (iterator.hasNext()) {
+			Point point = iterator.next();
+			if (pointLast != null && point.compareTo(pointLast) == 0) {
+				iterator.remove();
+			} else {
+				pointLast = point;
+			}
+		}
 	}
 
 	private void workFormat(XMLStreamReader xmlStreamReader, PrintStream printStream) throws BaseException {
@@ -389,19 +350,19 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 		printStream.print(tag.getName() + ">");
 	}
 
-	private static Date valueDate(String value) throws BaseException {
+	private static DateNZ valueDate(String value) throws BaseException {
 		if (value == null) {
 			return null;
 		}
 		try {
 			try {
-				Date retval = DATE_FORMAT_1.parse(value);
+				DateNZ retval = new DateNZ(value, DATE_PATTERN_1);
 				return retval;
-			} catch (ParseException ex) {
-				Date retval = DATE_FORMAT_2.parse(value);
+			} catch (Exception ex) {
+				DateNZ retval = new DateNZ(value, DATE_PATTERN_2);
 				return retval;
 			}
-		} catch (ParseException ex) {
+		} catch (Exception ex) {
 			throw new FunctionalException("Not a dade format: " + value, ex);
 		}
 	}
@@ -418,15 +379,14 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 		}
 	}
 
-	private static Integer valueInteger(String value) throws BaseException {
-		if (value == null) {
-			return null;
-		}
-		try {
-			Integer retval = Integer.parseInt(value);
-			return retval;
-		} catch (NumberFormatException ex) {
-			throw new FunctionalException("Not a double format: " + value, ex);
-		}
+	public static final void main(String[] argv) throws Exception {
+		ManagerGpxGeneric managerGpx = new ManagerGpxGeneric();
+		managerGpx.config();
+
+		File fileSource = new File("d://tmp//10//20161229_CYC_FRA_Malaucene_Brantes_Gorges_de_la_Nesque.gpx");
+		File fileTarget = new File("d://tmp//10//20161229_CYC_FRA_Malaucene_Brantes_Gorges_de_la_Nesque_x.gpx");
+
+		Gpx gpx = managerGpx.loadGpx(fileSource);
+		managerGpx.saveGpx(gpx, fileTarget);
 	}
 }

@@ -5,14 +5,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TimeZone;
 
 import org.apache.log4j.Logger;
 import org.apache.sanselan.ImageReadException;
@@ -34,20 +29,15 @@ import org.apache.sanselan.formats.tiff.write.TiffOutputSet;
 
 import kkr.album.exception.BaseException;
 import kkr.album.exception.TechnicalException;
+import kkr.album.model.DateNZ;
 import kkr.album.utils.UtilsFile;
 
-public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
-		ManagerExif {
-	private static final Logger LOGGER = Logger
-			.getLogger(ManagerExifSanselan.class);
+public class ManagerExifSanselan extends ManagerExifSanselanFwk implements ManagerExif {
+	private static final Logger LOGGER = Logger.getLogger(ManagerExifSanselan.class);
 
-	private static final DateFormat DATE_FORMAT;
-	static {
-		DATE_FORMAT = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
-		DATE_FORMAT.setTimeZone(TimeZone.getTimeZone("GMT"));
-	}
+	private static final String DATE_PATTERN = "yyyy:MM:dd HH:mm:ss";
 
-	public Date determineDate(File file) throws BaseException {
+	public DateNZ determineDate(File file) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
 			testConfigured();
@@ -55,19 +45,16 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 			try {
 				imageMetadata = Sanselan.getMetadata(file);
 			} catch (IOException ex) {
-				throw new TechnicalException("Cannot read the file: "
-						+ file.getAbsolutePath(), ex);
+				throw new TechnicalException("Cannot read the file: " + file.getAbsolutePath(), ex);
 			}
 
 			if (imageMetadata == null) {
-				LOGGER.warn("### The file does not contain any EXIF data: "
-						+ file.getAbsolutePath());
+				LOGGER.warn("### The file does not contain any EXIF data: " + file.getAbsolutePath());
 				return null;
 			}
-			
+
 			if (!(imageMetadata instanceof JpegImageMetadata)) {
-				LOGGER.warn("### The file does not contain JPEG METADATA: "
-						+ file.getAbsolutePath() + ". Metadata: "
+				LOGGER.warn("### The file does not contain JPEG METADATA: " + file.getAbsolutePath() + ". Metadata: "
 						+ imageMetadata.getClass().getName());
 				LOGGER.trace("OK");
 				return null;
@@ -77,48 +64,50 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 
 			TiffImageMetadata tiffImageMetadata = jpegImageMetadata.getExif();
 
-			TagInfo tagInfoCreationDate = TiffConstants.EXIF_TAG_CREATE_DATE;
-			TiffField tiffFieldCreationDate = tiffImageMetadata
-					.findField(tagInfoCreationDate);
+			TiffField tiffFieldCreationDate = tiffImageMetadata.findField(TiffConstants.EXIF_TAG_CREATE_DATE);
+			TiffField tiffFieldTimeZoneOffset = tiffImageMetadata.findField(TiffConstants.EXIF_TAG_TIME_ZONE_OFFSET);
+
+			TiffField tiffFieldDateTimeOriginal = tiffImageMetadata
+					.findField(TiffConstants.EXIF_TAG_DATE_TIME_ORIGINAL);
+
+			TiffField tiffField1 = tiffImageMetadata.findField(TiffConstants.EXIF_TAG_MODIFY_DATE);
+			TiffField tiffField2 = tiffImageMetadata.findField(TiffConstants.EXIF_TAG_MDPREP_DATE);
+			TiffField tiffField3 = tiffImageMetadata.findField(TiffConstants.EXIF_TAG_MDPREP_DATE);
 
 			if (tiffFieldCreationDate == null) {
 				TagInfo tagInfoModifyDate = TiffConstants.EXIF_TAG_MODIFY_DATE;
-				tiffFieldCreationDate = tiffImageMetadata
-						.findField(tagInfoModifyDate);
+				tiffFieldCreationDate = tiffImageMetadata.findField(tagInfoModifyDate);
 				if (tiffFieldCreationDate == null) {
-					LOGGER.debug("No CreationDate in the file: "
-							+ file.getAbsolutePath());
+					LOGGER.debug("No CreationDate in the file: " + file.getAbsolutePath());
 					LOGGER.trace("OK");
 					return null;
 				} else {
-					LOGGER.warn("Using ModificationDate because there is not any CreationDate: "
-							+ file.getAbsolutePath());
+					LOGGER.warn(
+							"Using ModificationDate because there is not any CreationDate: " + file.getAbsolutePath());
 				}
 			}
 
 			String stringValueCD = tiffFieldCreationDate.getStringValue();
 
 			try {
-				Date date = DATE_FORMAT.parse(stringValueCD);
-				LOGGER.debug("CreationDate: " + DATE_FORMAT.format(date));
+				DateNZ date = new DateNZ(stringValueCD, DATE_PATTERN);
+				LOGGER.debug("CreationDate: " + date.toString(DATE_PATTERN));
 				LOGGER.trace("OK");
 				return date;
-			} catch (ParseException ex) {
-				LOGGER.warn("Bad format of CreationDate in the file: "
-						+ file.getAbsolutePath() + ": " + stringValueCD);
+			} catch (Exception ex) {
+				LOGGER.warn("Bad format of CreationDate in the file: " + file.getAbsolutePath() + ": " + stringValueCD);
 				LOGGER.trace("OK");
 				return null;
 			}
 
 		} catch (ImageReadException ex) {
-			throw new TechnicalException("Cannot read the image: "
-					+ file.getAbsolutePath(), ex);
+			throw new TechnicalException("Cannot read the image: " + file.getAbsolutePath(), ex);
 		} finally {
 			LOGGER.trace("END");
 		}
 	}
 
-	public void modifyFile(File file, Date date) throws BaseException {
+	public void modifyFile(File file, DateNZ date) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
 			modifyFile(file, date, null, null);
@@ -128,8 +117,7 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 		}
 	}
 
-	public void modifyFile(File file, Date date, Double longitude,
-			Double latitude) throws BaseException {
+	public void modifyFile(File file, DateNZ date, Double longitude, Double latitude) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
 			testConfigured();
@@ -137,30 +125,20 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 			Map<String, String> parameters = new HashMap<String, String>();
 
 			LOGGER.debug("Modifying file: " + file.getAbsolutePath());
-			LOGGER.debug("Date: "
-					+ DATE_FORMAT.format(date)
-					+ " Lon: "
-					+ longitude
-					+ " Lat: "
-					+ latitude
-					+ (parameters != null && !parameters.isEmpty() ? " Parameters: "
-							+ toStringParameters(parameters)
+			LOGGER.debug("Date: " + date.toString(DATE_PATTERN) + " Lon: " + longitude + " Lat: " + latitude
+					+ (parameters != null && !parameters.isEmpty() ? " Parameters: " + toStringParameters(parameters)
 							: ""));
 
 			IImageMetadata imageMetadata = null;
 			try {
 				imageMetadata = Sanselan.getMetadata(file);
 			} catch (IOException ex) {
-				throw new TechnicalException("Cannot read the file: "
-						+ file.getAbsolutePath(), ex);
+				throw new TechnicalException("Cannot read the file: " + file.getAbsolutePath(), ex);
 			}
 
-			if (imageMetadata == null
-					|| !(imageMetadata instanceof JpegImageMetadata)) {
-				LOGGER.warn("\t### The file has not JPEG Metadata: "
-						+ file.getAbsolutePath()
-						+ (imageMetadata != null ? ". Metadata: "
-								+ imageMetadata.getClass().getName() : ""));
+			if (imageMetadata == null || !(imageMetadata instanceof JpegImageMetadata)) {
+				LOGGER.warn("\t### The file has not JPEG Metadata: " + file.getAbsolutePath()
+						+ (imageMetadata != null ? ". Metadata: " + imageMetadata.getClass().getName() : ""));
 				LOGGER.trace("OK");
 				return;
 			}
@@ -182,37 +160,31 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 			if (parameters != null && !parameters.isEmpty()) {
 				modifyParameters(tiffOutputSet, parameters);
 			}
-			File fileTmp = new File(file.getParentFile(), file.getName()
-					+ ".tmp");
+			File fileTmp = new File(file.getParentFile(), file.getName() + ".tmp");
 			writeFile(file, fileTmp, tiffOutputSet);
 
 			if (!file.delete()) {
-				throw new TechnicalException("Cannot remove the file: "
-						+ file.getAbsolutePath());
+				throw new TechnicalException("Cannot remove the file: " + file.getAbsolutePath());
 			}
 
 			if (!fileTmp.renameTo(file)) {
-				throw new TechnicalException("Cannot rename the file: "
-						+ fileTmp.getAbsolutePath() + " to: "
-						+ file.getAbsolutePath());
+				throw new TechnicalException(
+						"Cannot rename the file: " + fileTmp.getAbsolutePath() + " to: " + file.getAbsolutePath());
 			}
 
-			file.setLastModified(date.getTime());
+			file.setLastModified(date.toDate().getTime());
 
 			LOGGER.trace("OK");
 		} catch (ImageWriteException ex) {
-			throw new TechnicalException("Cannot write to the image: "
-					+ file.getAbsolutePath(), ex);
+			throw new TechnicalException("Cannot write to the image: " + file.getAbsolutePath(), ex);
 		} catch (ImageReadException ex) {
-			throw new TechnicalException("Cannot read the image: "
-					+ file.getAbsolutePath(), ex);
+			throw new TechnicalException("Cannot read the image: " + file.getAbsolutePath(), ex);
 		} finally {
 			LOGGER.trace("END");
 		}
 	}
 
-	private void writeFile(File fileSource, File fileTarget,
-			TiffOutputSet tiffOutputSet) throws BaseException {
+	private void writeFile(File fileSource, File fileTarget, TiffOutputSet tiffOutputSet) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
 			OutputStream os = null;
@@ -221,20 +193,16 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 				os = new FileOutputStream(fileTarget);
 				bos = new BufferedOutputStream(os);
 
-				new ExifRewriter().updateExifMetadataLossless(fileSource, bos,
-						tiffOutputSet);
+				new ExifRewriter().updateExifMetadataLossless(fileSource, bos, tiffOutputSet);
 
 				bos.close();
 				os.close();
 			} catch (IOException ex) {
-				throw new TechnicalException("Cannot write data to the file: "
-						+ fileTarget.getAbsolutePath(), ex);
+				throw new TechnicalException("Cannot write data to the file: " + fileTarget.getAbsolutePath(), ex);
 			} catch (ImageReadException ex) {
-				throw new TechnicalException("Cannot read data to the file: "
-						+ fileSource.getAbsolutePath(), ex);
+				throw new TechnicalException("Cannot read data to the file: " + fileSource.getAbsolutePath(), ex);
 			} catch (ImageWriteException ex) {
-				throw new TechnicalException("Cannot write data to the file: "
-						+ fileTarget.getAbsolutePath(), ex);
+				throw new TechnicalException("Cannot write data to the file: " + fileTarget.getAbsolutePath(), ex);
 			} finally {
 				UtilsFile.closeRessource(bos);
 				UtilsFile.closeRessource(os);
@@ -246,8 +214,7 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 		}
 	}
 
-	private void modifyGPS(TiffOutputSet tiffOutputSet, double longitude,
-			double latitude) throws ImageWriteException {
+	private void modifyGPS(TiffOutputSet tiffOutputSet, double longitude, double latitude) throws ImageWriteException {
 		LOGGER.trace("BEGIN");
 		try {
 			tiffOutputSet.setGPSInDegrees(longitude, latitude);
@@ -258,19 +225,15 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 		}
 	}
 
-	private void modifyParameters(TiffOutputSet outputSet,
-			Map<String, String> parameters) throws ImageWriteException {
+	private void modifyParameters(TiffOutputSet outputSet, Map<String, String> parameters) throws ImageWriteException {
 		LOGGER.trace("BEGIN");
 		try {
-			TiffOutputDirectory exifDir = outputSet
-					.findDirectory(TiffDirectoryConstants.DIRECTORY_TYPE_EXIF);
+			TiffOutputDirectory exifDir = outputSet.findDirectory(TiffDirectoryConstants.DIRECTORY_TYPE_EXIF);
 
 			exifDir.removeField(ExifTagConstants.EXIF_TAG_ARTIST);
 
-			TiffOutputField fieldCreated = new TiffOutputField(
-					ExifTagConstants.EXIF_TAG_ARTIST,
-					FieldType.FIELD_TYPE_ASCII, "Karel Kralovec".length(),
-					"Karel Kralovec".getBytes());
+			TiffOutputField fieldCreated = new TiffOutputField(ExifTagConstants.EXIF_TAG_ARTIST,
+					FieldType.FIELD_TYPE_ASCII, "Karel Kralovec".length(), "Karel Kralovec".getBytes());
 
 			// TiffOutputField field = TiffOutputField.create(
 			// ExifTagConstants.EXIF_TAG_ARTIST, 1, "Karel Kralovec");
@@ -283,27 +246,21 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 		}
 	}
 
-	private void modifyDate(TiffOutputSet tiffOutputSet, Date date)
-			throws ImageWriteException {
+	private void modifyDate(TiffOutputSet tiffOutputSet, DateNZ date) throws ImageWriteException {
 		LOGGER.trace("BEGIN");
 		try {
-			String dateString = DATE_FORMAT.format(date);
+			String dateString = date.toString(DATE_PATTERN);
 
-			TiffOutputField tiffOutputFieldCreationDate = new TiffOutputField(
-					TiffConstants.EXIF_TAG_CREATE_DATE,
-					TiffConstants.FIELD_TYPE_ASCII, dateString.length(),
-					dateString.getBytes());
+			TiffOutputField tiffOutputFieldCreationDate = new TiffOutputField(TiffConstants.EXIF_TAG_CREATE_DATE,
+					TiffConstants.FIELD_TYPE_ASCII, dateString.length(), dateString.getBytes());
 			TiffOutputField tiffOutputFieldDateTimeOriginal = new TiffOutputField(
-					TiffConstants.EXIF_TAG_DATE_TIME_ORIGINAL,
-					TiffConstants.FIELD_TYPE_ASCII, dateString.length(),
+					TiffConstants.EXIF_TAG_DATE_TIME_ORIGINAL, TiffConstants.FIELD_TYPE_ASCII, dateString.length(),
 					dateString.getBytes());
 
-			TiffOutputDirectory exifDirectory = tiffOutputSet
-					.getOrCreateExifDirectory();
+			TiffOutputDirectory exifDirectory = tiffOutputSet.getOrCreateExifDirectory();
 
 			exifDirectory.removeField(TiffConstants.EXIF_TAG_CREATE_DATE);
-			exifDirectory
-					.removeField(TiffConstants.EXIF_TAG_DATE_TIME_ORIGINAL);
+			exifDirectory.removeField(TiffConstants.EXIF_TAG_DATE_TIME_ORIGINAL);
 			exifDirectory.add(tiffOutputFieldCreationDate);
 			exifDirectory.add(tiffOutputFieldDateTimeOriginal);
 
@@ -320,8 +277,7 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 				if (buffer.length() != 0) {
 					buffer.append(",");
 				}
-				buffer.append(entry.getKey()).append("=")
-						.append(entry.getValue());
+				buffer.append(entry.getKey()).append("=").append(entry.getValue());
 			}
 		}
 		return buffer.toString();
@@ -338,8 +294,7 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 		}
 	}
 
-	private static boolean copyExifData(File sourceFile, File destFile,
-			List<TagInfo> excludedFields) {
+	private static boolean copyExifData(File sourceFile, File destFile, List<TagInfo> excludedFields) {
 		String tempFileName = destFile.getAbsolutePath() + ".tmp";
 		File tempFile = null;
 		OutputStream tempStream = null;
@@ -347,10 +302,8 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 		try {
 			tempFile = new File(tempFileName);
 
-			TiffOutputSet sourceSet = getSanselanOutputSet(sourceFile,
-					TiffConstants.DEFAULT_TIFF_BYTE_ORDER);
-			TiffOutputSet destSet = getSanselanOutputSet(destFile,
-					sourceSet.byteOrder);
+			TiffOutputSet sourceSet = getSanselanOutputSet(sourceFile, TiffConstants.DEFAULT_TIFF_BYTE_ORDER);
+			TiffOutputSet destSet = getSanselanOutputSet(destFile, sourceSet.byteOrder);
 
 			// If the EXIF data endianess of the source and destination files
 			// differ then fail. This only happens if the source and
@@ -366,10 +319,8 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 			// Go through the source directories
 			List<?> sourceDirectories = sourceSet.getDirectories();
 			for (int i = 0; i < sourceDirectories.size(); i++) {
-				TiffOutputDirectory sourceDirectory = (TiffOutputDirectory) sourceDirectories
-						.get(i);
-				TiffOutputDirectory destinationDirectory = getOrCreateExifDirectory(
-						destSet, sourceDirectory);
+				TiffOutputDirectory sourceDirectory = (TiffOutputDirectory) sourceDirectories.get(i);
+				TiffOutputDirectory destinationDirectory = getOrCreateExifDirectory(destSet, sourceDirectory);
 
 				if (destinationDirectory == null)
 					continue; // failed to create
@@ -378,12 +329,10 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 				List<?> sourceFields = sourceDirectory.getFields();
 				for (int j = 0; j < sourceFields.size(); j++) {
 					// Get the source field
-					TiffOutputField sourceField = (TiffOutputField) sourceFields
-							.get(j);
+					TiffOutputField sourceField = (TiffOutputField) sourceFields.get(j);
 
 					// Check exclusion list
-					if (excludedFields != null
-							&& excludedFields.contains(sourceField.tagInfo)) {
+					if (excludedFields != null && excludedFields.contains(sourceField.tagInfo)) {
 						destinationDirectory.removeField(sourceField.tagInfo);
 						continue;
 					}
@@ -397,10 +346,8 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 			}
 
 			// Save data to destination
-			tempStream = new BufferedOutputStream(
-					new FileOutputStream(tempFile));
-			new ExifRewriter().updateExifMetadataLossless(destFile, tempStream,
-					destSet);
+			tempStream = new BufferedOutputStream(new FileOutputStream(tempFile));
+			new ExifRewriter().updateExifMetadataLossless(destFile, tempStream, destSet);
 			tempStream.close();
 
 			// Replace file
@@ -432,9 +379,8 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 		return false;
 	}
 
-	private static TiffOutputSet getSanselanOutputSet(File jpegImageFile,
-			int defaultByteOrder) throws IOException, ImageReadException,
-			ImageWriteException {
+	private static TiffOutputSet getSanselanOutputSet(File jpegImageFile, int defaultByteOrder)
+			throws IOException, ImageReadException, ImageWriteException {
 		TiffImageMetadata exif = null;
 		TiffOutputSet outputSet = null;
 
@@ -452,16 +398,14 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 		// of EXIF metadata. Otherwise, use existing EXIF metadata to
 		// keep all other existing tags
 		if (outputSet == null)
-			outputSet = new TiffOutputSet(exif == null ? defaultByteOrder
-					: exif.contents.header.byteOrder);
+			outputSet = new TiffOutputSet(exif == null ? defaultByteOrder : exif.contents.header.byteOrder);
 
 		return outputSet;
 	}
 
-	private static TiffOutputDirectory getOrCreateExifDirectory(
-			TiffOutputSet outputSet, TiffOutputDirectory outputDirectory) {
-		TiffOutputDirectory result = outputSet
-				.findDirectory(outputDirectory.type);
+	private static TiffOutputDirectory getOrCreateExifDirectory(TiffOutputSet outputSet,
+			TiffOutputDirectory outputDirectory) {
+		TiffOutputDirectory result = outputSet.findDirectory(outputDirectory.type);
 		if (result != null)
 			return result;
 		result = new TiffOutputDirectory(outputDirectory.type);
@@ -481,24 +425,14 @@ public class ManagerExifSanselan extends ManagerExifSanselanFwk implements
 
 			File fileSource = new File("h:/tmp/01/00035773o_20140603-192248.jpg");
 			File fileTarget = new File("h:/tmp/01/00035773n_20140603-192248.jpg");
-			
+
 			main.copyExif(fileSource, fileTarget);
-			
+
 			LOGGER.trace("OK");
 		} catch (Throwable ex) {
 			ex.printStackTrace();
 		} finally {
 			LOGGER.trace("END");
 		}
-	}
-
-	
-	public static final void main(String[] argv) throws Exception {
-		ManagerExifSanselan managerExifSanselan = new ManagerExifSanselan();
-		managerExifSanselan.config();
-		
-		File f1 = new File("h:/media/traces/2014/albums/20141221_CYC_FRA_Mont du Chat,Col de l'Epine,Col du Chat/photos/00037894n_20141221-090648.jpg");
-		File f2 = new File("h:/media/traces/2014/albums/20141224-25_EVT_ESP_Matadepera,Noche Buena/photosXP/DSC_0014.JPG");
-		managerExifSanselan.determineDate(f2);
 	}
 }
