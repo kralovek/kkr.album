@@ -1,15 +1,17 @@
 package kkr.album.components.manager_gpx.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
 
-import kkr.album.components.manager_gpx.XmlReader;
+import kkr.album.components.manager_gpx.Attribute;
 import kkr.album.model.DateNZ;
 
 public class Gpx implements Cloneable {
 	private DateNZ time;
-	private List<XmlReader.Attribute> attributes = new ArrayList<XmlReader.Attribute>();
-	private List<Trace> traces = new ArrayList<Trace>();
+	private Collection<Attribute> attributes = new LinkedHashSet<Attribute>();
+	private Collection<Trace> traces = new ArrayList<Trace>();
 
 	public DateNZ getTime() {
 		return time;
@@ -19,19 +21,15 @@ public class Gpx implements Cloneable {
 		this.time = time;
 	}
 
-	public List<Trace> getTraces() {
+	public Collection<Trace> getTraces() {
 		return traces;
 	}
 
-	public void setTraces(List<Trace> traces) {
-		this.traces = traces;
-	}
-
-	public List<XmlReader.Attribute> getAttributes() {
+	public Collection<Attribute> getAttributes() {
 		return attributes;
 	}
 
-	public void setAttributes(List<XmlReader.Attribute> attributes) {
+	public void setAttributes(List<Attribute> attributes) {
 		this.attributes = attributes;
 	}
 
@@ -39,8 +37,8 @@ public class Gpx implements Cloneable {
 		Gpx gpx = new Gpx();
 		gpx.time = time;
 		if (attributes != null) {
-			for (XmlReader.Attribute attribute : attributes) {
-				gpx.attributes.add((XmlReader.Attribute) attribute.clone());
+			for (Attribute attribute : attributes) {
+				gpx.attributes.add((Attribute) attribute.clone());
 			}
 		}
 		if (traces != null) {

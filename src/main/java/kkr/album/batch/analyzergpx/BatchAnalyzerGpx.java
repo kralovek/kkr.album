@@ -15,8 +15,7 @@ import kkr.album.exception.BaseException;
 import kkr.album.utils.UtilsFile;
 
 public class BatchAnalyzerGpx extends BatchAnalyzerGpxFwk {
-	private static transient final Logger LOGGER = Logger
-			.getLogger(BatchAnalyzerGpx.class);
+	private static transient final Logger LOGGER = Logger.getLogger(BatchAnalyzerGpx.class);
 
 	private static class FileFilterGpx implements FileFilter {
 		private Pattern pattern;
@@ -26,8 +25,7 @@ public class BatchAnalyzerGpx extends BatchAnalyzerGpxFwk {
 		}
 
 		public boolean accept(File file) {
-			if (!file.isFile()
-					|| !file.getName().toLowerCase().endsWith(".gpx")) {
+			if (!file.isFile() || !file.getName().toLowerCase().endsWith(".gpx")) {
 				return false;
 			}
 			if (pattern != null) {
@@ -42,8 +40,7 @@ public class BatchAnalyzerGpx extends BatchAnalyzerGpxFwk {
 		try {
 			LOGGER.info("Working file: " + fileGpx.getName());
 			if (!fileGpx.getName().toLowerCase().endsWith(".gpx")) {
-				throw new IllegalArgumentException("Not a GPX file: "
-						+ fileGpx.getAbsolutePath());
+				throw new IllegalArgumentException("Not a GPX file: " + fileGpx.getAbsolutePath());
 			}
 
 			Gpx gpx = managerGpx.loadGpx(fileGpx);
@@ -51,7 +48,7 @@ public class BatchAnalyzerGpx extends BatchAnalyzerGpxFwk {
 			TraceStat traceStat = null;
 
 			if (gpx.getTraces().size() != 0) {
-				Trace trace = gpx.getTraces().get(0);
+				Trace trace = gpx.getTraces().iterator().next();
 				traceStat = analyzerGpx.analyzeTrace(trace);
 				traceStat.setSource(fileGpx.getName());
 			}
@@ -65,8 +62,7 @@ public class BatchAnalyzerGpx extends BatchAnalyzerGpxFwk {
 		}
 	}
 
-	private void listFiles(File dir, List<File> files, FileFilter fileFilterGpx)
-			throws BaseException {
+	private void listFiles(File dir, List<File> files, FileFilter fileFilterGpx) throws BaseException {
 		File[] filesGpx = dir.listFiles(fileFilterGpx);
 
 		for (File fileGpx : filesGpx) {
@@ -80,8 +76,7 @@ public class BatchAnalyzerGpx extends BatchAnalyzerGpxFwk {
 		}
 	}
 
-	public void runDir(File dirGpx, File dirResult, Pattern pattern)
-			throws BaseException {
+	public void runDir(File dirGpx, File dirResult, Pattern pattern) throws BaseException {
 		LOGGER.trace("BEGIN");
 		try {
 			FileFilter fileFilterGpx = new FileFilterGpx(pattern);
@@ -97,18 +92,15 @@ public class BatchAnalyzerGpx extends BatchAnalyzerGpxFwk {
 				TraceStat traceStat = runFile(fileGpx, dirResult);
 
 				if (traceStat.getDistance() != null) {
-					globalTraceStat.setDistance(globalTraceStat.getDistance()
-							+ traceStat.getDistance());
+					globalTraceStat.setDistance(globalTraceStat.getDistance() + traceStat.getDistance());
 				}
 
 				if (globalTraceStat.getTotalAscent() != null) {
-					globalTraceStat.setTotalAscent(globalTraceStat
-							.getTotalAscent() + traceStat.getTotalAscent());
+					globalTraceStat.setTotalAscent(globalTraceStat.getTotalAscent() + traceStat.getTotalAscent());
 				}
 
 				if (globalTraceStat.getTotalDescent() != null) {
-					globalTraceStat.setTotalDescent(globalTraceStat
-							.getTotalDescent() + traceStat.getTotalDescent());
+					globalTraceStat.setTotalDescent(globalTraceStat.getTotalDescent() + traceStat.getTotalDescent());
 				}
 			}
 

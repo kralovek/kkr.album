@@ -15,8 +15,7 @@ import kkr.album.exception.BaseException;
 import kkr.album.exception.TechnicalException;
 import kkr.album.utils.UtilsFile;
 
-public class ManagerKmlGeneric extends ManagerKmlGenericFwk implements
-		ManagerKml {
+public class ManagerKmlGeneric extends ManagerKmlGenericFwk implements ManagerKml {
 
 	private static final String DEFAULT_COLOR = "ffffffff";
 
@@ -27,7 +26,7 @@ public class ManagerKmlGeneric extends ManagerKmlGenericFwk implements
 			if (gpx.getTraces().isEmpty()) {
 				return;
 			}
-			Trace traceFirst = gpx.getTraces().get(0);
+			Trace traceFirst = gpx.getTraces().iterator().next();
 
 			FileOutputStream fileOutputStream = new FileOutputStream(file);
 			printStream = new PrintStream(fileOutputStream);
@@ -40,15 +39,13 @@ public class ManagerKmlGeneric extends ManagerKmlGenericFwk implements
 			printStream.close();
 
 		} catch (FileNotFoundException ex) {
-			throw new TechnicalException("The fileSource does not exist: "
-					+ file.getAbsolutePath(), ex);
+			throw new TechnicalException("The fileSource does not exist: " + file.getAbsolutePath(), ex);
 		} finally {
 			UtilsFile.closeRessource(printStream);
 		}
 	}
 
-	private void printTraces(Gpx gpx, Map<String, String> styles,
-			PrintStream printStream) {
+	private void printTraces(Gpx gpx, Map<String, String> styles, PrintStream printStream) {
 		for (Trace trace : gpx.getTraces()) {
 			String style = styles.get(trace.getName());
 			printTrace(trace, style, printStream);
@@ -65,14 +62,8 @@ public class ManagerKmlGeneric extends ManagerKmlGenericFwk implements
 
 		printStream.print("\t\t\t\t\t");
 		for (Point point : trace.getPoints()) {
-			printStream
-					.print(" "
-							+ point.getLongitude()
-							+ ","
-							+ point.getLatitude()
-							+ ","
-							+ (point.getElevation() != null ? point
-									.getElevation() : 0));
+			printStream.print(" " + point.getLongitude() + "," + point.getLatitude() + ","
+					+ (point.getElevation() != null ? point.getElevation() : 0));
 		}
 		printStream.println();
 
@@ -105,8 +96,8 @@ public class ManagerKmlGeneric extends ManagerKmlGenericFwk implements
 
 	private void printHeader(Trace traceFirst, PrintStream printStream) {
 		printStream.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-		printStream
-				.println("<kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\" xmlns:kml=\"http://www.opengis.net/kml/2.2\" xmlns:atom=\"http://www.w3.org/2005/Atom\">");
+		printStream.println(
+				"<kml xmlns=\"http://www.opengis.net/kml/2.2\" xmlns:gx=\"http://www.google.com/kml/ext/2.2\" xmlns:kml=\"http://www.opengis.net/kml/2.2\" xmlns:atom=\"http://www.w3.org/2005/Atom\">");
 		printStream.println("<Document>");
 
 		printStream.println("\t<name>" + traceFirst.getName() + ".kml</name>");
@@ -131,13 +122,11 @@ public class ManagerKmlGeneric extends ManagerKmlGenericFwk implements
 			printStream.println("\t<StyleMap id=\"" + styleMap + "\">");
 			printStream.println("\t\t<Pair>");
 			printStream.println("\t\t\t<key>normal</key>");
-			printStream.println("\t\t\t<styleUrl>#" + styleNormal
-					+ "</styleUrl>");
+			printStream.println("\t\t\t<styleUrl>#" + styleNormal + "</styleUrl>");
 			printStream.println("\t\t</Pair>");
 			printStream.println("\t\t<Pair>");
 			printStream.println("\t\t\t<key>highlight</key>");
-			printStream.println("\t\t\t<styleUrl>#" + styleHighlight
-					+ "</styleUrl>");
+			printStream.println("\t\t\t<styleUrl>#" + styleHighlight + "</styleUrl>");
 			printStream.println("\t\t</Pair>");
 			printStream.println("\t</StyleMap>");
 

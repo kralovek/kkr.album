@@ -9,4 +9,8 @@ public interface ManagerGpx {
 	Gpx loadGpx(File file) throws BaseException;
 
 	void saveGpx(Gpx gpx, File file) throws BaseException;
+
+	Gpx mergeGpx(Gpx... gpxs) throws BaseException;
+
+	Gpx flatGpx(Gpx gpx) throws BaseException;
 }

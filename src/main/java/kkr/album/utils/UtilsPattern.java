@@ -41,8 +41,9 @@ public class UtilsPattern {
 	public static final String MASK_EXT_FILE = "(" + MASK_EXT_PHOTO + "|" + MASK_EXT_VIDEO + ")";
 	public static final String MASK_TIME = "[0-9]{8}-[0-9]{6}";
 
-	public static final String MASK_GPX_STOPWATCH = "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}\\.[0-9]{2}\\.[0-9]{2} (Stopwatch|Cronómetro|Chronomètre)\\.[gG][pP][xX]";
+	public static final String MASK_GPX = ".*\\.[gG][pP][xX]";
 	public static final String MASK_GPX_X = "x.*\\.[gG][pP][xX]";
+	public static final String MASK_GPX_STOPWATCH = ".*(Stopwatch|Cronómetro|Chronomètre).*\\.[gG][pP][xX]";
 	public static final String MASK_GPX_WAYPOINT = "Waypoints_.*\\.[gG][pP][xX]";
 
 	public static final Pattern PATTERN_PHOTO = Pattern.compile(".*" + UtilsPattern.MASK_EXT_PHOTO);

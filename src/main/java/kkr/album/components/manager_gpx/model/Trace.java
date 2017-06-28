@@ -1,7 +1,10 @@
 package kkr.album.components.manager_gpx.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 public class Trace implements Cloneable {
@@ -34,12 +37,22 @@ public class Trace implements Cloneable {
 		this.color = color;
 	}
 
-	public List<Point> getPoints() {
+	public Collection<Point> getPoints() {
 		return points;
 	}
 
-	public void setPoints(List<Point> points) {
-		this.points = points;
+	public void sort() {
+		Collections.sort(points);
+		Point pointLast = null;
+
+		Iterator<Point> iterator = points.iterator();
+		while (iterator.hasNext()) {
+			Point point = iterator.next();
+			if (pointLast != null && pointLast.compareTo(point) == 0) {
+				iterator.remove();
+			}
+			pointLast = point;
+		}
 	}
 
 	protected Object clone() {

@@ -1,6 +1,5 @@
 package kkr.album.utils;
 
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -8,35 +7,30 @@ import kkr.album.components.manager_gpx.model.Gpx;
 import kkr.album.components.manager_gpx.model.Point;
 import kkr.album.components.manager_gpx.model.Trace;
 import kkr.album.exception.BaseException;
-import kkr.album.exception.FunctionalException;
 
 public class UtilsGpx {
 
-	public static Gpx joinGpxs(Gpx gpxMain, List<Gpx> gpxs) throws BaseException {
-		if (gpxMain.getTraces().size() == 0) {
-			throw new FunctionalException("No trace in the GPX");
-		}
+	public static Gpx joinGpxs(String name, List<Gpx> gpxs) throws BaseException {
+		Gpx gpx = new Gpx();
 
-		Gpx gpx = (Gpx) gpxMain.clone();
-
-		Trace trace = gpx.getTraces().get(0);
+		Trace trace = new Trace();
+		trace.setName(name);
+		gpx.getTraces().add(trace);
 
 		if (gpxs != null) {
 			for (Gpx gpxLoc : gpxs) {
-				Gpx gpxClone = (Gpx) gpxLoc.clone();
-				for (Trace traceL : gpxClone.getTraces()) {
+				if (gpx.getAttributes().isEmpty()) {
+					gpx.getAttributes().addAll(gpxLoc.getAttributes());
+				}
+				for (Trace traceL : gpxLoc.getTraces()) {
 					trace.getPoints().addAll(traceL.getPoints());
 				}
 			}
 		}
 
-		sortTrace(trace);
+		trace.sort();
 
 		return gpx;
-	}
-
-	public static void sortTrace(Trace trace) {
-		Collections.sort(trace.getPoints());
 	}
 
 	public static Gpx simlifyGpx(Gpx gpx) {

@@ -126,20 +126,22 @@ public class BatchModifyPhotos extends BatchModifyPhotosFwk {
 				}
 			}
 
-			if (files.length > 1) {
-				throw new FunctionalException(
-						"More than one album GPX file found in the directory: " + dirGps.getAbsolutePath());
+			Gpx[] gpxs = new Gpx[files.length];
+			int i = 0;
+			for (File fileGpx : files) {
+				try {
+					Gpx gpx = managerGpx.loadGpx(fileGpx);
+					gpxs[i++] = gpx;
+				} catch (Exception ex) {
+					throw new TechnicalException("Cannot read the GPX file: " + fileGpx.getAbsolutePath(), ex);
+				}
 			}
 
-			File fileGpx = files[0];
-			try {
-				Gpx gpx = managerGpx.loadGpx(fileGpx);
-				LOGGER.trace("OK");
-				return gpx;
-			} catch (Exception ex) {
-				throw new TechnicalException("Cannot read the GPX file: " + fileGpx.getAbsolutePath(), ex);
-			}
+			Gpx gpx = managerGpx.mergeGpx(gpxs);
+			gpx = managerGpx.flatGpx(gpx);
 
+			LOGGER.trace("OK");
+			return gpx;
 		} finally {
 			LOGGER.trace("END");
 		}

@@ -4,10 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
@@ -34,18 +33,12 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 	private static String DATE_PATTERN_1 = "yyyy-MM-dd'T'HH:mm:ss'Z'";
 	private static String DATE_PATTERN_2 = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
 
-	private static Comparator<Point> COMPARATOR_POINTS_TIME = new Comparator<Point>() {
-		public int compare(Point point1, Point point2) {
-			return point1.getTime() == null ? -1
-					: point2.getTime() == null ? +1 : point1.getTime().compareTo(point2.getTime());
-		}
-	};
-
 	public Gpx loadGpx(File file) throws BaseException {
+		testConfigured();
 		XMLStreamReader xmlStreamReader = null;
+		FileInputStream fileInputStream = null;
 		try {
-			testConfigured();
-			FileInputStream fileInputStream = new FileInputStream(file);
+			fileInputStream = new FileInputStream(file);
 			xmlStreamReader = XMLInputFactory.newInstance().createXMLStreamReader(fileInputStream);
 
 			Gpx retval = workLoad(xmlStreamReader);
@@ -53,33 +46,64 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 			xmlStreamReader.close();
 			xmlStreamReader = null;
 
+			fileInputStream.close();
+			fileInputStream = null;
+
 			return retval;
 
 		} catch (FileNotFoundException ex) {
 			throw new TechnicalException("The fileSource does not exist: " + file.getAbsolutePath(), ex);
+		} catch (IOException ex) {
+			throw new TechnicalException("Problem to read the fileSource: " + file.getAbsolutePath(), ex);
 		} catch (XMLStreamException ex) {
 			throw new TechnicalException("Bad format of the XML: " + file.getAbsolutePath(), ex);
 		} finally {
 			UtilsFile.closeRessource(xmlStreamReader);
+			UtilsFile.closeRessource(fileInputStream);
 		}
 	}
 
 	public void saveGpx(Gpx gpx, File file) throws BaseException {
+		testConfigured();
+		FileOutputStream fileOutputStream = null;
 		PrintStream printStream = null;
+
 		try {
-			testConfigured();
-			FileOutputStream fileOutputStream = new FileOutputStream(file);
+			fileOutputStream = new FileOutputStream(file);
 			printStream = new PrintStream(fileOutputStream);
 
 			workPrintGpx(gpx, printStream);
 
 			printStream.close();
+			printStream = null;
 
-		} catch (FileNotFoundException ex) {
-			throw new TechnicalException("The fileSource does not exist: " + file.getAbsolutePath(), ex);
+			fileOutputStream.close();
+			fileOutputStream = null;
+		} catch (IOException ex) {
+			throw new TechnicalException("Cannot create the output file: " + file.getAbsolutePath(), ex);
 		} finally {
 			UtilsFile.closeRessource(printStream);
+			UtilsFile.closeRessource(fileOutputStream);
 		}
+	}
+
+	public Gpx mergeGpx(Gpx... gpxs) throws BaseException {
+		Gpx gpx = new Gpx();
+		for (Gpx gpxLoc : gpxs) {
+			gpx.getTraces().addAll(gpxLoc.getTraces());
+		}
+		return gpx;
+	}
+
+	public Gpx flatGpx(Gpx gpx) throws BaseException {
+		Gpx retval = new Gpx();
+		Trace newTrace = new Trace();
+		retval.getTraces().add(newTrace);
+		for (Trace trace : gpx.getTraces()) {
+			newTrace.getPoints().addAll(trace.getPoints());
+		}
+		newTrace.sort();
+		return retval;
 	}
 
 	//
@@ -88,7 +112,7 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 	private void workPrintGpx(Gpx gpx, PrintStream printStream) throws BaseException {
 		printStream.println("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>");
 		printStream.println("<gpx");
-		for (XmlReader.Attribute attribute : gpx.getAttributes()) {
+		for (Attribute attribute : gpx.getAttributes()) {
 			printStream
 					.println("    " + (attribute.getPrefix() != null ? attribute.getPrefix() + ":" + attribute.getName()
 							: attribute.getName()) + "=\"" + attribute.getValue() + "\"");
@@ -195,7 +219,7 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 								openedTrkpt = true;
 								point = new Point();
 								trace.getPoints().add(point);
-								for (XmlReader.Attribute attribute : startTag.getAttributes()) {
+								for (Attribute attribute : startTag.getAttributes()) {
 									if (attribute.getPrefix() == null && "lat".equals(attribute.getName())) {
 										Double latitude = valueDouble(attribute.getValue());
 										point.setLatitude(latitude);
@@ -208,7 +232,7 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 						}
 					} else {
 						if (startTag.getPrefix() == null && "gpx".equals(startTag.getName())) {
-							for (XmlReader.Attribute attribute : startTag.getAttributes()) {
+							for (Attribute attribute : startTag.getAttributes()) {
 								retval.getAttributes().add(attribute);
 							}
 						} else if (startTag.getPrefix() == null && "metadata".equals(startTag.getName())) {
@@ -240,8 +264,8 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 			}
 
 			for (Trace traceLoc : retval.getTraces()) {
-				Collections.sort(traceLoc.getPoints(), COMPARATOR_POINTS_TIME);
-				Set<Point> sortedPoints = new TreeSet<Point>(COMPARATOR_POINTS_TIME);
+				traceLoc.sort();
+				Set<Point> sortedPoints = new TreeSet<Point>();
 				sortedPoints.addAll(traceLoc.getPoints());
 				filterDoubles(sortedPoints);
 				traceLoc.getPoints().clear();
@@ -328,7 +352,7 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 			printStream.print(startTag.getPrefix() + ":");
 		}
 		printStream.print(startTag.getName());
-		for (XmlReader.Attribute attribute : startTag.getAttributes()) {
+		for (Attribute attribute : startTag.getAttributes()) {
 			if (attributePerLine) {
 				printStream.print("\n    ");
 			} else {
@@ -389,4 +413,5 @@ public class ManagerGpxGeneric extends ManagerGpxGenericFwk implements ManagerGp
 		Gpx gpx = managerGpx.loadGpx(fileSource);
 		managerGpx.saveGpx(gpx, fileTarget);
 	}
+
 }

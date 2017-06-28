@@ -124,8 +124,7 @@ public class BatchCreateGraphs extends BatchCreateGraphsFwk {
 			File dirGps = fileGpx.getParentFile();
 			String title = titleFromFile(fileGpx);
 
-			SetData setDataAltitude = null;
-			setDataAltitude = gpxToSetData(gpx, DataType.ELEVATION);
+			SetData setDataAltitude = gpxToSetData(gpx, DataType.ELEVATION);
 			setDataAltitude.setColorFill(COLOR_ALTITUDE_FILL);
 			setDataAltitude.setColorLine(COLOR_ALTITUDE_LINE);
 			setDataAltitude.setMinExplicit(altitudeMin);
@@ -207,6 +206,8 @@ public class BatchCreateGraphs extends BatchCreateGraphsFwk {
 				break;
 			}
 
+			Double yFirst = null;
+			Double yLast = null;
 			for (Trace trace : gpx.getTraces()) {
 				for (Point point : trace.getPoints()) {
 					if (point.getLatitude() == null && point.getLongitude() == null) {
@@ -224,8 +225,15 @@ public class BatchCreateGraphs extends BatchCreateGraphsFwk {
 						y = point.getTemperature();
 						break;
 					}
-					if (y == null) {
-						continue;
+					if (y != null) {
+						if (yFirst == null) {
+							yFirst = y;
+						}
+						yLast = y;
+					} else {
+						if (yLast != null) {
+							y = yLast;
+						}
 					}
 
 					PointData pointData = null;
@@ -235,6 +243,16 @@ public class BatchCreateGraphs extends BatchCreateGraphsFwk {
 					pointData = new PointData(length, y);
 					pointLast = point;
 					points.add(pointData);
+				}
+			}
+
+			if (points.isEmpty() || yFirst == null) {
+				points = new ArrayList<PointData>();
+			} else {
+				for (PointData pointData : points) {
+					if (pointData.getY() == null) {
+						pointData.setY(yFirst);
+					}
 				}
 			}
 

@@ -2,9 +2,9 @@ package kkr.album.components.manager_graph.data;
 
 public class PointData {
 	private double x;
-	private double y;
+	private Double y;
 
-	public PointData(double x, double y) {
+	public PointData(double x, Double y) {
 		super();
 		this.x = x;
 		this.y = y;
@@ -14,7 +14,11 @@ public class PointData {
 		return x;
 	}
 
-	public double getY() {
+	public void setY(Double y) {
+		this.y = y;
+	}
+
+	public Double getY() {
 		return y;
 	}
 

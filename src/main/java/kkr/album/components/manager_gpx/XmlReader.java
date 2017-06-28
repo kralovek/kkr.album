@@ -1,14 +1,12 @@
 package kkr.album.components.manager_gpx;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.xml.XMLConstants;
-import javax.xml.namespace.NamespaceContext;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
-
-import java.util.Collection;
 
 import kkr.album.exception.BaseException;
 import kkr.album.exception.FunctionalException;
@@ -64,46 +62,7 @@ public class XmlReader {
 		}
 	}
 
-	public static class Attribute implements Cloneable {
-		private String prefix = null;
-		private String name = null;
-		private String value = null;
-
-		public String getPrefix() {
-			return prefix;
-		}
-
-		public void setPrefix(String prefix) {
-			this.prefix = prefix;
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		public void setName(String name) {
-			this.name = name;
-		}
-
-		public String getValue() {
-			return value;
-		}
-
-		public void setValue(String value) {
-			this.value = value;
-		}
-
-		public Object clone() {
-			Attribute attribute = new Attribute();
-			attribute.name = name;
-			attribute.prefix = prefix;
-			attribute.value = value;
-			return attribute;
-		}
-	}
-
-	protected StartTag readCompleteTag() throws BaseException,
-			XMLStreamException {
+	protected StartTag readCompleteTag() throws BaseException, XMLStreamException {
 		if (xmlReader.getEventType() != XMLStreamConstants.START_ELEMENT) {
 			throw new FunctionalException("Start element expected");
 		}
@@ -117,13 +76,12 @@ public class XmlReader {
 
 		int namespaceCount = xmlReader.getNamespaceCount();
 		if (namespaceCount != 0) {
-			NamespaceContext namespaceContext = xmlReader.getNamespaceContext();
 			for (int i = 0; i < namespaceCount; i++) {
 				String namespacePrefix = xmlReader.getNamespacePrefix(i);
 				String namespaceUri = xmlReader.getNamespaceURI(i);
 				Attribute attribute = new Attribute();
 				attribute.setValue(namespaceUri);
-				if (namespacePrefix == null) {
+				if (namespacePrefix == null || namespacePrefix.isEmpty()) {
 					attribute.setName(XMLConstants.XMLNS_ATTRIBUTE);
 				} else {
 					attribute.setPrefix(XMLConstants.XMLNS_ATTRIBUTE);
