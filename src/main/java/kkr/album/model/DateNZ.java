@@ -105,7 +105,8 @@ public class DateNZ implements Comparable<DateNZ>, Cloneable {
 
 	public DateNZ(String date) {
 		if (!date.matches("[0-9]{4}[1-2][0-9][0-3][0-9](_[0-2][0-9][0-5][0-9][0-5][0-9](\\.[0-9]{3})?)?")) {
-			throw new IllegalArgumentException("Date must be in the format yyyyMMdd, yyyyMMdd_HHmmss or yyyyMMdd_HHmmss.SSS");
+			throw new IllegalArgumentException(
+					"Date must be in the format yyyyMMdd, yyyyMMdd_HHmmss or yyyyMMdd_HHmmss.SSS");
 		}
 
 		try {
@@ -125,18 +126,21 @@ public class DateNZ implements Comparable<DateNZ>, Cloneable {
 		}
 
 		if (month > 12) {
-			throw new IllegalArgumentException("Date must be in the format yyyyMMdd or yyyyMMdd_HHmmss. Bad month: " + month);
+			throw new IllegalArgumentException(
+					"Date must be in the format yyyyMMdd or yyyyMMdd_HHmmss. Bad month: " + month);
 		}
 		{
 			int dayM = daysOfMonth(year, month);
 
 			if (day > dayM) {
-				throw new IllegalArgumentException("Date must be in the format yyyyMMdd or yyyyMMdd_HHmmss. Bad day: " + day + " of month: " + month);
+				throw new IllegalArgumentException("Date must be in the format yyyyMMdd or yyyyMMdd_HHmmss. Bad day: "
+						+ day + " of month: " + month);
 			}
 		}
 
 		if (day > 23) {
-			throw new IllegalArgumentException("Date must be in the format yyyyMMdd or yyyyMMdd_HHmmss. Bad hour: " + hour);
+			throw new IllegalArgumentException(
+					"Date must be in the format yyyyMMdd or yyyyMMdd_HHmmss. Bad hour: " + hour);
 		}
 	}
 
@@ -170,25 +174,20 @@ public class DateNZ implements Comparable<DateNZ>, Cloneable {
 
 	public int compareTo(DateNZ dateNZ) {
 		return //
-		year < dateNZ.year
-				? -1
+		year < dateNZ.year ? -1
 				: year > dateNZ.year ? +1 : //
-						month < dateNZ.month
-								? -1
+						month < dateNZ.month ? -1
 								: month > dateNZ.month ? +1 : //
-										day < dateNZ.day
-												? -1
+										day < dateNZ.day ? -1
 												: day > dateNZ.day ? +1 : //
-														hour < dateNZ.hour
-																? -1
-																: hour > dateNZ.hour ? +1 : //
-																		minute < dateNZ.minute
-																				? -1
-																				: minute > dateNZ.minute ? +1 : //
-																						second < dateNZ.second
-																								? -1
-																								: second > dateNZ.second ? +1 : //
-																										ms < dateNZ.ms ? -1 : ms > dateNZ.ms ? +1 : //
+														hour < dateNZ.hour ? -1 : hour > dateNZ.hour ? +1 : //
+																minute < dateNZ.minute ? -1
+																		: minute > dateNZ.minute ? +1 : //
+																				second < dateNZ.second ? -1
+																						: second > dateNZ.second ? +1 : //
+																								ms < dateNZ.ms ? -1
+																										: ms > dateNZ.ms
+																												? +1 : //
 																												0;
 	}
 
@@ -251,7 +250,7 @@ public class DateNZ implements Comparable<DateNZ>, Cloneable {
 		//
 		int deltaHours = moveHours % 24;
 		int moveDays = (moveHours - moveHours % 24) / 24;
-		int newHour = this.minute + deltaHours;
+		int newHour = this.hour + deltaHours;
 
 		if (newHour > 24) {
 			newHour -= 24;
@@ -346,26 +345,27 @@ public class DateNZ implements Comparable<DateNZ>, Cloneable {
 			int days = daysOfMonth(date.getYear(), i);
 			ms += days * MS_DAY;
 		}
-		ms += (date.getDay() - 1) * MS_DAY + date.getHour() * 60 * 60 * 1000 + date.getMinute() * 60 * 1000 + date.getSecond() * 1000 + date.getMs();
+		ms += (date.getDay() - 1) * MS_DAY + date.getHour() * 60 * 60 * 1000 + date.getMinute() * 60 * 1000
+				+ date.getSecond() * 1000 + date.getMs();
 		return ms;
 	}
 
 	private static int daysOfMonth(int year, int month) {
 		int dayM;
 		switch (month) {
-			case 4 :
-			case 6 :
-			case 9 :
-			case 11 : {
-				dayM = 30;
-				break;
-			}
-			case 2 : {
-				dayM = isYear29(year) ? 29 : 28;
-				break;
-			}
-			default :
-				dayM = 31;
+		case 4:
+		case 6:
+		case 9:
+		case 11: {
+			dayM = 30;
+			break;
+		}
+		case 2: {
+			dayM = isYear29(year) ? 29 : 28;
+			break;
+		}
+		default:
+			dayM = 31;
 		}
 		return dayM;
 	}
