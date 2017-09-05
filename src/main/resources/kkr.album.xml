@@ -41,10 +41,6 @@
 		<property name="managerExif" ref="managerExifAllTypes" />
 	</bean>
 
-	<bean id="batchCopyPicasa" class="kkr.album.batch.copypicasa.BatchCopyPicasa">
-		<property name="dirPicasa" value="c:\media\photos\picasa" />
-	</bean>
-
 	<bean id="batchArchiveFiles" class="kkr.album.batch.archivefiles.BatchArchiveFiles">
 		<property name="managerArchive" ref="managerArchive" />
 	</bean>
@@ -107,14 +103,7 @@
 		class="kkr.album.components.manager_password.md5.ManagerPasswordMD5">
 	</bean>
 
-	<bean id="managerPicasa"
-		class="kkr.album.components.manager_picasa.gdata.ManagerPicasaGData">
-		<property name="user" value="" />
-		<property name="password" value="" />
-		<property name="managerPassword" ref="managerPassword" />
-	</bean>
-
-	<bean id="managerKml"
+		<bean id="managerKml"
 		class="kkr.album.components.manager_kml.generic.ManagerKmlGeneric">
 		<property name="styleLineSize" value="3" />
 		<property name="styleColors">
