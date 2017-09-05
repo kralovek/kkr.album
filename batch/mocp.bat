@@ -1,3 +1,3 @@
 @echo off
 
-cp -R c:/media/traces/2016/albums/MODEL/* .
+cp -R c:/media/traces/2017/albums/MODEL/* .
