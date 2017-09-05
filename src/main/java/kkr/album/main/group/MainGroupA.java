@@ -1,14 +1,13 @@
 package kkr.album.main.group;
 
+import org.apache.log4j.Logger;
+
 import kkr.album.exception.BaseException;
 import kkr.album.exception.TreatErrors;
 import kkr.album.main.MainArchiveFiles;
 import kkr.album.main.MainIndexFiles;
 import kkr.album.main.MainModifyPhotos;
 import kkr.album.main.MainResizePhotos;
-import kkr.album.main.MainUploadPicasa;
-
-import org.apache.log4j.Logger;
 
 public class MainGroupA {
 
@@ -51,16 +50,16 @@ public class MainGroupA {
 			LOGGER.info("####################################################");
 			MainArchiveFiles.work(new String[] {});
 
-//			LOGGER.info("####################################################");
-//			LOGGER.info("BATCH_COPY_PICASA");
-//			LOGGER.info("####################################################");
-//			MainCopyPicasa.work(new String[] {});
+			// LOGGER.info("####################################################");
+			// LOGGER.info("BATCH_COPY_PICASA");
+			// LOGGER.info("####################################################");
+			// MainCopyPicasa.work(new String[] {});
 
 			// LOGGER.info("####################################################");
 			// LOGGER.info("BATCH_UPLOAD_PICASA");
 			// LOGGER.info("####################################################");
 			// MainUploadPicasa.work(new String[] {});
-			
+
 			LOGGER.trace("OK");
 		} finally {
 			LOGGER.trace("END");
